@@ -41,6 +41,21 @@ h3 {
    margin-bottom: 30px;
 }
 
+input {
+   border-radius: 18px;
+   height: 35px;
+   line-height: 35px;
+   padding: 0px 15px;
+   width: 100%;
+   max-width: 400px;
+   border: none;
+   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+}
+
+li {
+   list-style-type: none;
+}
+
 .txt-center {
    text-align: center;
 }
@@ -206,4 +221,72 @@ seção produtos
    font-size: 1rem;
    margin-top: 30px;
    margin-bottom: 40px;
+}
+
+/* ----------------------- 
+seção newsletter
+------------------------- */
+
+.newsletter {
+   background-color: #C14D13;
+}
+
+.newsletter p {
+   font-size: 1.6rem;
+   font-weight: 600;
+   color: white;
+   margin-bottom: 30px;
+}
+
+.newsletter p .detalhe-newsletter {
+   color: black;
+}
+
+.btn-assinar-newsletter {
+   border: none;
+   background-color: black;
+   color: #fff;
+   padding: 5px 10px;
+   font-weight: bold;
+   cursor: pointer;
+   font-size: 1rem;
+   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+}
+
+/* ----------------------- 
+footer
+------------------------- */
+
+footer .links {
+   background-color: #1d1d1b;
+   color: #b2b2b2;
+   padding: 40px;
+   font-weight: 600;
+}
+
+.box-links {
+   display: flex;
+   justify-content: space-evenly;
+}
+
+.links a {
+   color: #b2b2b2;
+}
+
+.links ul {
+   margin-top: 15px;
+   font-weight: 500;
+   font-size: .9rem;
+}
+
+.links li {
+   margin-bottom: 3px;
+}
+
+.redes {
+   align-self: center;
+}
+
+.redes img {
+   width: 50px;
 }
