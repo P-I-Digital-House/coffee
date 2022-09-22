@@ -18,6 +18,7 @@ setInterval(() => {
   carrossel.style.backgroundPosition = "center";
   carrossel.style.backgroundRepeat = "no-repeat";
   carrossel.style.backgroundSize = "cover";
+  
   if (contador == 4) {
     contador = 0;
   } else contador++;
