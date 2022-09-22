@@ -7,10 +7,10 @@ setTimeout(() => {
 // Mudar a imagem do carrossel a cada 5 segundos
 let contador = 1;
 const backgroundImages = [
-  'url("img/destaque_1.jpg")',
-  'url("img/destaque_2.jpg")',
-  'url("img/destaque_3.jpg")',
-  'url("img/destaque_4.jpg")',
+  'linear-gradient(#000000 , #ffffff00 50%), url("img/destaque_1.jpg")',
+  'linear-gradient(#000000 , #ffffff00 50%), url("img/destaque_2.jpg")',
+  'linear-gradient(#000000 , #ffffff00 50%), url("img/destaque_3.jpg")',
+  'linear-gradient(#000000 , #ffffff00 50%), url("img/destaque_4.jpg")',
 ];
 setInterval(() => {
   const carrossel = document.querySelector(".header");

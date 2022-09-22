@@ -62,7 +62,7 @@ li {
 
 .assinaturas {
    background: #F5A472;
-   background: linear-gradient(180deg, #F5A472 50%, #1d1d1b 50%);
+   background: linear-gradient(180deg, #F5A472 40%, #1d1d1b 40%);
 }
 
 .assinaturas h2 .detalhe-assinaturas {
@@ -290,17 +290,16 @@ footer .links {
 .redes img {
    width: 50px;
 }
-   
+
 .box-header {
    display: flex;
    align-items: center;
-   justify-content: end;
+   justify-content: space-between;
    margin-bottom: 15px;
 }
 
 .header .img-logo {
    width: 200px;
-   margin: auto;
 }
 
 .icon {
