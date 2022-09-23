@@ -9,6 +9,7 @@
 
 a {
    text-decoration: none;
+   transition: all .3s ease;
 }
 
 body{
@@ -59,6 +60,68 @@ li {
 .txt-center {
    text-align: center;
 }
+
+button{
+   transition: all .3s ease;
+}
+
+/* ----------------------- 
+header
+------------------------- */
+
+.box-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 15px;
+}
+
+.header .img-logo {
+   width: 200px;
+}
+
+.icon {
+   width: 35px;
+}
+
+.carrinho {
+   display: flex;
+   grid-gap: 15px;
+}
+
+#busca {
+   box-shadow: 0px 0px 0px;
+   background-color: transparent;
+   outline: 0;
+}
+
+.box-busca {
+   margin: auto;
+   background: rgba(255, 255, 255, 0.829);
+   display: flex;
+   border-radius: 18px;
+   height: 35px;
+   line-height: 35px;
+   padding: 0px 15px;
+   width: 100%;
+   max-width: 500px;
+   border: none;
+   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+   justify-content: space-between;
+   align-items: center;
+}
+.box-busca a {
+   display: flex;
+   align-items: center;
+}
+.box-busca img {
+   height: 25px;
+   opacity: .5;
+}
+
+/* ----------------------- 
+seção assinaturas
+------------------------- */
 
 .assinaturas {
    background: #F5A472;
@@ -291,52 +354,12 @@ footer .links {
    width: 50px;
 }
 
-.box-header {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   margin-bottom: 15px;
+button:hover, a:hover{
+   transform: scale(.92);
 }
-
-.header .img-logo {
-   width: 200px;
-}
-
-.icon {
-   width: 35px;
-}
-
-.carrinho {
-   display: flex;
-   grid-gap: 15px;
-}
-
-#busca {
-   box-shadow: 0px 0px 0px;
-   background-color: transparent;
-   outline: 0;
-}
-
-.box-busca {
-   margin: auto;
-   background: rgba(255, 255, 255, 0.829);
-   display: flex;
-   border-radius: 18px;
-   height: 35px;
-   line-height: 35px;
-   padding: 0px 15px;
-   width: 100%;
-   max-width: 500px;
-   border: none;
-   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
-   justify-content: space-between;
-   align-items: center;
-}
-.box-busca a {
-   display: flex;
-   align-items: center;
-}
-.box-busca img {
-   height: 25px;
-   opacity: .5;
+@media (max-width: 480px) {
+   .box-links {
+      flex-direction: column;
+      grid-gap: 10px;
+   }
 }
