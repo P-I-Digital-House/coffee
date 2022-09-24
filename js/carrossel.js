@@ -4,7 +4,7 @@ setTimeout(() => {
   headerCarrossel.style.animation = "updown 5s";
 }, 10000);
 
-// Mudar a imagem do carrossel a cada 5 segundos
+// Mudar a imagem do carrossel a cada 6 segundos
 let contador = 1;
 const backgroundImages = [
   'linear-gradient(#000000 , #ffffff00 50%), url("img/destaque_1.jpg")',
