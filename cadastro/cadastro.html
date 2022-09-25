@@ -10,18 +10,28 @@
 </head>
 <body>
     <header>
-        <img src="/img/logo.svg" alt="Logo Header">
+        <img src="/img/logo.svg" alt="Logo da Marca">
     </header>
-    <form action="POST">
-        <div class="form">
-            <input type="text" name="cpf" id="" placeholder="CPF">
-            <input type="text" name="nomeCompleto" id="nomeCompleto" placeholder="Nome Completo">
-            <input type="text" name="dataNascimento" id="dataNascimento" placeholder="Data de Nascimento">
-            <input type="text" name="telefone" id="telefone" placeholder="Telefone">
-            <input type="text" name="email" id="email" placeholder="E-mail">
-            <input type="text" name="senha" id="senha" placeholder="Senha">
-            <input type="text" name="confirmaSenha" id="confirmaSenha" placeholder="Confirmar Senha">
-        </div>
-    </form>
+    <div class="txt">
+        <h2>["<span class="detalhe-produtos">faça seu cadastro</span>"];</h2>
+    </div>
+    <div >
+    <form class="form" action="POST" id="form-cadastro">
+            <input type="text" name="cpf" id="cpf" placeholder="CPF" required>
+            <input type="text" name="nomeCompleto" id="nomeCompleto" placeholder="Nome Completo" required>
+            <input type="date" name="dataNascimento" id="dataNascimento" placeholder="Data de Nascimento" required>
+            <input type="number" name="telefone" id="telefone" placeholder="Telefone" required>
+            <input type="text" name="endereco" id="endereco" placeholder="Endereço" required>
+            <input type="number" name="cep" id="cep" placeholder="CEP" required>
+            <input type="text" name="cidade" id="cidade" placeholder="Cidade" required>
+            <input type="text" name="estado" id="estado" placeholder="Estado" required>
+            <input type="email" name="email" id="email" placeholder="E-mail" required>
+            <input type="password" name="senha" id="senha" placeholder="Senha" required>
+            <input type="password" name="confirmaSenha" id="confirmaSenha" placeholder="Confirmar Senha" required>
+            <button class="btn" type="submit">{enviar}</button>
+            <a href="#" class="btn">{já tem conta? ir para login}</a>    
+        </form>
+    </div>  
+    <script src="/js/cadastro.js"></script>
 </body>
 </html>
