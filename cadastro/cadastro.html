@@ -17,17 +17,82 @@
     </div>
     <div >
     <form class="form" action="POST" id="form-cadastro">
-            <input type="text" name="cpf" id="cpf" placeholder="CPF" required>
-            <input type="text" name="nomeCompleto" id="nomeCompleto" placeholder="Nome Completo" required>
-            <input type="date" name="dataNascimento" id="dataNascimento" placeholder="Data de Nascimento" required>
-            <input type="number" name="telefone" id="telefone" placeholder="Telefone" required>
-            <input type="text" name="endereco" id="endereco" placeholder="Endereço" required>
-            <input type="number" name="cep" id="cep" placeholder="CEP" required>
-            <input type="text" name="cidade" id="cidade" placeholder="Cidade" required>
-            <input type="text" name="estado" id="estado" placeholder="Estado" required>
-            <input type="email" name="email" id="email" placeholder="E-mail" required>
-            <input type="password" name="senha" id="senha" placeholder="Senha" required>
-            <input type="password" name="confirmaSenha" id="confirmaSenha" placeholder="Confirmar Senha" required>
+            <!-- <input type="text" name="cpf" id="cpf" placeholder="CPF" required onsubmit="enviar(event)" /> -->
+      <input
+      class="required"
+      type="text"
+      name="nomeCompleto"
+      id="nomeCompleto"
+      placeholder="Nome Completo"
+      oninput="validarCampos()"
+    />
+    <span class="span-form">*O campo nome deve ter no mínimo 3 caracteres.</span>
+
+    <input
+      class="required"
+      type="email"
+      name="email"
+      id="email"
+      placeholder="E-mail"
+      oninput="validarCampos()"
+    />
+    <span class="span-form">*Insira um e-mail válido.</span>
+    <!-- <input
+      class="required"
+      type="date"
+      name="dataNascimento"
+      id="dataNascimento"
+      placeholder="Data de Nascimento"
+    />
+    <input
+      class="required"
+      type="number"
+      name="telefone"
+      id="telefone"
+      placeholder="Telefone"
+    />
+    <input
+      class="required"
+      type="text"
+      name="endereco"
+      id="endereco"
+      placeholder="Endereço"
+    />
+    <input
+      class="required"
+      type="number"
+      name="cep"
+      id="cep"
+      placeholder="CEP"
+    />
+    <input
+      class="required"
+      type="text"
+      name="cidade"
+      id="cidade"
+      placeholder="Cidade"
+    />
+    <input
+      class="required"
+      type="text"
+      name="estado"
+      id="estado"
+      placeholder="Estado"
+    />
+    <input
+      class="required"
+      type="password"
+      name="senha"
+      id="senha"
+      placeholder="Senha"
+    />
+    <input
+      class="required"
+      type="password"
+      name="confirmaSenha"
+      id="confirmaSenha"
+      placeholder="Confirmar Senha"
+    /> -->
             <button class="btn" type="submit">{enviar}</button>
             <a href="#" class="btn">{já tem conta? ir para login}</a>    
         </form>
