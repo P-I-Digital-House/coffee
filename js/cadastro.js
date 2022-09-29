@@ -1,15 +1,33 @@
 function validar() {
+  
   const cpf = document.getElementById("cpf");
   const nome = document.getElementById("nomeCompleto");
   const telefone = document.getElementById("telefone");
   const email = document.getElementById("email");
-  const endereco = document.getElementById("endereco");
   const numero = document.getElementById("numero");
-  const cep = document.getElementById("cep");
-  const cidade = document.getElementById("cidade");
-  const estado = document.getElementById("estado");
   const senha = document.getElementById("senha");
   const confirmaSenha = document.getElementById("confirmaSenha");
+
+  /*::::::::::::::::::::::::::::CONSOME A API PELO CEP E ADICIONA OS DEMAIS DADOS DO LOCAL::::::::::::::::::::::::::::*/
+  const cep = document.getElementById("cep");
+  const rua = document.getElementById("rua");
+  const bairro = document.getElementById("bairro");
+  const cidade = document.getElementById("cidade");
+  const estado = document.getElementById("estado");
+
+  cep.addEventListener("blur", (event) => {
+    const cepInput = event.target.value;
+
+    fetch(`https://brasilapi.com.br/${cepInput}`)
+      .then((response) => response.json())
+      .then((data) => {
+        rua.value = data.street;
+        bairro.value = data.neighborhood;
+        cidade.value = data.city;
+        estado.value = data.state;
+      });
+
+  });
 
   /*::::::::::::::::::::::::::::EXPRESSÕES REGULARES QUE VALIDAM OS CAMPOS DE: E-MAIL - SENHA - CEP - TELEFONE CELULAR E RESIDENCIAL::::::::::::::::::::::::::::*/
 
@@ -61,38 +79,16 @@ function validar() {
     removeError(email);
   }
 
-  if (endereco.value.length < 3 || endereco.value.length > 30) {
-    setError(endereco);
-  } else {
-    removeError(endereco);
-  }
-
-  if (numero.value < 0 || numero.value.length > 5) {
-    setError(numero);
-  } else {
-    removeError(numero);
-  }
-
   if (!validarCep) {
     setError(cep);
   } else {
     removeError(cep);
   }
 
-  if (
-    cidade.value.length < 4 ||
-    cidade.value.length > 30 ||
-    cidade.value.isNumber
-  ) {
-    setError(cidade);
+  if (numero.value < 0 || numero.value.length > 5) {
+    setError(numero);
   } else {
-    removeError(cidade);
-  }
-
-  if (estado.value.length == 2 || estado.value.isNumber) {
-    setError(estado);
-  } else {
-    removeError(estado);
+    removeError(numero);
   }
 
   if (!verificarSenha) {
