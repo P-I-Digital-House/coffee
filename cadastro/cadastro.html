@@ -1,102 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/cadastro.css">
+    <link rel="stylesheet" href="/css/cadastro.css" />
     <title>{coffee};</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <img src="/img/logo.svg" alt="Logo da Marca">
+      <img src="/img/logo.svg" alt="Logo da Marca" />
     </header>
     <div class="txt">
-        <h2>["<span class="detalhe-produtos">faça seu cadastro</span>"];</h2>
+      <h2>["<span class="detalhe-produtos">faça seu cadastro</span>"];</h2>
     </div>
-    <div >
-    <form class="form" action="POST" id="form-cadastro">
-            <!-- <input type="text" name="cpf" id="cpf" placeholder="CPF" required onsubmit="enviar(event)" /> -->
-      <input
-      class="required"
-      type="text"
-      name="nomeCompleto"
-      id="nomeCompleto"
-      placeholder="Nome Completo"
-      oninput="validarCampos()"
-    />
-    <span class="span-form">*O campo nome deve ter no mínimo 3 caracteres.</span>
-
-    <input
-      class="required"
-      type="email"
-      name="email"
-      id="email"
-      placeholder="E-mail"
-      oninput="validarCampos()"
-    />
-    <span class="span-form">*Insira um e-mail válido.</span>
-    <!-- <input
-      class="required"
-      type="date"
-      name="dataNascimento"
-      id="dataNascimento"
-      placeholder="Data de Nascimento"
-    />
-    <input
-      class="required"
-      type="number"
-      name="telefone"
-      id="telefone"
-      placeholder="Telefone"
-    />
-    <input
-      class="required"
-      type="text"
-      name="endereco"
-      id="endereco"
-      placeholder="Endereço"
-    />
-    <input
-      class="required"
-      type="number"
-      name="cep"
-      id="cep"
-      placeholder="CEP"
-    />
-    <input
-      class="required"
-      type="text"
-      name="cidade"
-      id="cidade"
-      placeholder="Cidade"
-    />
-    <input
-      class="required"
-      type="text"
-      name="estado"
-      id="estado"
-      placeholder="Estado"
-    />
-    <input
-      class="required"
-      type="password"
-      name="senha"
-      id="senha"
-      placeholder="Senha"
-    />
-    <input
-      class="required"
-      type="password"
-      name="confirmaSenha"
-      id="confirmaSenha"
-      placeholder="Confirmar Senha"
-    /> -->
-            <button class="btn" type="submit">{enviar}</button>
-            <a href="#" class="btn">{já tem conta? ir para login}</a>    
-        </form>
-    </div>  
+    <div>
+      <form
+        class="form"
+        action="POST"
+        id="form-cadastro"
+        onsubmit="enviar(event)"
+      >
+        <input
+          type="number"
+          name="cpf"
+          id="cpf"
+          placeholder="CPF"
+          oninput="validar()"
+        />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="text"
+          name="nomeCompleto"
+          id="nomeCompleto"
+          placeholder="Nome Completo"
+          oninput="validar()"
+        />
+        <span class="span-form"
+          >*O campo nome deve ter no mínimo 3 caracteres e o máximo 30.</span
+        >
+        <input type="date" name="dataNascimento" id="dataNascimento" />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="number"
+          name="telefone"
+          id="telefone"
+          placeholder="Telefone"
+          oninput="validar()"
+        />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="E-mail"
+          oninput="validar()"
+        />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="text"
+          name="endereco"
+          id="endereco"
+          placeholder="Endereço"
+          oninput="validar()"
+        />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="number"
+          name="numero"
+          id="numero"
+          placeholder="Número"
+          oninput="validar()"
+        />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="number"
+          name="cep"
+          id="cep"
+          placeholder="CEP"
+          oninput="verificar()"
+        />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="text"
+          name="cidade"
+          id="cidade"
+          placeholder="Cidade"
+          oninput="validar()"
+        />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="text"
+          name="estado"
+          id="estado"
+          placeholder="Estado"
+          oninput="validar()"
+        />
+        <span class="span-form">*Campo inválido.</span>
+        <input
+          type="password"
+          name="senha"
+          id="senha"
+          placeholder="Senha"
+          oninput="validar()"
+        />
+        <span class="span-form"
+          >*A senha deve conter 8 caracteres, 1 letra maiúscula, e 1 caractere e
+          1 dígito. especial.</span
+        >
+        <input
+          type="password"
+          name="confirmarSenha"
+          id="confirmarSenha"
+          placeholder="Confirmar Senha"
+          oninput="verificar()"
+        />
+        <span class="span-form">*Senhas diferentes.</span>
+        <button class="btn" type="submit" onclick="enviar()">{enviar}</button>
+        <a href="#" class="btn">{já tem conta? ir para login}</a>
+      </form>
+    </div>
     <script src="/js/cadastro.js"></script>
-</body>
+  </body>
 </html>
