@@ -18,7 +18,7 @@ function validar() {
   cep.addEventListener("blur", (event) => {
     const cepInput = event.target.value;
 
-    fetch(`https://brasilapi.com.br/${cepInput}`)
+    fetch(`https://brasilapi.com.br/api/cep/v2/${cepInput}`)
       .then((response) => response.json())
       .then((data) => {
         rua.value = data.street;
