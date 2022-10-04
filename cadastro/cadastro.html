@@ -18,9 +18,9 @@
     <div>
       <form
         class="form"
-        action="POST"
+        action=""
         id="form-cadastro"
-       
+        onsubmit="enviar(event)"
       >
         <input
           type="number"
@@ -34,11 +34,8 @@
           name="nomeCompleto"
           id="nomeCompleto"
           placeholder="Nome Completo"
-          oninput="validar()"
         />
-        <span class="span-form"
-          >*O campo nome deve ter no mínimo 3 caracteres e o máximo 30.</span
-        >
+        <span class="span-form">*O campo nome deve ter no mínimo 3 caracteres e o máximo 30.</span>
         <input type="date" name="dataNascimento" id="dataNascimento" />
         <span class="span-form">*Campo inválido.</span>
         <input
@@ -46,7 +43,6 @@
           name="telefone"
           id="telefone"
           placeholder="Telefone"
-          oninput="validar()"
         />
         <span class="span-form">*Campo inválido.</span>
         <input
@@ -54,7 +50,6 @@
           name="email"
           id="email"
           placeholder="E-mail"
-          oninput="validar()"
         />
         <span class="span-form">*Campo inválido.</span>
         <input
@@ -62,7 +57,6 @@
           name="cep"
           id="cep"
           placeholder="CEP"
-          oninput="validar()"
         />
         <span class="span-form">*Campo inválido.</span>
         <input
@@ -101,7 +95,6 @@
           name="senha"
           id="senha"
           placeholder="Senha"
-          oninput="validar()"
         />
         <span class="span-form"
           >*A senha deve conter 8 caracteres, 1 letra maiúscula, e 1 caractere e
@@ -112,10 +105,9 @@
           name="confirmarSenha"
           id="confirmarSenha"
           placeholder="Confirmar Senha"
-          oninput="verificar()"
         />
         <span class="span-form">*Senhas diferentes.</span>
-        <button class="btn" type="submit" onclick="enviar()">{enviar}</button>
+        <button class="btn" type="submit" onclick="enviar(event)">{enviar}</button>
         <a href="#" class="btn">{já tem conta? ir para login}</a>
       </form>
     </div>
