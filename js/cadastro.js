@@ -1,4 +1,5 @@
-window.onload = function () {
+function validar() {
+
   const cpf = document.getElementById("cpf");
   const nome = document.getElementById("nomeCompleto");
   const telefone = document.getElementById("telefone");
@@ -25,6 +26,7 @@ window.onload = function () {
         cidade.value = data.city;
         estado.value = data.state;
       });
+
   });
 
   /*::::::::::::::::::::::::::::EXPRESSÕES REGULARES QUE VALIDAM OS CAMPOS DE: E-MAIL - SENHA - CEP - TELEFONE CELULAR E RESIDENCIAL::::::::::::::::::::::::::::*/
@@ -53,72 +55,77 @@ window.onload = function () {
   }
 
   /*::::::::::::::::::::::::::::VERIFICAÇÕES DOS CAMPOS::::::::::::::::::::::::::::*/
+  // if (cpf.value.length != 11) {
+  //   setError(cpf);
+  // } else {
+  //   removeError(cpf);
+  // }
 
-  cpf.addEventListener("change", () => {
-    if (cpf.value.length != 11) {
-      setError(cpf);
+  cpf.addEventListener("change", (event) => {
+    if (event.target.value.length != 11) {
+      setError(cpf)
     } else {
-      removeError(cpf);
+      removeError(cpf)
     }
   });
 
-  nome.addEventListener("change", () => {
-    if (nome.value.length < 3 || nome.value.length > 30) {
+  nome.addEventListener("change", (event) => {
+    if (event.target.value.length < 3 || event.target.value.length > 30) {
       setError(nome);
     } else {
       removeError(nome);
     }
   });
 
-  telefone.addEventListener("change", () => {
-    if (!telCelular || !telResidencial) {
+  telefone.addEventListener("change", (event) => {
+    if (event.target.value != telCelular || event.target.value != telResidencial) {
       setError(telefone);
     } else {
       removeError(telefone);
     }
   });
 
-  email.addEventListener("change", () => {
-    if (!verificarEmail) {
+  email.addEventListener("change", (event) => {
+    if (event.target.value != verificarEmail) {
       setError(email);
     } else {
       removeError(email);
     }
   });
 
-  cep.addEventListener("change", () => {
-    if (!validarCep) {
+  cep.addEventListener("change", (event) => {
+    if (event.target.value != validarCep) {
       setError(cep);
     } else {
       removeError(cep);
     }
   });
 
-  numero.addEventListener("change", () => {
-    if (numero.value < 0 || numero.value.length > 5) {
+  numero.addEventListener("change", (event) => {
+    if (event.target.value < 0 || event.target.value.length > 5) {
       setError(numero);
     } else {
       removeError(numero);
     }
   });
 
-  senha.addEventListener("change", () => {
-    if (!verificarSenha) {
+  senha.addEventListener("change", (event) => {
+    if (event.target.value != verificarSenha) {
       setError(senha);
     } else {
       removeError(senha);
     }
   });
 
-  confirmaSenha.addEventListener("change", () => {
-    if (senha != confirmaSenha) {
+  confirmaSenha.addEventListener("change", (event) => {
+    if (event.target.value != senha) {
       setError(confirmaSenha);
     } else {
       removeError(confirmaSenha);
     }
   });
 
-};
+}
 
 /*::::::::::::::::::::::::::::SE AS INFORMAÇÕES INSERIDAS ESTIVEREM CORRETAS, ENVIA O FORMULÁRIO::::::::::::::::::::::::::::*/
 function enviar(e) {
@@ -130,5 +137,6 @@ function enviar(e) {
     alert("Cadastro realizado com sucesso!");
   }
 }
+
 
 // <!-- onsubmit="enviar(event)" -->
