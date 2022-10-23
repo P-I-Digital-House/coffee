@@ -1,0 +1,45 @@
+.links {
+  background-color: #1d1d1b;
+  color: #b2b2b2;
+  padding: 40px;
+  font-weight: 600;
+}
+
+.links {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.links a {
+  color: #b2b2b2;
+  text-decoration: none;
+}
+
+.links ul {
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: .9rem;
+  list-style: none;
+}
+
+.links li {
+  margin-bottom: 3px;
+}
+
+.redes {
+  align-self: center;
+}
+
+.redes img {
+  width: 50px;
+}
+
+button:hover, a:hover{
+  transform: scale(.92);
+}
+@media (max-width: 480px) {
+  .links {
+     flex-direction: column;
+     grid-gap: 10px;
+  }
+}
