@@ -1,16 +1,17 @@
-
-import {Footer} from "../components/Footer";
-import {Header} from '../components/Header/Index';
-import {Carrossel} from "../components/Carrossel/Index";
+import { Footer } from "../components/Footer/Index";
+import { Header } from "../components/Header/Index";
+import { Main } from "../components/Main/Index";
+import { Assinatura } from "../components/Assinaturas/Index";
 
 function Home() {
-
   return (
     <div>
-      <Header/>
-      <Footer/>      
+      <Header />
+      <Assinatura />
+      <Main />
+      <Footer />
     </div>
   );
-};
+}
 
 export default Home;

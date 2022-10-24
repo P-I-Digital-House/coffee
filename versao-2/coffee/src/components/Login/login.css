@@ -1,0 +1,60 @@
+.form-login {
+  background-color: #1d1d1b;
+  color: azure;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  height: 100vh;
+  gap: 20px;
+}
+
+
+.login {
+  height: 30%;
+  width: 20%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(250, 235, 215, 0.295);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+input.main {
+  width: 100%;
+  border-style: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+}
+.btn {
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-send {
+  background-color: black;
+}
+
+.btn-send:hover {
+  background-color: #F5A472;
+}
+
+a:hover {
+  color: #F5A472;
+}
+
+.cadastro {
+  font-size: small;
+}
