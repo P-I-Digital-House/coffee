@@ -1,4 +1,7 @@
 import "../Footer/footer.css";
+import  Facebook  from "../../assets/bola-facebook.svg";
+import  Instagram  from "../../assets/bola-instagram.svg";
+import WhastApp from "../../assets/bola-whatsapp.svg";
 
 export function Footer() {
   return (
@@ -39,13 +42,13 @@ export function Footer() {
       </div>
       <div className="redes">
         <a href="#">
-          <img src="./img/bola-facebook.svg" alt="" />
+          <img src={Facebook} alt="" />
         </a>
         <a href="#">
-          <img src="./img/bola-instagram.svg" alt="" />
+          <img src={Instagram} alt="" />
         </a>
         <a href="#">
-          <img src="./img/bola-whatsapp.svg" alt="" />
+          <img src={WhastApp} alt="" />
         </a>
       </div>
     </div>

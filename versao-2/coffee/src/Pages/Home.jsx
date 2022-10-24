@@ -1,15 +1,15 @@
-
-import {Footer} from "../components/Footer";
-import {Header} from '../components/Header/Index';
+import { Footer } from "../components/Footer/Index";
+import { Header } from "../components/Header/Index";
+import { Main } from "../components/Main/Index";
 
 function Home() {
-
   return (
     <div>
-      <Footer/>
       <Header />
+      <Main />
+      <Footer />
     </div>
   );
-};
+}
 
 export default Home;
