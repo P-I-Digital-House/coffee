@@ -1,10 +1,20 @@
+<<<<<<< HEAD
 
 .aaa {
+=======
+.containerheader {
+>>>>>>> d88ca02c34c1576f72f81503a319ef666f483b61
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  margin: 40px;
+  background: linear-gradient(#000000 , #ffffff00 50%), url("../../assets/destaque_1.jpg") no-repeat center; 
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  padding: 40px;
+  scroll-behavior: smooth;
+  transition: background .5s ease-in-out;
 }
 
 .header {
@@ -93,13 +103,25 @@
   display: none;
 }
 
-@media(max-width: 768px) {
-  .aaa {
-    flex-direction: column;
+@media(max-width: 480px) {
+  .carrinho {
+    grid-gap: 10px;
   }
+  .icon {
+    width: 25px;
+  }
+  .icon-user {
+    width: 20px;
+    height: 20px;
+  }
+
+}
+
+@media(max-width: 768px) {
   .busca {
     display: none;
   }
+
   .busca-2 {
     display: flex;
     flex-direction: row;
