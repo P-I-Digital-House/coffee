@@ -1,0 +1,86 @@
+.assinaturas {
+  background: #F5A472;
+  background: linear-gradient(180deg, #F5A472 40%, #1d1d1b 40%);
+}
+
+.assinaturas h2 .detalhe-assinaturas {
+  color: #C14D13;
+}
+
+.assinaturas .box-assinaturas {
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  grid-gap: 20px;
+}
+
+.assinaturas .img-assinaturas {
+  max-width: 130px;
+  border-radius: 50%;
+  margin-bottom: 40px;
+}
+
+.card-assinaturas {
+  padding: 20px 10px 0px 10px;
+  border-radius: 18px;
+}
+
+.ass-junior .card-assinaturas {
+  background-color: #EDEDED;
+  box-shadow: 8px 8px #b2b2b2;
+  color: black;
+}
+
+.ass-pleno .card-assinaturas {
+  background-color: #C14D13;
+  box-shadow: 8px 8px #7F2A00;
+}
+
+.ass-senior .card-assinaturas {
+  background-color: #936037;
+  box-shadow: 8px 8px #432918;
+}
+
+.ass-junior .titulo-card-assinaturas {
+  background-color: #b2b2b2;
+}
+
+.ass-pleno .titulo-card-assinaturas {
+  background-color: #7F2A00;
+}
+
+.ass-senior .titulo-card-assinaturas {
+  background-color: #432918;
+}
+
+.ass-junior, .ass-pleno, .ass-senior {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.titulo-card-assinaturas {
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 18px;
+  height: 35px;
+  line-height: 35px;
+  color: white;
+}
+
+.card-up{
+  position: relative;
+  bottom: 35px;
+}
+
+.assinaturas .btn-card-assinaturas {
+  border: none;
+  background-color: black;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
+}
