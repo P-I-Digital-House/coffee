@@ -38,7 +38,7 @@ export function Main() {
             preco="R$ 100,00"
           />
         </div>
-        {/* <a href="#"><button className="btn-mais">"ver_mais"</button></a> */}
+        <a href="#"><button className="btn-mais">"ver_mais"</button></a>
       </div>
       <div className="txt-center section-cafe">
         <h3 className="subtitulo">xícaras;</h3>
@@ -62,7 +62,7 @@ export function Main() {
             preco="R$ 100,00"
           />
         </div>
-        {/* <a href="#"><button className="btn-mais">"ver_mais"</button></a> */}
+        <a href="#"><button className="btn-mais">"ver_mais"</button></a>
       </div>
       <div className="txt-center section-cafe">
         <h3 className="subtitulo">acessórios;</h3>
@@ -86,7 +86,7 @@ export function Main() {
             preco="R$ 80,00"
           />
         </div>
-        {/* <a href="#"><button className="btn-mais">"ver_mais"</button></a> */}
+        <a href="#"><button className="btn-mais">"ver_mais"</button></a>
       </div>
     </div>
   );
