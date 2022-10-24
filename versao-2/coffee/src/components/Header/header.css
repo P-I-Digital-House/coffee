@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-
-.aaa {
-=======
 .containerheader {
->>>>>>> d88ca02c34c1576f72f81503a319ef666f483b61
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
