@@ -37,7 +37,7 @@ export function Header() {
         if (contador == 3) {
           contador = 0;
         } else contador++;
-      }, 2000);
+      }, 6000);
     }, [])
    return (
       <div className='containerheader' id='containerheader'>
