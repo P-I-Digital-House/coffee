@@ -1,13 +1,14 @@
 
 import {Footer} from "../components/Footer";
 import {Header} from '../components/Header/Index';
+import {Carrossel} from "../components/Carrossel/Index";
 
 function Home() {
 
   return (
     <div>
-      <Footer/>
-      <Header />
+      <Header/>
+      <Footer/>      
     </div>
   );
 };
