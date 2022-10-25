@@ -11,9 +11,7 @@
 }
 
 .login {
-  height: 30%;
-  width: 20%;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   background-color: rgba(250, 235, 215, 0.295);
   display: flex;
@@ -32,7 +30,7 @@ input.main {
   width: 100%;
   border-style: none;
   border-radius: 5px;
-  padding: 10px 30px;
+  padding: 10px 20px;
 }
 .btn {
   width: 12%;

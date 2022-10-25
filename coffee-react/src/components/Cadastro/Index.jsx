@@ -1,17 +1,23 @@
-import "./cadastro.css";
+import "../Cadastro/cadastro.css";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  nome: yup.string().required,
-  documento: yup.number().max(11).positive().integer().required,
-  idade: yup.number().min(18).positive().integer().required,
-  telefone: yup.number().max(11).positive().integer(),
-  email: yup.string().email().required,
-  senha: yup.string().max(8).required,
-  cep: yup.number().max(8).positive().integer().required,
+  nome: yup.string().required('Nome obrigatório'),
+  documento: yup.number().test('len', 'CPF deve ter 11 dígitos', (val) =>
+  {
+    if(val === undefined){
+      return true
+    }
+    return val.toString().length == 11
+  } ).required('Documento obrigatório'),
+  idade: yup.number().min(18).positive().integer().required('Idade obrigatória'),
+  telefone: yup.string().max(11),
+  email: yup.string().email('Email inválido').required('Email obrigatório'),
+  senha: yup.string().min(8, 'Senha deve ter pelo menos 8 dígitos').required('Senha obrigatória'),
+  cep: yup.string().length(8, 'CEP deve ter 8 dígitos').required('CEP obrigatório'),
   logradouro: yup.string(),
-  numero: yup.number().max(5).positive().integer(),
+  numero: yup.string().max(5),
   bairro: yup.string(),
   cidade: yup.string(),
   estado: yup.string(),
@@ -19,10 +25,10 @@ const schema = yup.object().shape({
 
 export function CadastroUsuario() {
   return (
-    <div>
+    <div className="form-register">
       <h2>
         ["<span className="detalhe-produtos">cadastre-se</span>"];
-      </h2>
+      </h2>{" "}
       <Formik
         validationSchema={schema}
         initialValues={{
@@ -39,65 +45,81 @@ export function CadastroUsuario() {
           cidade: "",
           estado: "",
         }}
+        onSubmit={(values) => {
+          console.log(values);
+          alert("Formulário valido! Enviando formulário...");
+        }}
       >
-        {() => (
-          <Form>
-            <div>
+        {({ touched, errors, isSubmitting, values }) => (
+          <Form className="register">
+            <div className="label">
               <label htmlFor="nome">Nome</label>
-              <Field id="nome" name="nome" type="text" />
+              <Field className="main" id="nome" name="nome" type="text" />
+              {touched.nome && errors.nome && <div className="error">{errors.nome}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="documento">Documento</label>
-              <Field id="documento" name="documento" type="number" />
+              <Field className="main" id="documento" name="documento" type="number" />
+              {touched.documento && errors.documento && <div className="error">{errors.documento}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="idade">Idade</label>
-              <Field id="idade" name="idade" type="number" />
+              <Field className="main" id="idade" name="idade" type="number" />
+              {touched.idade && errors.idade && <div className="error">{errors.idade}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="telefone">Telefone</label>
-              <Field id="telefone" name="telefone" type="text" />
+              <Field className="main" id="telefone" name="telefone" type="text" />
+              {touched.telefone && errors.telefone && <div className="error">{errors.telefone}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="email">E-mail</label>
-              <Field id="email" name="email" type="email" />
+              <Field className="main" id="email" name="email" type="email" />
+              {touched.email && errors.email && <div className="error">{errors.email}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="senha">Senha</label>
-              <Field id="senha" name="senha" type="text" />
+              <Field className="main" id="senha" name="senha" type="password" />
+              {touched.senha && errors.senha && <div className="error">{errors.senha}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="cep">CEP</label>
-              <Field id="cep" name="cep" type="number" />
+              <Field className="main" id="cep" name="cep" type="text" />
+              {touched.cep && errors.cep && <div className="error">{errors.cep}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="logradouro">Logradouro</label>
-              <Field id="logradouro" name="logradouro" type="text" />
+              <Field className="main" id="logradouro" name="logradouro" type="text" />
+              {touched.logradouro && errors.logradouro && <div className="error">{errors.logradouro}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="numero">Número</label>
-              <Field id="numero" name="numero" type="number" />
+              <Field className="main" id="numero" name="numero" type="number" />
+              {touched.numero && errors.numero && <div className="error">{errors.numero}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="bairro">Bairro</label>
-              <Field id="bairro" name="bairro" type="text" />
+              <Field className="main" id="bairro" name="bairro" type="text" />
+              {touched.bairro && errors.bairro && <div className="error">{errors.bairro}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="cidade">Cidade</label>
-              <Field id="cidade" name="cidade" type="text" />
+              <Field className="main" id="cidade" name="cidade" type="text" />
+              {touched.cidade && errors.cidade && <div className="error">{errors.cidade}</div>}
             </div>
-            <div>
+            <div className="label">
               <label htmlFor="estado">Estado</label>
-              <Field id="estado" name="estado" type="text" />
+              <Field className="main" id="estado" name="estado" type="text" />
+              {touched.estado && errors.estado && <div className="error">{errors.estado}</div>}
             </div>
-          </Form>
-        )}
-        <div>
-          <button type="submit">cadastrar</button>
+        <div className="send">
+          <button type="submit" className="btn-send btn-card-produtos">cadastrar</button>
           <span>
             Você já tem Login? <a href="/login">Entre Aqui. </a>
           </span>
         </div>
+          </Form>
+        )}
       </Formik>
     </div>
   );

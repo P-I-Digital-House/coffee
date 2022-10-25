@@ -3,9 +3,11 @@
   color: azure;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  padding: 40px;
+  height: 100%;
+  gap: 20px;
 }
 
 .register {
@@ -14,24 +16,9 @@
   padding: 15px 30px;
   border-radius: 10px;
   background-color: rgba(250, 235, 215, 0.295);
-  display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  gap: 10px;
-}
-
-.step1 {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.step2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 15px;
+  gap: 20px;
 }
 
 a {
@@ -39,27 +26,12 @@ a {
   color: #fff;
 }
 
-.label {
-  display: flex;
-  flex-direction: column;
-}
-
-input.main {
-  width: 100%;
-  border-style: none;
-  border-radius: 5px;
-}
-
-label,
-.cadastro {
-  font-size: small;
-}
-
 .send {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .btn-send {
@@ -68,6 +40,7 @@ label,
   justify-content: center;
   align-items: center;
   background-color: black;
+  color: #fff;
 }
 
 .btn-send:hover {
@@ -78,6 +51,11 @@ a:hover {
   color: #f5a472;
 }
 
-.cadastro {
+.label{
+  margin-top: 8px;
+}
+
+.error {
+  color: rgb(255, 113, 113);
   font-size: small;
 }
