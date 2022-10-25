@@ -18,7 +18,7 @@
 .links ul {
   margin-top: 15px;
   font-weight: 500;
-  font-size: .9rem;
+  font-size: 0.9rem;
   list-style: none;
 }
 
@@ -34,12 +34,13 @@
   width: 50px;
 }
 
-button:hover, a:hover{
-  transform: scale(.92);
+button:hover,
+a:hover {
+  transform: scale(0.92);
 }
 @media (max-width: 480px) {
   .links {
-     flex-direction: column;
-     grid-gap: 10px;
+    flex-direction: column;
+    grid-gap: 10px;
   }
 }

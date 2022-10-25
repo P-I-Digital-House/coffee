@@ -3,9 +3,10 @@ import "../Login/login.css";
 export function LoginUsuario() {
   return (
     <div className="form-login">
-<h2>
+      <h2>
         ["<span className="detalhe-produtos">login</span>"];
-      </h2>      <div className="login">
+      </h2>{" "}
+      <div className="login">
         <div className="label">
           <label htmlFor="">E-mail</label>
           <input className="main" type="text" />
@@ -19,9 +20,9 @@ export function LoginUsuario() {
         </span>
       </div>
       <div className="btn">
-      <button className="btn-card-produtos btn-send" type="submit">
-        login
-      </button>
+        <button className="btn-card-produtos btn-send" type="submit">
+          login
+        </button>
       </div>
       <span className="cadastro">
         Você ainda não tem Login?
