@@ -1,6 +1,5 @@
-
 .newsletter {
-  background-color: #C14D13;
+  background-color: #c14d13;
 }
 
 .newsletter p {
@@ -25,6 +24,6 @@
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
 }
 
-.input-news{
+.input-news {
   margin-right: 15px;
 }

@@ -1,10 +1,10 @@
 .assinaturas {
-  background: #F5A472;
-  background: linear-gradient(180deg, #F5A472 40%, #1d1d1b 40%);
+  background: #f5a472;
+  background: linear-gradient(180deg, #f5a472 40%, #1d1d1b 40%);
 }
 
 .assinaturas h2 .detalhe-assinaturas {
-  color: #C14D13;
+  color: #c14d13;
 }
 
 .assinaturas .box-assinaturas {
@@ -28,14 +28,14 @@
 }
 
 .ass-junior .card-assinaturas {
-  background-color: #EDEDED;
+  background-color: #ededed;
   box-shadow: 8px 8px #b2b2b2;
   color: black;
 }
 
 .ass-pleno .card-assinaturas {
-  background-color: #C14D13;
-  box-shadow: 8px 8px #7F2A00;
+  background-color: #c14d13;
+  box-shadow: 8px 8px #7f2a00;
 }
 
 .ass-senior .card-assinaturas {
@@ -48,14 +48,16 @@
 }
 
 .ass-pleno .titulo-card-assinaturas {
-  background-color: #7F2A00;
+  background-color: #7f2a00;
 }
 
 .ass-senior .titulo-card-assinaturas {
   background-color: #432918;
 }
 
-.ass-junior, .ass-pleno, .ass-senior {
+.ass-junior,
+.ass-pleno,
+.ass-senior {
   width: 100%;
   max-width: 300px;
   text-align: center;
@@ -70,7 +72,7 @@
   color: white;
 }
 
-.card-up{
+.card-up {
   position: relative;
   bottom: 35px;
 }

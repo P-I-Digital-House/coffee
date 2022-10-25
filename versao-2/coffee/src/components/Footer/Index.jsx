@@ -1,6 +1,6 @@
 import "../Footer/footer.css";
-import  Facebook  from "../../assets/bola-facebook.svg";
-import  Instagram  from "../../assets/bola-instagram.svg";
+import Facebook from "../../assets/bola-facebook.svg";
+import Instagram from "../../assets/bola-instagram.svg";
 import WhastApp from "../../assets/bola-whatsapp.svg";
 
 export function Footer() {
