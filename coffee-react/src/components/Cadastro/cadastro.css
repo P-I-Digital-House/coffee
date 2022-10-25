@@ -12,10 +12,12 @@
 
 .register {
   height: 70%;
-  width: 50%;
+  width: max(30%, 350px);
   padding: 15px 30px;
   border-radius: 10px;
   background-color: rgba(250, 235, 215, 0.295);
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   gap: 20px;
@@ -51,8 +53,23 @@ a:hover {
   color: #f5a472;
 }
 
-.label{
-  margin-top: 8px;
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+}
+
+input.main {
+  width: 100%;
+  border-style: none;
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+label,
+.cadastro {
+  font-size: small;
 }
 
 .error {
