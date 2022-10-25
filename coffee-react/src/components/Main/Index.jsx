@@ -1,16 +1,31 @@
 import "../Main/main.css";
 import { CardProduto } from "../CardProduto/Index";
-import p1 from "../../assets/embalagem-cafe-1.png";
-import p2 from "../../assets/embalagem-cafe-2.png";
-import p3 from "../../assets/embalagem-cafe-3.png";
-import x1 from "../../assets/embalagem-cafe-1.png";
-import x2 from "../../assets/xicara_2.png";
-import x3 from "../../assets/xicara_3.png";
-import a1 from "../../assets/acessorio-1.png";
-import a2 from "../../assets/acessorio-2.png";
-import a3 from "../../assets/acessorio-3.png";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export function Main() {
+  const [products, setProducts] = useState([]);
+  const [xicaras, setXicaras] = useState([]);
+  const [acessorios, setAcessorios] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/products/cafes')
+    .then((response) => response.json())
+      .then((json) => setProducts(json));
+  }, [products])
+
+  useEffect(() => {
+    fetch('http://localhost:5000/products/xicaras')
+    .then((response) => response.json())
+      .then((json) => setXicaras(json));
+  }, [xicaras])
+
+  useEffect(() => {
+    fetch('http://localhost:5000/products/acessorios')
+    .then((response) => response.json())
+      .then((json) => setAcessorios(json));
+  }, [acessorios])
+
   return (
     <div className="container">
       <h2>
@@ -19,24 +34,16 @@ export function Main() {
       <div className="txt-center section-cafe">
         <h3 className="subtitulo">cafés;</h3>
         <div className="box-produtos">
-          <CardProduto
-            img={p1}
-            titulo="CAFÉ GOURMET ESPECIAL"
-            qtdd="340g"
-            preco="R$ 100,00"
-          />
-          <CardProduto
-            img={p2}
-            titulo="CAFÉ GOURMET ESPECIAL"
-            qtdd="340g"
-            preco="R$ 100,00"
-          />
-          <CardProduto
-            img={p3}
-            titulo="CAFÉ GOURMET ESPECIAL"
-            qtdd="340g"
-            preco="R$ 100,00"
-          />
+        {products.map((item) => (
+                <CardProduto
+                  key={item.id}
+                  titulo={item.productName}
+                  qtdd={item.quantity}
+                  preco={item.price}
+                  img={item.img}
+                />
+              ))}
+          
         </div>
         <a href="#">
           <button className="btn-mais">"ver_mais"</button>
@@ -45,24 +52,15 @@ export function Main() {
       <div className="txt-center section-cafe">
         <h3 className="subtitulo">xícaras;</h3>
         <div className="box-produtos">
-          <CardProduto
-            img={x1}
-            titulo="XÍCARA E PIRES MANDALA"
-            qtdd="P, M E G"
-            preco="R$ 100,00"
-          />
-          <CardProduto
-            img={x2}
-            titulo="XÍCARA E PIRES VERMELHO"
-            qtdd="P, M E G"
-            preco="R$ 100,00"
-          />
-          <CardProduto
-            img={x3}
-            titulo="XÍCARA E PIRES BRANCO CLÁSSICO"
-            qtdd="P, M E G"
-            preco="R$ 100,00"
-          />
+        {xicaras.map((item) => (
+                <CardProduto
+                  key={item.id}
+                  titulo={item.productName}
+                  qtdd={item.quantity}
+                  preco={item.price}
+                  img={item.img}
+                />
+              ))}
         </div>
         <a href="#">
           <button className="btn-mais">"ver_mais"</button>
@@ -71,24 +69,15 @@ export function Main() {
       <div className="txt-center section-cafe">
         <h3 className="subtitulo">acessórios;</h3>
         <div className="box-produtos">
-          <CardProduto
-            img={a1}
-            titulo="PRENSA FRANCESA"
-            qtdd="350ml"
-            preco="R$ 50,00"
-          />
-          <CardProduto
-            img={a2}
-            titulo="CAFETERIA ITALIANA"
-            qtdd="500ml"
-            preco="R$ 50,00"
-          />
-          <CardProduto
-            img={a3}
-            titulo="KIT COADOR"
-            qtdd="1 und"
-            preco="R$ 80,00"
-          />
+        {acessorios.map((item) => (
+                <CardProduto
+                  key={item.id}
+                  titulo={item.productName}
+                  qtdd={item.quantity}
+                  preco={item.price}
+                  img={item.img}
+                />
+              ))}
         </div>
         <a href="#">
           <button className="btn-mais">"ver_mais"</button>

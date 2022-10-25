@@ -1,12 +1,87 @@
-import express, { json } from "express";
-import cors from "cors";
+const express = require("express");
+var cors = require('cors')
+
 const app = express();
+app.use(cors())
 
-app.use(express.json());
-app.use(cors());
+app.get("/products/cafes", (request, response) => {
+  const products = [
+    {
+      id: 1, 
+      productName: "CAFÉ GOURMET ESPECIAL", 
+      price: "R$ 100,00", 
+      quantity: "340g",
+      img: "../../src/assets/embalagem-cafe-1.png"
+    },
+    {
+      id: 2, 
+      productName: "CAFÉ GOURMET ESPECIAL", 
+      price: "R$ 100,00", 
+      quantity: "340g",
+      img: "../../src/assets/embalagem-cafe-2.png"
+    },
+    {
+      id: 3, 
+      productName: "CAFÉ GOURMET ESPECIAL", 
+      price: "R$ 100,00", 
+      quantity: "340g",
+      img: "../../src/assets/embalagem-cafe-3.png"
+    }
+  ];
+  response.json(products);
+});
 
-app.get("/products", (request, response) => {
-  const products = [{ description: "test" }];
+app.get("/products/xicaras", (request, response) => {
+  const products = [
+    {
+      id: 1, 
+      productName: "XÍCARA E PIRES MANDALA", 
+      price: "R$ 100,00", 
+      quantity: "P, M E G",
+      img: "../../src/assets/embalagem-cafe-1.png"
+    },
+    {
+      id: 2, 
+      productName: "XÍCARA E PIRES VERMELHO", 
+      price: "R$ 100,00", 
+      quantity: "P, M E G",
+      img: "../../src/assets/xicara_2.png"
+    },
+    {
+      id: 3, 
+      productName: "XÍCARA E PIRES BRANCO CLÁSSICO", 
+      price: "R$ 100,00", 
+      quantity: "P, M E G",
+      img: "../../src/assets/xicara_3.png"
+    }
+  ];
+  response.json(products);
+});
+
+app.get("/products/acessorios", (request, response) => {
+  const products = [
+    {
+      id: 1, 
+      productName: "PRENSA FRANCESA", 
+      price: "R$ 50,00", 
+      quantity: "350ml",
+      img: "../../src/assets/acessorio-1.png"
+    },
+    {
+      id: 2, 
+      productName: "CAFETERIA ITALIANA", 
+      price: "R$ 50,00", 
+      quantity: "500ml",
+      img: "../../src/assets/acessorio-2.png"
+    },
+    {
+      id: 3, 
+      productName: "KIT COADOR", 
+      price: "R$ 80,00", 
+      quantity: "1 und",
+      img: "../../src/assets/acessorio-3.png"
+    }
+  ];
   response.json(products);
 });
 
@@ -31,4 +106,4 @@ app.delete("/products/:id", (request, response) => {
   response.json({ message: "Foi Apagado" });
 });
 
-app.listen(3000);
+app.listen(5000);
