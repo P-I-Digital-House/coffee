@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/ProductController");
+const productController = require("../controllers/ProductController");
 // const multerUpload = require("../config/multer");
 
-router.get("/", controller.listarProdutos);
+router.get("/", productController.listarProdutos);
 
-router.get("/categoria/:category", controller.listarProdutosPorCategoria);
+router.get("/categoria/:category", productController.listarProdutosPorCategoria);
 
 // router.post("/products", (request, response) => {
 //   const body = request.body;

@@ -1,12 +1,12 @@
 
 const express = require("express");
-const useRoutes = require('./routes/productRouter.js');
+const productRouter = require('./routes/productRouter.js');
 const cors = require("cors");
 
 const app = express();
 app.use(express.json())
 app.use(cors());
-app.use('/produtos', useRoutes)
+app.use('/produtos', productRouter)
 
 
 app.listen(5000, () => {
