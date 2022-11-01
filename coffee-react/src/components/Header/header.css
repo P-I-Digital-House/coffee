@@ -7,7 +7,7 @@
   background-size: cover;
   height: 100vh;
   width: 100%;
-  padding: 40px;
+  padding: 20px 40px;
   scroll-behavior: smooth;
   transition: background .5s ease-in-out;
 }

@@ -2,7 +2,7 @@ import "../Main/main.css";
 import { CardProduto } from "../CardProduto/Index";
 import { useState } from "react";
 import { useEffect } from "react";
-import { api_url } from '../../../../coffee-api/api';
+import { api_url } from '../../../api';
 
 export function Main() {
   const [cafes, setCafes] = useState([]);
@@ -38,7 +38,7 @@ export function Main() {
         {cafes.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.productName}
+                  titulo={item.nameProduct}
                   qtdd={item.quantity}
                   preco={item.price}
                   img={item.img}
@@ -56,7 +56,7 @@ export function Main() {
         {xicaras.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.productName}
+                  titulo={item.nameProduct}
                   qtdd={item.quantity}
                   preco={item.price}
                   img={item.img}
@@ -73,7 +73,7 @@ export function Main() {
         {acessorios.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.productName}
+                  titulo={item.nameProduct}
                   qtdd={item.quantity}
                   preco={item.price}
                   img={item.img}

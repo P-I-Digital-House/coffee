@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { CardProduto } from "../CardProduto/Index";
-import { api_url } from '../../../../coffee-api/api';
+import { api_url } from '../../../api';
 import '../Produtos/produtos.css'
 
 
