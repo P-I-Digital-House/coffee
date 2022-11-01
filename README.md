@@ -1,5 +1,5 @@
 # Como rodar o projeto
-(processo a ser realizado a partir do merge com o branch MVC)
+(processo a ser realizado após do merge com o branch MVC)
 
 ### Clonar o projeto 
 ```sh
