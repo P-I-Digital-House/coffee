@@ -113,6 +113,10 @@
 }
 
 @media(max-width: 768px) {
+
+  .containerheader{
+    padding: 15px;
+  }
   .busca {
     display: none;
   }
@@ -130,6 +134,7 @@
     border: none;
     background: rgba(255, 255, 255, 0.829);
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+    margin-top: 15px;
   }
   
   #busca-2 {
@@ -145,8 +150,18 @@
     align-items: center;
   }
   
+  .busca-2 a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
   .img-busca-2 {
     height: 25px;
     opacity: .5;
+  }
+
+  .logo{
+    width: 100%;
   }
 }
