@@ -12,14 +12,13 @@ export function Produtos() {
         .then((response) => response.json())
           .then((json) => setProdutos(json));
       }, [])
-    
 
     return (
         <div className="container-produtos">
       <h2>
         ["<span className="detalhe-produtos">produtos</span>"];
       </h2>
-      <div className="txt-center section-cafe">
+      <div className="txt-center">
         <div className="box-produtos">
         {produtos.map((item) => (
                 <CardProduto
