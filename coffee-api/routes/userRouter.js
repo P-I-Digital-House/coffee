@@ -7,6 +7,8 @@ router.get("/", userController.listarUsuarios);
 
 router.post("/cadastrar", userController.criarUsuarios)
 
+router.post("/login", userController.logarUsuarios)
+
 router.put("/atualizar", userController.atualizarUsuario)
 
 

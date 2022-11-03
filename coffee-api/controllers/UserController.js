@@ -11,6 +11,12 @@ function criarUsuarios(req, res) {
   return res.status(200).send("Funcionou");
 }
 
+function logarUsuarios(req, res) {
+    const { email, senha } = req.body;
+    const teste = UserModel.login(email, senha);
+    return res.status(200).send(teste);
+}
+
 function atualizarUsuario(req, res) {
     const { name, document, age, tel, email, password } = req.body;
 
@@ -50,5 +56,6 @@ function atualizarUsuario(req, res) {
 module.exports = {
     listarUsuarios,
     criarUsuarios,
+    logarUsuarios,
     atualizarUsuario
 };

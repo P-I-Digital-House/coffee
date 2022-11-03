@@ -34,6 +34,18 @@ function create(name, document, age, tel, email, password) {
   fs.writeFileSync(require.resolve("../database/Usuario.json"), JSON.stringify(userList));
 }
 
+function login(email, password){
+  const userList = getAll();
+
+  const findByEmail = (item) => item.email == email && item.password == password;
+
+  const indexUser = userList.findIndex(findByEmail)
+  if(indexUser !== -1){
+    return true
+  }
+  return false
+}
+
 
 function update(name, document, age, tel, email, password) {
   // Buscar todos os imóveis
@@ -67,5 +79,6 @@ function update(name, document, age, tel, email, password) {
 module.exports = {
   getAll,
   create,
-  update
+  update,
+  login
 };
