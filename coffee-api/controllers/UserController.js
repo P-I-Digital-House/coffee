@@ -25,8 +25,8 @@ function atualizarUsuario(req, res) {
 }
 
 function deletarUsuario(req, res) {
-    const { document } = req.params;
-    UserModel.deleteByDocument(document);
+    const { id } = req.params;
+    UserModel.deleteByDocument(id);
     return res.status(200).send("Funcionou");
 }
 
