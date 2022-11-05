@@ -1,5 +1,6 @@
 # Como rodar o projeto
 
+
 ### Clonar o projeto 
 ```sh
 git clone {URL}
@@ -17,4 +18,4 @@ Abrir um novo terminal e a partir do diretório /coffee executar:
 ```sh
 cd coffee-react
 npm run dev
-```
+
