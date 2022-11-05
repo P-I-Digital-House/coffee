@@ -1,5 +1,5 @@
 # Como rodar o projeto
-(processo a ser realizado após do merge com o branch MVC)
+
 
 ### Clonar o projeto 
 ```sh
@@ -18,4 +18,4 @@ Abrir um novo terminal e a partir do diretório /coffee executar:
 ```sh
 cd coffee-react
 npm run dev
-```
+

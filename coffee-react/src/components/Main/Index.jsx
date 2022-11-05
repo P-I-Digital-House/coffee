@@ -2,29 +2,30 @@ import "../Main/main.css";
 import { CardProduto } from "../CardProduto/Index";
 import { useState } from "react";
 import { useEffect } from "react";
+import { api_url } from '../../../api';
 
 export function Main() {
-  const [products, setProducts] = useState([]);
+  const [cafes, setCafes] = useState([]);
   const [xicaras, setXicaras] = useState([]);
   const [acessorios, setAcessorios] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/products/cafes')
+    fetch(api_url+'produtos/categoria/cafe')
     .then((response) => response.json())
-      .then((json) => setProducts(json));
-  }, [products])
+      .then((json) => setCafes(json));
+  }, [])
 
   useEffect(() => {
-    fetch('http://localhost:5000/products/xicaras')
+    fetch(api_url+'produtos/categoria/xicara')
     .then((response) => response.json())
       .then((json) => setXicaras(json));
-  }, [xicaras])
+  }, [])
 
   useEffect(() => {
-    fetch('http://localhost:5000/products/acessorios')
+    fetch(api_url+'produtos/categoria/acessorio')
     .then((response) => response.json())
       .then((json) => setAcessorios(json));
-  }, [acessorios])
+  }, [])
 
   return (
     <div className="container">
@@ -34,10 +35,10 @@ export function Main() {
       <div className="txt-center section-cafe">
         <h3 className="subtitulo">cafés;</h3>
         <div className="box-produtos">
-        {products.map((item) => (
+        {cafes.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.productName}
+                  titulo={item.nameProduct}
                   qtdd={item.quantity}
                   preco={item.price}
                   img={item.img}
@@ -55,7 +56,7 @@ export function Main() {
         {xicaras.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.productName}
+                  titulo={item.nameProduct}
                   qtdd={item.quantity}
                   preco={item.price}
                   img={item.img}
@@ -72,7 +73,7 @@ export function Main() {
         {acessorios.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.productName}
+                  titulo={item.nameProduct}
                   qtdd={item.quantity}
                   preco={item.price}
                   img={item.img}

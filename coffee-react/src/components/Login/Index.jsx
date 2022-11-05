@@ -1,6 +1,8 @@
 import "../Login/login.css";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
+import { api_url } from "../../../api";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().email('Email inválido').required('Email obrigatório'),
@@ -8,6 +10,7 @@ const schema = yup.object().shape({
 });
 
 export function LoginUsuario() {
+  const navigate = useNavigate();
   return (
     <div className="form-login">
       <h2>
@@ -20,8 +23,15 @@ export function LoginUsuario() {
           senha: ""
         }}
         onSubmit={(values) => {
-          console.log(values);
-          alert("Formulário valido! Enviando formulário...");
+          fetch(api_url+'usuarios/login', {
+            method: 'POST', 
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          })
+            .then((response) => response.json())
+            .then((response) => response ? navigate('/') : alert('nao logou'))
         }}
       >
         {({ touched, errors, isSubmitting, values }) => (

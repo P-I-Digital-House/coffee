@@ -1,0 +1,167 @@
+.containernav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 20px 40px;
+    scroll-behavior: smooth;
+    background-color: black;
+    position: fixed;
+    top:0;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .menu-busca {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 36%;
+    grid-gap: 15px;
+  }
+  
+  .busca {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
+    max-width: 300px;
+    padding: 0px 15px;
+    border-radius: 18px;
+    border: none;
+    background: rgba(255, 255, 255, 0.829);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+  }
+  
+  #busca {
+    width: 80%;
+    max-width: 250px;
+    outline: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: 0px 0px 0px;
+  }
+  
+  .busca a {
+    display: flex;
+    align-items: center;
+  }
+  
+  .img-busca {
+    height: 25px;
+    opacity: .5;
+  }
+  
+  .logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 28%;
+  }
+  
+  .img-logo {
+    width: 200px;
+  }
+  
+  .carrinho {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 36%;
+    grid-gap: 15px;
+  }
+  
+  .icon {
+    width: 35px;
+  }
+  
+  .icon-user{
+    width: 30px;
+    height: 30px;
+  }
+  
+  .busca-2 {
+    display: none;
+  }
+  
+  @media(max-width: 480px) {
+    .carrinho {
+      grid-gap: 10px;
+    }
+    .icon {
+      width: 25px;
+    }
+    .icon-user {
+      width: 20px;
+      height: 20px;
+    }
+  
+  }
+  
+  @media(max-width: 768px) {
+  
+    .containerheader{
+      padding: 15px;
+    }
+    .busca {
+      display: none;
+    }
+  
+    .busca-2 {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 35px;
+      line-height: 35px;
+      width: 100%;
+      padding: 0px 15px;
+      border-radius: 18px;
+      border: none;
+      background: rgba(255, 255, 255, 0.829);
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+      margin-top: 15px;
+    }
+    
+    #busca-2 {
+      width: 100%;
+      outline: 0;
+      border: none;
+      background-color: transparent;
+      box-shadow: 0px 0px 0px;
+    }
+    
+    .busca a {
+      display: flex;
+      align-items: center;
+    }
+    
+    .busca-2 a {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+  
+    .img-busca-2 {
+      height: 25px;
+      opacity: .5;
+    }
+  
+    .logo{
+      width: 100%;
+    }
+  }
