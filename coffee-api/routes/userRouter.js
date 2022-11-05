@@ -11,7 +11,7 @@ router.post("/login", userController.logarUsuarios)
 
 router.put("/atualizar", userController.atualizarUsuario)
 
-router.delete("/deletar/:document", userController.deletarUsuario)
+router.delete("/deletar/:id", userController.deletarUsuario)
 
 // router.post("/products", (request, response) => {
 //   const body = request.body;
