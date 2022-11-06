@@ -33,8 +33,8 @@ function atualizarUsuario(req, res) {
 }
 
 function deletarUsuario(req, res) {
-    const { id } = req.params;
-    UserModel.deleteByDocument(id);
+    const { document } = req.params;
+    UserModel.deleteByDocument(document);
     return res.status(200).send("Funcionou");
 }
 

@@ -23,7 +23,7 @@ router.put(
   userController.atualizarUsuario
 );
 
-router.delete("/deletar/:id", middleware.validateToken, userController.deletarUsuario);
+router.delete("/deletar/:document", middleware.validateToken, userController.deletarUsuario);
 
 // router.post("/products", (request, response) => {
 //   const body = request.body;

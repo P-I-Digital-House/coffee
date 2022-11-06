@@ -48,7 +48,6 @@ function login(email, password){
   return false
 }
 
-
 function update(picture, name, document, age, tel, email, password) {
   // Buscar todos os imóveis
   const userList = getAll();
@@ -70,9 +69,15 @@ function update(picture, name, document, age, tel, email, password) {
   fs.writeFileSync(require.resolve("../database/Usuario.json"), JSON.stringify(userList));
 }
 
-function deleteByDocument(id) {
+function deleteByDocument(document) {
   const userList = getAll();
-  userList.splice(id, 1);
+
+  const findByDocument = (item) => item.document == document;
+  
+  const indexUser = userList.findIndex(findByDocument)
+
+  indexUser != -1 ? userList.splice(indexUser, 1) : userList;
+
   fs.writeFileSync(require.resolve("../database/Usuario.json"), JSON.stringify(userList));
 }
 
