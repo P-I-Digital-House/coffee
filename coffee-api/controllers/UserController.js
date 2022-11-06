@@ -6,8 +6,16 @@ function listarUsuarios(req, res) {
 }
 
 function criarUsuarios(req, res) {
-    const { name, document, age, tel, email, password } = req.body;
-  UserModel.create(name, document, age, tel, email, password);
+    let fileLocation = "";
+    
+    if (req.file) {
+        fileLocation = `../public/uploads/${req.file.filename}`;
+    } else {
+        fileLocation = req.body.picture;
+    }
+    const { picture, name, document, age, tel, email, password } = req.body;
+
+  UserModel.create(fileLocation, name, document, age, tel, email, password);
   return res.status(200).send("Funcionou");
 }
 
