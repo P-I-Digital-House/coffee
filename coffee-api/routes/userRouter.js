@@ -14,7 +14,7 @@ router.get("/", userController.listarUsuarios);
 
 // router.delete("/deletar/:id", userController.deletarUsuario)
 
-router.get("/cadastrar", middleware.validateToken, userController.criarUsuarios);
+router.post("/cadastrar", middleware.validateToken, multerUpload.single("file"), userController.criarUsuarios);
 
 router.put(
   "/:id/editar",
@@ -23,7 +23,7 @@ router.put(
   userController.atualizarUsuario
 );
 
-router.delete("/:id/editar", middleware.validateToken, userController.deletarUsuario);
+router.delete("/deletar/:id", middleware.validateToken, userController.deletarUsuario);
 
 // router.post("/products", (request, response) => {
 //   const body = request.body;
