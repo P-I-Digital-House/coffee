@@ -2,6 +2,8 @@ import "../Cadastro/cadastro.css";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
+import { api_url } from "../../../api";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   nome: yup.string().required('Nome obrigatório'),
@@ -15,17 +17,11 @@ const schema = yup.object().shape({
   idade: yup.number().min(18).positive().integer().required('Idade obrigatória'),
   telefone: yup.string().max(11),
   email: yup.string().email('Email inválido').required('Email obrigatório'),
-  senha: yup.string().min(8, 'Senha deve ter pelo menos 8 dígitos').required('Senha obrigatória'),
-  cep: yup.string().length(8, 'CEP deve ter 8 dígitos').required('CEP obrigatório'),
-  logradouro: yup.string(),
-  numero: yup.string().max(5),
-  bairro: yup.string(),
-  cidade: yup.string(),
-  estado: yup.string(),
+  senha: yup.string().min(8, 'Senha deve ter pelo menos 8 dígitos').required('Senha obrigatória')
 });
 
 export function CadastroUsuario() {
-  const [fileField, setFileField] = useState(document.querySelector('input[type="file"]'));
+  const navigate = useNavigate();
   return (
     <div className="form-register">
       <h2>
@@ -41,24 +37,29 @@ export function CadastroUsuario() {
           email: "",
           senha: "",
           picture: "",
+          file: ""
         }}
         onSubmit={(values) => {
           const formData = new FormData();
-          setFileField(document.querySelector('input[type="file"]'));
-
-          formData.append('nome', values.nome);
+          const fileField = document.querySelector('input[type="file"]');
+          
+          formData.append('name', values.nome);
+          formData.append('document', values.documento);
+          formData.append('age', values.idade);
+          formData.append('tel', values.telefone);
+          formData.append('email', values.email);
+          formData.append('password', values.senha);
+          formData.append('picture', values.picture);
           formData.append('file', fileField.files[0]);
-          console.log('formdata',values)
           // values.map(obj => {
           //   { ...obj, ...newProp }
           // })
 
-          // fetch(api_url+'usuarios/cadastrar', {
-          //   method: 'POST', 
-          //   body: formData,
-          // })
-          //   .then((response) => response.json())
-          //   .then((response) => response ? navigate('/') : alert('nao logou'))
+          fetch(api_url+'usuarios/cadastrar', {
+            method: 'POST', 
+            body: formData,
+          })
+            .then((response) => response.status == 200 ? (alert("cadastrado"), navigate('/') ): alert('nao cadastrou'))
         }}
       >
         {({ touched, errors, isSubmitting, values }) => (
@@ -92,36 +93,6 @@ export function CadastroUsuario() {
               <label htmlFor="senha">Senha</label>
               <Field className="main" id="senha" name="senha" type="password" />
               {touched.senha && errors.senha && <div className="error">{errors.senha}</div>}
-            </div>
-            <div className="label">
-              <label htmlFor="cep">CEP</label>
-              <Field className="main" id="cep" name="cep" type="text" />
-              {touched.cep && errors.cep && <div className="error">{errors.cep}</div>}
-            </div>
-            <div className="label">
-              <label htmlFor="logradouro">Logradouro</label>
-              <Field className="main" id="logradouro" name="logradouro" type="text" />
-              {touched.logradouro && errors.logradouro && <div className="error">{errors.logradouro}</div>}
-            </div>
-            <div className="label">
-              <label htmlFor="numero">Número</label>
-              <Field className="main" id="numero" name="numero" type="number" />
-              {touched.numero && errors.numero && <div className="error">{errors.numero}</div>}
-            </div>
-            <div className="label">
-              <label htmlFor="bairro">Bairro</label>
-              <Field className="main" id="bairro" name="bairro" type="text" />
-              {touched.bairro && errors.bairro && <div className="error">{errors.bairro}</div>}
-            </div>
-            <div className="label">
-              <label htmlFor="cidade">Cidade</label>
-              <Field className="main" id="cidade" name="cidade" type="text" />
-              {touched.cidade && errors.cidade && <div className="error">{errors.cidade}</div>}
-            </div>
-            <div className="label">
-              <label htmlFor="estado">Estado</label>
-              <Field className="main" id="estado" name="estado" type="text" />
-              {touched.estado && errors.estado && <div className="error">{errors.estado}</div>}
             </div>
             <div className="label">
               <label htmlFor="picture">Link da Foto</label>

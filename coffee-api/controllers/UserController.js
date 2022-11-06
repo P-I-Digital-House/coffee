@@ -13,7 +13,7 @@ function criarUsuarios(req, res) {
     } else {
         fileLocation = req.body.picture;
     }
-    const { picture, name, document, age, tel, email, password } = req.body;
+    const { name, document, age, tel, email, password } = req.body;
 
   UserModel.create(fileLocation, name, document, age, tel, email, password);
   return res.status(200).send("Funcionou");
@@ -26,9 +26,16 @@ function logarUsuarios(req, res) {
 }
 
 function atualizarUsuario(req, res) {
+    let fileLocation = "";
+    
+    if (req.file) {
+        fileLocation = `../public/uploads/${req.file.filename}`;
+    } else {
+        fileLocation = req.body.picture;
+    }
     const { name, document, age, tel, email, password } = req.body;
 
-    UserModel.update(name, document, age, tel, email, password);
+    UserModel.update(fileLocation, name, document, age, tel, email, password);
     return res.status(200).send("Funcionou");
 }
 

@@ -26,10 +26,12 @@ export function Header() {
       console.log(backgroundImages[contador]);
       const carrossel = document.getElementById("containerheader");
       //   carrossel.style.background = backgroundImages[contador];
-      carrossel.style.backgroundPosition = "center";
-      carrossel.style.backgroundRepeat = "no-repeat";
-      carrossel.style.backgroundSize = "cover";
-      carrossel.style.backgroundImage = `linear-gradient(#000000 , #ffffff00 50%), url(${backgroundImages[contador]})`;
+      if(carrossel) {
+        carrossel.style.backgroundPosition = "center";
+        carrossel.style.backgroundRepeat = "no-repeat";
+        carrossel.style.backgroundSize = "cover";
+        carrossel.style.backgroundImage = `linear-gradient(#000000 , #ffffff00 50%), url(${backgroundImages[contador]})`;
+      }
       if (contador == 3) {
         contador = 0;
       } else contador++;
