@@ -1,6 +1,7 @@
 import "../Cadastro/cadastro.css";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   nome: yup.string().required('Nome obrigatório'),
@@ -23,7 +24,10 @@ const schema = yup.object().shape({
   estado: yup.string(),
 });
 
+
+
 export function CadastroUsuario() {
+  const [fileField, setFileField] = useState(document.querySelector('input[type="file"]'));
   return (
     <div className="form-register">
       <h2>
@@ -38,20 +42,29 @@ export function CadastroUsuario() {
           telefone: "",
           email: "",
           senha: "",
-          cep: "",
-          logradouro: "",
-          numero: "",
-          bairro: "",
-          cidade: "",
-          estado: "",
+          picture: "",
         }}
         onSubmit={(values) => {
-          console.log(values);
-          alert("Formulário valido! Enviando formulário...");
+          const formData = new FormData();
+          setFileField(document.querySelector('input[type="file"]'));
+
+          formData.append('nome', values.nome);
+          formData.append('file', fileField.files[0]);
+          console.log('formdata',values)
+          // values.map(obj => {
+          //   { ...obj, ...newProp }
+          // })
+
+          // fetch(api_url+'usuarios/cadastrar', {
+          //   method: 'POST', 
+          //   body: formData,
+          // })
+          //   .then((response) => response.json())
+          //   .then((response) => response ? navigate('/') : alert('nao logou'))
         }}
       >
         {({ touched, errors, isSubmitting, values }) => (
-          <Form className="register">
+          <Form className="register" encType="multipart/form-data">
             <div className="label">
               <label htmlFor="nome">Nome</label>
               <Field className="main" id="nome" name="nome" type="text" />
@@ -111,6 +124,16 @@ export function CadastroUsuario() {
               <label htmlFor="estado">Estado</label>
               <Field className="main" id="estado" name="estado" type="text" />
               {touched.estado && errors.estado && <div className="error">{errors.estado}</div>}
+            </div>
+            <div className="label">
+              <label htmlFor="picture">Link da Foto</label>
+              <Field className="main" id="picture" name="picture" type="text" />
+              {touched.picture && errors.picture && <div className="error">{errors.picture}</div>}
+            </div>
+            <div className="label">
+              <label htmlFor="file">Link da Foto</label>
+              <Field className="main" id="file" name="file" type="file" accept="image/png, image/jpeg" />
+              {touched.file && errors.file && <div className="error">{errors.file}</div>}
             </div>
         <div className="send">
           <button type="submit" className="btn-send btn-card-produtos">cadastrar</button>

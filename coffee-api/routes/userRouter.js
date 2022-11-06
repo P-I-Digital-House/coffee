@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/UserController");
-// const multerUpload = require("../config/multer");
+const multerUpload = require("../config/multer");
 
 router.get("/", userController.listarUsuarios);
 
-router.post("/cadastrar", userController.criarUsuarios)
+router.post("/cadastrar", multerUpload.single("file"),userController.criarUsuarios)
 
 router.post("/login", userController.logarUsuarios)
 

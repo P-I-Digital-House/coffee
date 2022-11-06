@@ -1,6 +1,7 @@
 const fs = require("fs");
 
-function User( name, document, age, tel, email, password) {
+function User( picture, name, document, age, tel, email, password) {
+  this.picture = picture;
     this.name = name;
     this.document = document
     this.age = age
@@ -16,6 +17,7 @@ function getAll() {
   return userList.map(
     (user) =>
       new User(
+        user.picture,
         user.name,
         user.document,
         user.age,
@@ -27,8 +29,8 @@ function getAll() {
 }
 
 
-function create(name, document, age, tel, email, password) {
-  const newUser = new User(name, document, age, tel, email, password);
+function create(picture, name, document, age, tel, email, password) {
+  const newUser = new User(picture, name, document, age, tel, email, password);
   const userList = getAll();
   userList.push(newUser);
   fs.writeFileSync(require.resolve("../database/Usuario.json"), JSON.stringify(userList));
@@ -47,7 +49,7 @@ function login(email, password){
 }
 
 
-function update(name, document, age, tel, email, password) {
+function update(picture, name, document, age, tel, email, password) {
   // Buscar todos os imóveis
   const userList = getAll();
 
@@ -56,6 +58,7 @@ function update(name, document, age, tel, email, password) {
   const indexUser = userList.findIndex(findByDocument)
   const user = userList[indexUser]
   if (user) {
+    user.picture = picture;
     user.name = name;
     user.document = document;
     user.age = age;
