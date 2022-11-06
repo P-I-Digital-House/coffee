@@ -24,8 +24,6 @@ const schema = yup.object().shape({
   estado: yup.string(),
 });
 
-
-
 export function CadastroUsuario() {
   const [fileField, setFileField] = useState(document.querySelector('input[type="file"]'));
   return (

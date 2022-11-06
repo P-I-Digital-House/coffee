@@ -70,7 +70,7 @@ function update(picture, name, document, age, tel, email, password) {
   fs.writeFileSync(require.resolve("../database/Usuario.json"), JSON.stringify(userList));
 }
 
-function deleteById(id) {
+function deleteByDocument(id) {
   const userList = getAll();
   userList.splice(id, 1);
   fs.writeFileSync(require.resolve("../database/Usuario.json"), JSON.stringify(userList));
@@ -81,5 +81,5 @@ module.exports = {
   create,
   update,
   login,
-  deleteById,
+  deleteByDocument,
 };
