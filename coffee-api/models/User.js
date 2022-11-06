@@ -70,18 +70,16 @@ function update(picture, name, document, age, tel, email, password) {
   fs.writeFileSync(require.resolve("../database/Usuario.json"), JSON.stringify(userList));
 }
 
-// function deleteById(id) {
-//   // Buscar todos os imóveis
-//   // Remover o imóvel do index = id
-//   // Salvar a lista novamente
-//   const immobileList = getAll();
-//   immobileList.splice(id, 1);
-//   fs.writeFileSync("database/Immobiles.json", JSON.stringify(immobileList));
-// }
+function deleteById(id) {
+  const userList = getAll();
+  userList.splice(id, 1);
+  fs.writeFileSync(require.resolve("../database/Usuario.json"), JSON.stringify(userList));
+}
 
 module.exports = {
   getAll,
   create,
   update,
-  login
+  login,
+  deleteById,
 };

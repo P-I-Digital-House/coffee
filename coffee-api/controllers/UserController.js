@@ -32,6 +32,12 @@ function atualizarUsuario(req, res) {
     return res.status(200).send("Funcionou");
 }
 
+function deletarUsuario(req, res) {
+    const { id } = req.params;
+    UserModel.deleteByDocument(id);
+    return res.status(200).send("Funcionou");
+}
+
 // function showEditPage(req, res) {
 //   const { id } = req.params;
 //   const immobile = ImmobileModel.getById(id);
@@ -65,5 +71,6 @@ module.exports = {
     listarUsuarios,
     criarUsuarios,
     logarUsuarios,
-    atualizarUsuario
+    atualizarUsuario,
+    deletarUsuario,
 };
