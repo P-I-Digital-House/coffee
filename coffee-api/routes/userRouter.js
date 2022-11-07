@@ -7,20 +7,24 @@ const multerUpload = require("../config/multer");
 
 router.get("/", middleware.validateToken, userController.listarUsuarios);
 
+router.get("/:document", userController.listarUsuariosPeloDocumento);
+
 // router.post("/cadastrar", multerUpload.single("file"),userController.criarUsuarios)
 
- router.post("/login", middleware.validateUser, userController.logarUsuarios)
+ router.post("/login", middleware.fieldsValidation, middleware.validateUser, userController.logarUsuarios)
 
 // router.put("/atualizar", userController.atualizarUsuario)
 
 // router.delete("/deletar/:id", userController.deletarUsuario)
 
+
 router.post("/cadastrar", middleware.fieldsValidation, multerUpload.single("file"), userController.criarUsuarios);
 
+
 router.put(
-  "/:id/editar",
-  middleware.validateToken,
-//   multerUpload.single("file"),
+  "/atualizar",
+ // middleware.validateToken,
+   multerUpload.single("file"),
   userController.atualizarUsuario
 );
 

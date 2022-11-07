@@ -4,6 +4,7 @@ import { api_url } from '../../../api';
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import '../Usuarios/usuarios.css'
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object().shape({
     nome: yup.string().required('Nome obrigatório'),
@@ -21,13 +22,23 @@ const schema = yup.object().shape({
   });
 
 
-export function Usuarios() {
-    const [produtos, setProdutos] = useState([]);
+  export function Usuarios() {
+    const navigate = useNavigate();
+
+    const [dados, setDados] = useState({
+      picture: "",
+      name: "",
+      document: 0,
+      age: 0,
+      tel: "",
+      email: "",
+      password: ""
+  });
     
       useEffect(() => {
-        fetch(api_url+'usuarios/')
-        .then((response) => response.json())
-          .then((json) => setProdutos(json));
+        fetch(api_url+'usuarios/46334628810')
+          .then((response) => response.json())
+          .then((data) => setDados(data))
       }, [])
 
     return (
@@ -37,23 +48,22 @@ export function Usuarios() {
       </h2>{" "}
       <Formik
         validationSchema={schema}
+        enableReinitialize='true'
         initialValues={{
-          nome: "",
-          documento: "",
-          idade: "",
-          telefone: "",
-          email: "",
-          senha: "",
-          picture: "",
-          file: ""
-        }}
+            nome: dados.name,
+            documento: dados.document,
+            idade: dados.age,
+            telefone: dados.tel,
+            email: dados.email,
+            senha: dados.password
+          } }
         onSubmit={(values) => {
           const formData = new FormData();
           const fileField = document.querySelector('input[type="file"]');
           
           formData.append('name', values.nome);
           formData.append('document', values.documento);
-          formData.append('age', values.idade);
+          formData.append('age', parseInt(values.idade));
           formData.append('tel', values.telefone);
           formData.append('email', values.email);
           formData.append('password', values.senha);
@@ -63,11 +73,11 @@ export function Usuarios() {
           //   { ...obj, ...newProp }
           // })
 
-          fetch(api_url+'usuarios/cadastrar', {
-            method: 'POST', 
+          fetch(api_url+'usuarios/atualizar', {
+            method: 'PUT', 
             body: formData,
           })
-            .then((response) => response.status == 200 ? (alert("cadastrado"), navigate('/') ): alert('nao cadastrou'))
+            .then((response) => response.status == 200 ? alert("Cadastro atualizado") : alert('Não foi possível atualizar'))
         }}
       >
         {({ touched, errors, isSubmitting, values }) => (
@@ -79,7 +89,7 @@ export function Usuarios() {
             </div>
             <div className="label">
               <label htmlFor="documento">Documento</label>
-              <Field className="main" id="documento" name="documento" type="number" />
+              <Field className="main" id="documento" name="documento" type="number" disabled={true} />
               {touched.documento && errors.documento && <div className="error">{errors.documento}</div>}
             </div>
             <div className="label">

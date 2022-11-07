@@ -28,6 +28,16 @@ function getAll() {
   );
 }
 
+function findByDocument (document) {
+  const userList = getAll();
+
+  const findByDocument = (item) => item.document == document;
+
+  const indexUser = userList.findIndex(findByDocument)
+  const user = userList[indexUser]
+  return user;
+} 
+
 
 function create(picture, name, document, age, tel, email, password) {
   const newUser = new User(picture, name, document, age, tel, email, password);
@@ -48,7 +58,7 @@ function login(email, password){
   return false
 }
 
-function update(picture, name, document, age, tel, email, password) {
+function update(name, document, age, tel, email, password, picture = 0) {
   // Buscar todos os imóveis
   const userList = getAll();
 
@@ -57,10 +67,10 @@ function update(picture, name, document, age, tel, email, password) {
   const indexUser = userList.findIndex(findByDocument)
   const user = userList[indexUser]
   if (user) {
-    user.picture = picture;
+    picture != 0 ? user.picture = picture : null;
     user.name = name;
-    user.document = document;
-    user.age = age;
+    user.document = parseInt(document);
+    user.age = parseInt(age);
     user.tel = tel;
     user.email = email;
     user.password = password;
@@ -87,4 +97,5 @@ module.exports = {
   update,
   login,
   deleteByDocument,
+  findByDocument,
 };

@@ -7,6 +7,13 @@ function listarUsuarios(req, res) {
    return res.json(userList)
 }
 
+
+function listarUsuariosPeloDocumento(req, res) {
+    const { document } = req.params;
+    const userList = UserModel.findByDocument(document);
+    return res.json(userList)
+ }
+
 function criarUsuarios(req, res) {
     let fileLocation = "";
     
@@ -37,12 +44,14 @@ function atualizarUsuario(req, res) {
     
     if (req.file) {
         fileLocation = `../public/uploads/${req.file.filename}`;
-    } else {
+    } else if (req.body.picture !== undefined || req.body.picture !== null) {
         fileLocation = req.body.picture;
+    } else {
+        fileLocation = null;
     }
     const { name, document, age, tel, email, password } = req.body;
 
-    UserModel.update(fileLocation, name, document, age, tel, email, password);
+    fileLocation != null ? UserModel.update(name, document, age, tel, email, password, fileLocation) : UserModel.update( name, document, age, tel, email, password)
     return res.status(200).send("Funcionou");
 }
 
@@ -83,6 +92,7 @@ function deletarUsuario(req, res) {
 
 module.exports = {
     listarUsuarios,
+    listarUsuariosPeloDocumento,
     criarUsuarios,
     logarUsuarios,
     atualizarUsuario,
