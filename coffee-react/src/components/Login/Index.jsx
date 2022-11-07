@@ -31,7 +31,9 @@ export function LoginUsuario() {
             body: JSON.stringify(values),
           })
             .then((response) => response.json())
-            .then((response) => response ? navigate('/') : alert('nao logou'))
+            .then((response) => {
+              (response.errors) ? alert('Campos incorretos') : (response ? navigate("/") : alert('Não foi possível logar'))
+            })
         }}
       >
         {({ touched, errors, isSubmitting, values }) => (
