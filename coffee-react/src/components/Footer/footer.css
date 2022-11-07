@@ -36,7 +36,7 @@
 
 button:hover,
 a:hover {
-  transform: scale(0.92);
+  transform: scale(0.97);
 }
 @media (max-width: 480px) {
   .links {

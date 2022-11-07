@@ -4,12 +4,12 @@ import IconXicara from "../../assets/icon-xicara.svg";
 import IconCarrinho from "../../assets/icon-carrinho.svg";
 import IconUser from "../../assets/user-1.png";
 import Search from "../../assets/search.png";
-import Menu from "../../assets/menu.png";
 import { useEffect } from "react";
 import Destaque1 from "../../assets/destaque_1.jpg";
 import Destaque2 from "../../assets/destaque_2.jpg";
 import Destaque3 from "../../assets/destaque_3.jpg";
 import Destaque4 from "../../assets/destaque_4.jpg";
+import { NavMenu } from "../NavMenu/Index";
 import { Link } from "react-router-dom";
 
 export function Header() {
@@ -41,11 +41,7 @@ export function Header() {
     <div className="containerheader" id="containerheader">
       <div className="header">
         <div className="menu-busca">
-          <nav className="menu">
-            <a href="#">
-              <img src={Menu} alt="" className="icon" />
-            </a>
-          </nav>
+          <NavMenu pageWrapId={'root'} />
           <div className="busca">
             <input type="text" name="busca" id="busca" />
             <a href="#">

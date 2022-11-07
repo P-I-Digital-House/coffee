@@ -4,11 +4,11 @@ const userController = require("../controllers/UserController");
 const middleware = require("../middlewares/LoginMiddleware");
 const multerUpload = require("../config/multer");
 
-router.get("/", userController.listarUsuarios);
+router.get("/", middleware.validateToken, userController.listarUsuarios);
 
 // router.post("/cadastrar", multerUpload.single("file"),userController.criarUsuarios)
 
-// router.post("/login", userController.logarUsuarios)
+ router.post("/login", middleware.validateUser, userController.logarUsuarios)
 
 // router.put("/atualizar", userController.atualizarUsuario)
 

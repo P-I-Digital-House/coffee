@@ -1,0 +1,61 @@
+.form-update {
+    background-color: #1d1d1b;
+  color: azure;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  height: 100%;
+  gap: 20px;
+}
+
+.container-usuarios {    
+    padding-top: 180px;
+}
+
+.detalhe-usuarios {
+    color: #fff;
+}
+
+.update {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px 50px;
+    
+}
+
+.update .label{
+    flex-basis: 30%;
+    flex-grow: 1;
+}
+
+.update .send{
+    flex-basis: 100%;
+}
+
+.update input {
+    background-color: transparent;
+    color: #fff;
+    box-shadow: none !important;
+    border-bottom: 1px solid #fff !important;
+    border-radius: 0 !important;
+    outline: none;
+}
+
+.update input[type="file"]{
+    border-bottom: none !important;
+}
+
+@media screen and (max-width:500px) {
+    .update{
+        padding: 15px 0px;
+    }
+    .update .label{
+        flex-basis: 50%;
+    }
+}

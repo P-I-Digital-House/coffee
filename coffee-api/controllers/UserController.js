@@ -1,4 +1,6 @@
 const UserModel = require("../models/User");
+const jwt = require("jsonwebtoken");
+const { jwtKey } = require("../config/secrets");
 
 function listarUsuarios(req, res) {
    const userList = UserModel.getAll();
@@ -22,6 +24,11 @@ function criarUsuarios(req, res) {
 function logarUsuarios(req, res) {
     const { email, senha } = req.body;
     const teste = UserModel.login(email, senha);
+    res.clearCookie("token");
+    if (teste) {
+        const token = jwt.sign({ email }, jwtKey, { expiresIn: "1d" });
+        res.cookie("token", token);
+    }
     return res.status(200).send(teste);
 }
 

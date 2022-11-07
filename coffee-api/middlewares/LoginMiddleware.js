@@ -18,13 +18,7 @@ function validateUser(req, res, next) {
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.render("login", {
-      errors: errors.array(),
-      data: {
-        email: req.body.email,
-        password: req.body.password,
-      },
-    });
+    return res.status(200);
   }
 
   next();
@@ -44,7 +38,7 @@ function validateToken(req, res, next) {
 
   // Se não tiver token, redireciona para a página de login
   if (!token) {
-    return res.redirect("/login");
+    return res.status(500).send('nao func');
   }
 
   // Se o token for inválido, redireciona para a página de login
@@ -53,7 +47,7 @@ function validateToken(req, res, next) {
     console.log(decoded);
   } catch (error) {
     res.cookie("token", "");
-    return res.redirect("/login");
+    return res.status(500).send('nao func');
   }
 
   // Se tiver token e o token for válido, deixa continuar

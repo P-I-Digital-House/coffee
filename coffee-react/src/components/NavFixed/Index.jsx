@@ -6,17 +6,14 @@ import IconUser from "../../assets/user-1.png";
 import Search from "../../assets/search.png";
 import Menu from "../../assets/menu.png";
 import { Link } from "react-router-dom";
+import { NavMenu } from "../NavMenu/Index";
 
 export function NavFixed() {
   return (
     <div className="containernav">
       <div className="nav">
         <div className="menu-busca">
-          <nav className="menu">
-            <a href="#">
-              <img src={Menu} alt="" className="icon" />
-            </a>
-          </nav>
+        <NavMenu pageWrapId={'root'} />
           <div className="busca">
             <input type="text" name="busca" id="busca" />
             <a href="#">
