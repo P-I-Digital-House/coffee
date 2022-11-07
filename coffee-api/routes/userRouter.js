@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/UserController");
 const middleware = require("../middlewares/LoginMiddleware");
-const middleware = require("../middlewares/CadastroMiddleware");
+const middlewareCadastro = require("../middlewares/CadastroMiddleware");
 const multerUpload = require("../config/multer");
 
 router.get("/", middleware.validateToken, userController.listarUsuarios);
@@ -18,7 +18,7 @@ router.get("/:document", userController.listarUsuariosPeloDocumento);
 // router.delete("/deletar/:id", userController.deletarUsuario)
 
 
-router.post("/cadastrar", middleware.fieldsValidation, multerUpload.single("file"), userController.criarUsuarios);
+router.post("/cadastrar", middlewareCadastro.fieldsValidation, multerUpload.single("file"), userController.criarUsuarios);
 
 
 router.put(
