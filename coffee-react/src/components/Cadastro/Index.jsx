@@ -64,6 +64,9 @@ export function CadastroUsuario() {
       >
         {({ touched, errors, isSubmitting, values }) => (
           <Form className="register" encType="multipart/form-data">
+            <div>
+              <b>Faça seu cadastro</b>
+            </div>
             <div className="label">
               <label htmlFor="nome">Nome</label>
               <Field className="main" id="nome" name="nome" type="text" />
@@ -100,19 +103,19 @@ export function CadastroUsuario() {
               {touched.picture && errors.picture && <div className="error">{errors.picture}</div>}
             </div>
             <div className="label">
-              <label htmlFor="file">Link da Foto</label>
+              <label htmlFor="file">Upload da Foto</label>
               <Field className="main" id="file" name="file" type="file" accept="image/png, image/jpeg" />
               {touched.file && errors.file && <div className="error">{errors.file}</div>}
             </div>
         <div className="send">
-          <button type="submit" className="btn-send btn-card-produtos">cadastrar</button>
-          <span>
-            Você já tem Login? <a href="/login">Entre Aqui. </a>
-          </span>
+          <button type="submit" className="btn-send btn-card-produtos">Cadastrar</button>
         </div>
-          </Form>
+        <span className="cadastro">
+            Você já tem Login? <a href="/login">Entre Aqui!</a>
+        </span>
+      </Form>
         )}
-      </Formik>
-    </div>
+    </Formik>
+   </div>
   );
 }
