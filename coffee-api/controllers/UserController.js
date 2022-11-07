@@ -7,6 +7,13 @@ function listarUsuarios(req, res) {
    return res.json(userList)
 }
 
+
+function listarUsuariosPeloDocumento(req, res) {
+    const { document } = req.params;
+    const userList = UserModel.findByDocument(document);
+    return res.json(userList)
+ }
+
 function criarUsuarios(req, res) {
     let fileLocation = "";
     
@@ -83,6 +90,7 @@ function deletarUsuario(req, res) {
 
 module.exports = {
     listarUsuarios,
+    listarUsuariosPeloDocumento,
     criarUsuarios,
     logarUsuarios,
     atualizarUsuario,

@@ -6,6 +6,8 @@ const multerUpload = require("../config/multer");
 
 router.get("/", middleware.validateToken, userController.listarUsuarios);
 
+router.get("/:document", middleware.validateToken, userController.listarUsuariosPeloDocumento);
+
 // router.post("/cadastrar", multerUpload.single("file"),userController.criarUsuarios)
 
  router.post("/login", middleware.fieldsValidation, middleware.validateUser, userController.logarUsuarios)

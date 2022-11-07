@@ -28,6 +28,16 @@ function getAll() {
   );
 }
 
+function findByDocument (document) {
+  const userList = getAll();
+
+  const findByDocument = (item) => item.document == document;
+
+  const indexUser = userList.findIndex(findByDocument)
+  const user = userList[indexUser]
+  return user;
+} 
+
 
 function create(picture, name, document, age, tel, email, password) {
   const newUser = new User(picture, name, document, age, tel, email, password);
@@ -87,4 +97,5 @@ module.exports = {
   update,
   login,
   deleteByDocument,
+  findByDocument,
 };
