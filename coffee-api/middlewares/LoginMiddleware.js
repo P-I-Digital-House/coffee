@@ -18,7 +18,7 @@ function validateUser(req, res, next) {
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(200);
+    return res.status(400).json({ errors: errors.array() });
   }
 
   next();
@@ -26,7 +26,7 @@ function validateUser(req, res, next) {
 
 const fieldsValidation = [
   body("email").isEmail().withMessage("Você precisa digitar o email"),
-  body("password")
+  body("senha")
     .notEmpty()
     .withMessage("Você precisa digitar a senha")
     .isLength({ min: 5 })

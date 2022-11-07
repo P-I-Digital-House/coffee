@@ -8,7 +8,7 @@ router.get("/", middleware.validateToken, userController.listarUsuarios);
 
 // router.post("/cadastrar", multerUpload.single("file"),userController.criarUsuarios)
 
- router.post("/login", middleware.validateUser, userController.logarUsuarios)
+ router.post("/login", middleware.fieldsValidation, middleware.validateUser, userController.logarUsuarios)
 
 // router.put("/atualizar", userController.atualizarUsuario)
 
