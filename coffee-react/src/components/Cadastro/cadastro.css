@@ -1,5 +1,5 @@
 .form-register {
-  background-color: #1d1d1b;
+  background-color: #2D2D2E;
   color: azure;
   display: flex;
   flex-direction: column;
@@ -15,7 +15,6 @@
   width: max(30%, 350px);
   padding: 15px 30px;
   border-radius: 10px;
-  background-color: rgba(250, 235, 215, 0.295);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -32,6 +31,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 10px;
   margin-top: 20px;
 }
@@ -41,8 +41,8 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
   color: #fff;
+  font-size: small;
 }
 
 .btn-send:hover {

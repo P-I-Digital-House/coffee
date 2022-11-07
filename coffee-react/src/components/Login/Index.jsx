@@ -13,9 +13,6 @@ export function LoginUsuario() {
   const navigate = useNavigate();
   return (
     <div className="form-login">
-      <h2>
-        ["<span className="detalhe-produtos">login</span>"];
-      </h2>{" "}
       <Formik
         validationSchema={schema}
         initialValues={{
@@ -36,29 +33,37 @@ export function LoginUsuario() {
       >
         {({ touched, errors, isSubmitting, values }) => (
       <Form className="login">
+        <div>
+          <b>Faça seu login</b>
+        </div>
         <div className="label">
-          <label htmlFor="">E-mail</label>
+          <label htmlFor="">Seu e-mail</label>
           <Field className="main" id="email" name="email" type="text" />
           {touched.email && errors.email && <div className="error">{errors.email}</div>}
         </div>
         <div className="label">
-          <label htmlFor="">Senha</label>
+          <label htmlFor="">Sua senha</label>
           <Field className="main" id="senha" name="senha" type="password" />
           {touched.senha && errors.senha && <div className="error">{errors.senha}</div>}
         </div>
+        <div>
+          <span className="cadastro">
+            <a href="#">Lembrar minha senha</a>
+          </span>
+        </div>        
+        <div className="btn">
+          <button className="btn-send" type="submit">
+            Entrar
+          </button>
+        </div>
         <span className="cadastro">
-          <a href="#">Esqueci minha senha</a>
+          <a href="#">Esqueceu sua senha?</a>
         </span>
-      <div className="btn">
-        <button className="btn-card-produtos btn-send" type="submit">
-          login
-        </button>
-      </div>
-      <span className="cadastro">
-        Você ainda não tem Login?
-        <a href="/login/cadastro"> Registre-se Aqui.</a>
-      </span>
-    </Form>
+        <span className="cadastro">
+          Não possui uma conta?
+          <a href="/login/cadastro"> Crie uma agora!</a>
+        </span>
+      </Form>
     )}
   </Formik>
   </div>
