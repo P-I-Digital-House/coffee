@@ -7,10 +7,10 @@ import Produtos from "../src/Pages/Produto.jsx";
 import Usuario from "../src/Pages/Usuario";
 import "../src/styles/global.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthProvider>
+
     <React.StrictMode>
       <BrowserRouter>
         <Routes>
@@ -22,5 +22,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
-  </AuthProvider>
+
 );

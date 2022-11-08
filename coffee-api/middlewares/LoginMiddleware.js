@@ -3,19 +3,6 @@ const jwt = require("jsonwebtoken");
 const { jwtKey } = require("../config/secrets");
 
 function validateUser(req, res, next) {
-  console.log("Olá, cheguei no middleware");
-  // if (!req.body.email) {
-  //   return res.send("Você precisa digitar o email");
-  // }
-
-  // if (!req.body.email.includes("@")) {
-  //   return res.send("Você precisa digitar o email corretamente");
-  // }
-
-  // if (!req.body.password) {
-  //   return res.send("Você precisa digitar a senha");
-  // }
-
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -26,7 +13,7 @@ function validateUser(req, res, next) {
 
 const fieldsValidation = [
   body("email").isEmail().withMessage("Você precisa digitar o email"),
-  body("senha")
+  body("password")
     .notEmpty()
     .withMessage("Você precisa digitar a senha")
     .isLength({ min: 5 })
@@ -34,11 +21,12 @@ const fieldsValidation = [
 ];
 
 function validateToken(req, res, next) {
-  const { token } = req.cookies;
-
+  console.log(req.headers.authorization);
+  //const { token } = req.cookies;
+  const token = req.headers.authorization;
   // Se não tiver token, redireciona para a página de login
   if (!token) {
-    return res.status(500).send('nao func');
+    return res.status(403).json({ message: "Não autorizado!" });
   }
 
   // Se o token for inválido, redireciona para a página de login
@@ -47,7 +35,7 @@ function validateToken(req, res, next) {
     console.log(decoded);
   } catch (error) {
     res.cookie("token", "");
-    return res.status(500).send('nao func');
+    return res.status(500).send("nao func");
   }
 
   // Se tiver token e o token for válido, deixa continuar

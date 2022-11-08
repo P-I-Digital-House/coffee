@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/ProductController");
 // const multerUpload = require("../config/multer");
+const middlewareToken = require("../middlewares/LoginMiddleware");
 
-router.get("/", productController.listarProdutos);
+router.get("/",middlewareToken.validateToken, productController.listarProdutos);
 
 router.get("/categoria/:category", productController.listarProdutosPorCategoria);
 
