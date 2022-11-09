@@ -3,6 +3,7 @@ import { CardProduto } from "../CardProduto/Index";
 import api from "../../../api";
 import "../Produtos/produtos.css";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "react-use-cookie";
 
 export function Produtos() {
   const navigate = useNavigate();
@@ -14,12 +15,12 @@ export function Produtos() {
 
   async function buildPage() {
 
-    console.log(localStorage.getItem("token"));
+    const token = getCookie("token");
 
-    if(localStorage.getItem("token") != ""){
+    if(token != ""){
       const response = await api.get("/produtos", {
 
-      headers: { Authorization: `${localStorage.getItem("token")}` },
+      headers: { Authorization: `${token}` },
     });
 
     setProdutos(response.data);

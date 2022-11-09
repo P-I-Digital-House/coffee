@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { CardProduto } from "../CardProduto/Index";
 import api from "../../../api";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import "../Usuarios/usuarios.css";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "react-use-cookie";
+
 
 const schema = yup.object().shape({
   nome: yup.string().required("Nome obrigatório"),
@@ -44,12 +45,17 @@ export function Usuarios() {
   }, []);
 
   async function buildPage() {
-    const response = await api.get("/usuarios/46334628810");
+    const user = getCookie("user");
+    if(user){
+      const { document } = JSON.parse(user);
+      const response = await api.get(`/users/${document}`);
     try {
       setDados(response.data);
     } catch (error) {
       alert("Ocorreu um erro, verifique os dados!");
     }
+    }
+    
   }
 
   async function updateUser(values) {
@@ -66,8 +72,8 @@ export function Usuarios() {
     formData.append("file", fileField.files[0]);
 
     try {
-      const response = await api.put("/usuarios/atualizar", formData);
-      alert("Usuário cadastrado com sucesso.");
+      const response = await api.put("/users", formData);
+      alert("Usuário atualizado com sucesso.");
     } catch (error) {
       alert("Usuário não cadastrado.");
     }

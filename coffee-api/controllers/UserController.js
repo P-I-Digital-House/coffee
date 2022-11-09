@@ -1,19 +1,17 @@
 const UserModel = require("../models/User");
-const jwt = require("jsonwebtoken");
-const { jwtKey } = require("../config/secrets");
 
-function listarUsuarios(req, res) {
+function findAll(req, res) {
   const userList = UserModel.getAll();
   return res.json(userList);
 }
 
-function listarUsuariosPeloDocumento(req, res) {
+function findUserByDocument(req, res) {
   const { document } = req.params;
-  const userList = UserModel.findByDocument(document);
-  return res.json(userList);
+  const user = UserModel.findByDocument(document);
+  return res.json(user);
 }
 
-function criarUsuarios(req, res) {
+function create(req, res) {
   let fileLocation = "";
 
   if (req.file) {
@@ -27,21 +25,7 @@ function criarUsuarios(req, res) {
   return res.status(200).json({ message: "Usuário criado com sucesso!" });
 }
 
-function logarUsuarios(req, res) {
- 
-    const { email, password } = req.body;
-    const teste = UserModel.login(email, password);
-    res.clearCookie("token");
-    if (teste) {
-      const token = jwt.sign({ email }, jwtKey, { expiresIn: "30s" });
-      res.cookie("token", token);
-      return res.status(200).send({token: token, teste: teste});
-    }
-    return res.send({token: "", teste: teste});
-  
-}
-
-function atualizarUsuario(req, res) {
+function update(req, res) {
   let fileLocation = "";
 
   if (req.file) {
@@ -59,46 +43,16 @@ function atualizarUsuario(req, res) {
   return res.status(200).json({ message: "Usuário atualizado com sucesso!" });
 }
 
-function deletarUsuario(req, res) {
+function deleteByDocument(req, res) {
   const { document } = req.params;
   UserModel.deleteByDocument(document);
   return res.status(200).json({ message: "Usuário deletado com sucesso!" });
 }
 
-// function showEditPage(req, res) {
-//   const { id } = req.params;
-//   const immobile = ImmobileModel.getById(id);
-//   return res.render("updateImmobile", { immobile });
-// }
-
-// function updateById(req, res) {
-//   const { id } = req.params;
-//   const { picture, price, status, description } = req.body;
-//   // Se tiver req.file, vamos usar o req.file
-//   // Se não, vamos usar o picture
-//   let fileLocation = "";
-
-//   if (req.file) {
-//     fileLocation = `/uploads/${req.file.filename}`;
-//   } else {
-//     fileLocation = picture;
-//   }
-
-//   ImmobileModel.update(id, fileLocation, price, status, description);
-//   return res.redirect("/");
-// }
-
-// function deleteById(req, res) {
-//   const { id } = req.params;
-//   ImmobileModel.deleteById(id);
-//   return res.redirect("/");
-// }
-
 module.exports = {
-  listarUsuarios,
-  listarUsuariosPeloDocumento,
-  criarUsuarios,
-  logarUsuarios,
-  atualizarUsuario,
-  deletarUsuario,
+  findAll,
+  findUserByDocument,
+  create,
+  update,
+  deleteByDocument,
 };

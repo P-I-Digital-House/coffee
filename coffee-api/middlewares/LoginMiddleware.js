@@ -1,15 +1,7 @@
-const { body, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const { jwtKey } = require("../config/secrets");
 
-function validateUser(req, res, next) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  next();
-}
 
 const fieldsValidation = [
   body("email").isEmail().withMessage("Você precisa digitar o email"),
@@ -21,29 +13,23 @@ const fieldsValidation = [
 ];
 
 function validateToken(req, res, next) {
-  console.log(req.headers.authorization);
-  //const { token } = req.cookies;
-  const token = req.headers.authorization;
-  // Se não tiver token, redireciona para a página de login
-  if (!token) {
-    return res.status(403).json({ message: "Não autorizado!" });
+
+  const {authorization} = req.headers;
+
+  if (!authorization) {
+    return res.status(403).json({ message: "Token não encontrado!" });
   }
 
-  // Se o token for inválido, redireciona para a página de login
   try {
-    const decoded = jwt.verify(token, jwtKey);
-    console.log(decoded);
+    jwt.verify(authorization, jwtKey);
   } catch (error) {
-    res.cookie("token", "");
-    return res.status(500).json({ message: "Não autorizado!" });
+    return res.status(500).json({ message: "Erro ao válidar o Token!" });
   }
 
-  // Se tiver token e o token for válido, deixa continuar
   next();
 }
 
 module.exports = {
-  validateUser,
   fieldsValidation,
   validateToken,
 };

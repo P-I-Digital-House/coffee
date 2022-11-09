@@ -42,7 +42,7 @@ export function CadastroUsuario() {
     formData.append("file", fileField.files[0]);
 
     try {
-      await api.post("/usuarios/cadastrar", formData);
+      await api.post("/users", formData);
       alert("Usuário cadastrado com sucesso.");
       navigate("/");
     } catch (error) {

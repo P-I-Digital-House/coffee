@@ -51,11 +51,11 @@ function login(email, password){
 
   const findByEmail = (item) => item.email == email && item.password == password;
 
-  const indexUser = userList.findIndex(findByEmail)
-  if(indexUser !== -1){
-    return true
+  const user = userList.find(findByEmail)
+  if(user){
+    return user;
   }
-  return false
+  return null;
 }
 
 function update(name, document, age, tel, email, password, picture = 0) {
