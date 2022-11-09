@@ -24,19 +24,21 @@ function criarUsuarios(req, res) {
   const { name, document, age, tel, email, password } = req.body;
 
   UserModel.create(fileLocation, name, document, age, tel, email, password);
-  return res.status(200).send("Funcionou");
+  return res.status(200).json({ message: "Usuário criado com sucesso!" });
 }
 
 function logarUsuarios(req, res) {
-  const { email, password } = req.body;
-  const teste = UserModel.login(email, password);
-  res.clearCookie("token");
-  if (teste) {
-    const token = jwt.sign({ email }, jwtKey, { expiresIn: "1d" });
-    res.cookie("token", token);
-    return res.status(200).send(token);
-  }
-  return res.status(200).json({message: "Login ou senha inválida!"});
+ 
+    const { email, password } = req.body;
+    const teste = UserModel.login(email, password);
+    res.clearCookie("token");
+    if (teste) {
+      const token = jwt.sign({ email }, jwtKey, { expiresIn: "30s" });
+      res.cookie("token", token);
+      return res.status(200).send({token: token, teste: teste});
+    }
+    return res.send({token: "", teste: teste});
+  
 }
 
 function atualizarUsuario(req, res) {
@@ -54,13 +56,13 @@ function atualizarUsuario(req, res) {
   fileLocation != null
     ? UserModel.update(name, document, age, tel, email, password, fileLocation)
     : UserModel.update(name, document, age, tel, email, password);
-  return res.status(200).send("Funcionou");
+  return res.status(200).json({ message: "Usuário atualizado com sucesso!" });
 }
 
 function deletarUsuario(req, res) {
   const { document } = req.params;
   UserModel.deleteByDocument(document);
-  return res.status(200).send("Funcionou");
+  return res.status(200).json({ message: "Usuário deletado com sucesso!" });
 }
 
 // function showEditPage(req, res) {

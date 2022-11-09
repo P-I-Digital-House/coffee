@@ -19,11 +19,13 @@ export function LoginUsuario() {
     try {
       const response = await api.post("/usuarios/login", values);
       console.log(response);
-      localStorage.setItem("token", response.data);
-      navigate('/');
+      localStorage.setItem("token", response.data.token);
+      response.data.teste ? (alert("logado"), navigate('/')) : alert("Login ou senha inválidos")
+      
     } catch (error) {
-      console.log(error);
-      alert("Login ou Senha Inválidos.");
+      error.response.data.errors ? 
+      alert('Campos inválidos (middleware)') : console.log('sem erro');
+      
     }
   }
 

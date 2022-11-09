@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { CardProduto } from "../CardProduto/Index";
 import api from "../../../api";
 import "../Produtos/produtos.css";
+import { useNavigate } from "react-router-dom";
 
 export function Produtos() {
+  const navigate = useNavigate();
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
@@ -11,11 +13,20 @@ export function Produtos() {
   }, []);
 
   async function buildPage() {
+
     console.log(localStorage.getItem("token"));
-    const response = await api.get("/produtos", {
+
+    if(localStorage.getItem("token") != ""){
+      const response = await api.get("/produtos", {
+
       headers: { Authorization: `${localStorage.getItem("token")}` },
     });
+
     setProdutos(response.data);
+    }else{
+      navigate("/login/cadastro");
+    }
+    
   }
 
   return (

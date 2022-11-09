@@ -35,7 +35,7 @@ function validateToken(req, res, next) {
     console.log(decoded);
   } catch (error) {
     res.cookie("token", "");
-    return res.status(500).send("nao func");
+    return res.status(500).json({ message: "Não autorizado!" });
   }
 
   // Se tiver token e o token for válido, deixa continuar
