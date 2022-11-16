@@ -18,13 +18,13 @@ export function Produtos() {
     const token = getCookie("token");
 
     if(token != ""){
-      const response = await api.get("/produtos", {
-
+      const response = await api.get("products", {
       headers: { Authorization: `${token}` },
     });
-
-    setProdutos(response.data);
+      setProdutos(response.data);
+      
     }else{
+      alert("Você Precisa estar logado para acessar essa página.");
       navigate("/login/cadastro");
     }
     

@@ -4,7 +4,6 @@ import * as yup from "yup";
 import api from "../../../api";
 import { useNavigate } from "react-router-dom";
 import useCookie from "react-use-cookie";
-import { useEffect } from "react";
 
 const schema = yup.object().shape({
   email: yup.string().email("Email inválido").required("Email obrigatório"),
@@ -14,14 +13,10 @@ const schema = yup.object().shape({
     .required("Senha obrigatória"),
 });
 
-export function LoginUsuario(props) {
+export function LoginUsuario() {
   const [token, setToken] = useCookie("token","");
   const [user, setUser] = useCookie("user","")
   const navigate = useNavigate();
-
-  useEffect(()=>{
-    console.log(props)
-  },[])
 
   async function onLogin(values) {
     try {
@@ -33,8 +28,7 @@ export function LoginUsuario(props) {
         ? (alert("Bem vindo à página coffee"), navigate("/"))
         : alert("Login ou senha inválidos");
     } catch (error) {
-      console.log(error);
-      error.response.errors
+      error.response.data.errors
         ? alert("Campos inválidos (middleware)")
         : console.log("sem erro");
     }

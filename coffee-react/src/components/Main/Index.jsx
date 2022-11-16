@@ -17,13 +17,13 @@ export function Main() {
 
   async function buildPage(){
     try {
-      const buildCafe = await api.get("produtos/categoria/cafe");
+      const buildCafe = await api.get("products/category/cafe");
       setCafes(buildCafe.data);
 
-      const buildXicara = await api.get("produtos/categoria/xicara");
+      const buildXicara = await api.get("products/category/xicara");
       setXicaras(buildXicara.data);
 
-      const buildAcessorios = await api.get("produtos/categoria/acessorio");
+      const buildAcessorios = await api.get("products/category/acessorio");
       setAcessorios(buildAcessorios.data);
 
     } catch (e) {
