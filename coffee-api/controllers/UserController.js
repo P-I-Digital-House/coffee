@@ -1,100 +1,58 @@
 const UserModel = require("../models/User");
-const jwt = require("jsonwebtoken");
-const { jwtKey } = require("../config/secrets");
 
-function listarUsuarios(req, res) {
-   const userList = UserModel.getAll();
-   return res.json(userList)
+function findAll(req, res) {
+  const userList = UserModel.getAll();
+  return res.json(userList);
 }
 
+function findUserByDocument(req, res) {
+  const { document } = req.params;
+  const user = UserModel.findByDocument(document);
+  return res.json(user);
+}
 
-function listarUsuariosPeloDocumento(req, res) {
-    const { document } = req.params;
-    const userList = UserModel.findByDocument(document);
-    return res.json(userList)
- }
+function create(req, res) {
+  let fileLocation = "";
 
-function criarUsuarios(req, res) {
-    let fileLocation = "";
-    
-    if (req.file) {
-        fileLocation = `../public/uploads/${req.file.filename}`;
-    } else {
-        fileLocation = req.body.picture;
-    }
-    const { name, document, age, tel, email, password } = req.body;
+  if (req.file) {
+    fileLocation = `../public/uploads/${req.file.filename}`;
+  } else {
+    fileLocation = req.body.picture;
+  }
+  const { name, document, age, tel, email, password } = req.body;
 
   UserModel.create(fileLocation, name, document, age, tel, email, password);
-  return res.status(200).send("Funcionou");
+  return res.status(200).json({ message: "Usuário criado com sucesso!" });
 }
 
-function logarUsuarios(req, res) {
-    const { email, senha } = req.body;
-    const teste = UserModel.login(email, senha);
-    res.clearCookie("token");
-    if (teste) {
-        const token = jwt.sign({ email }, jwtKey, { expiresIn: "1d" });
-        res.cookie("token", token);
-    }
-    return res.status(200).send(teste);
+function update(req, res) {
+  let fileLocation = "";
+
+  if (req.file) {
+    fileLocation = `../public/uploads/${req.file.filename}`;
+  } else if (req.body.picture !== undefined || req.body.picture !== null) {
+    fileLocation = req.body.picture;
+  } else {
+    fileLocation = null;
+  }
+  const { name, document, age, tel, email, password } = req.body;
+
+  fileLocation != null
+    ? UserModel.update(name, document, age, tel, email, password, fileLocation)
+    : UserModel.update(name, document, age, tel, email, password);
+  return res.status(200).json({ message: "Usuário atualizado com sucesso!" });
 }
 
-function atualizarUsuario(req, res) {
-    let fileLocation = "";
-    
-    if (req.file) {
-        fileLocation = `../public/uploads/${req.file.filename}`;
-    } else if (req.body.picture !== undefined || req.body.picture !== null) {
-        fileLocation = req.body.picture;
-    } else {
-        fileLocation = null;
-    }
-    const { name, document, age, tel, email, password } = req.body;
-
-    fileLocation != null ? UserModel.update(name, document, age, tel, email, password, fileLocation) : UserModel.update( name, document, age, tel, email, password)
-    return res.status(200).send("Funcionou");
+function deleteByDocument(req, res) {
+  const { document } = req.params;
+  UserModel.deleteByDocument(document);
+  return res.status(200).json({ message: "Usuário deletado com sucesso!" });
 }
-
-function deletarUsuario(req, res) {
-    const { document } = req.params;
-    UserModel.deleteByDocument(document);
-    return res.status(200).send("Funcionou");
-}
-
-// function showEditPage(req, res) {
-//   const { id } = req.params;
-//   const immobile = ImmobileModel.getById(id);
-//   return res.render("updateImmobile", { immobile });
-// }
-
-// function updateById(req, res) {
-//   const { id } = req.params;
-//   const { picture, price, status, description } = req.body;
-//   // Se tiver req.file, vamos usar o req.file
-//   // Se não, vamos usar o picture
-//   let fileLocation = "";
-
-//   if (req.file) {
-//     fileLocation = `/uploads/${req.file.filename}`;
-//   } else {
-//     fileLocation = picture;
-//   }
-
-//   ImmobileModel.update(id, fileLocation, price, status, description);
-//   return res.redirect("/");
-// }
-
-// function deleteById(req, res) {
-//   const { id } = req.params;
-//   ImmobileModel.deleteById(id);
-//   return res.redirect("/");
-// }
 
 module.exports = {
-    listarUsuarios,
-    listarUsuariosPeloDocumento,
-    criarUsuarios,
-    logarUsuarios,
-    atualizarUsuario,
-    deletarUsuario,
+  findAll,
+  findUserByDocument,
+  create,
+  update,
+  deleteByDocument,
 };

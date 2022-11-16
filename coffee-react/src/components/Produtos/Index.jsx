@@ -1,39 +1,56 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import { CardProduto } from "../CardProduto/Index";
-import { api_url } from '../../../api';
-import '../Produtos/produtos.css'
-
+import api from "../../../api";
+import "../Produtos/produtos.css";
+import { useNavigate } from "react-router-dom";
+import { getCookie } from "react-use-cookie";
 
 export function Produtos() {
-    const [produtos, setProdutos] = useState([]);
-    
-      useEffect(() => {
-        fetch(api_url+'produtos/')
-        .then((response) => response.json())
-          .then((json) => setProdutos(json));
-      }, [])
+  const navigate = useNavigate();
+  const [produtos, setProdutos] = useState([]);
 
-    return (
-        <div className="container-produtos">
+  useEffect(() => {
+    buildPage();
+  }, []);
+
+  async function buildPage() {
+
+    const token = getCookie("token");
+
+    if(token != ""){
+      const response = await api.get("products", {
+      headers: { Authorization: `${token}` },
+    });
+      setProdutos(response.data);
+      
+    }else{
+      alert("Você Precisa estar logado para acessar essa página.");
+      navigate("/login/cadastro");
+    }
+    
+  }
+
+  return (
+    <div className="container-produtos">
       <h2>
         ["<span className="detalhe-produtos">produtos</span>"];
       </h2>
       <div className="txt-center">
         <div className="box-produtos">
-        {produtos.map((item) => (
-                <CardProduto
-                  key={item.id}
-                  img={item.img}
-                  titulo={item.nameProduct}
-                  qtdd={item.quantity}
-                  preco={item.price}
-                />
-              ))}
+          {produtos.map((item) => (
+            <CardProduto
+              key={item.id}
+              img={item.img}
+              titulo={item.nameProduct}
+              qtdd={item.quantity}
+              preco={item.price}
+            />
+          ))}
         </div>
         <a href="#">
           <button className="btn-mais">"ver_mais"</button>
         </a>
       </div>
     </div>
-    );
+  );
 }

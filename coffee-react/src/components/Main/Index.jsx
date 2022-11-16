@@ -2,30 +2,34 @@ import "../Main/main.css";
 import { CardProduto } from "../CardProduto/Index";
 import { useState } from "react";
 import { useEffect } from "react";
-import { api_url } from '../../../api';
+import api from '../../../api';
 
 export function Main() {
   const [cafes, setCafes] = useState([]);
   const [xicaras, setXicaras] = useState([]);
   const [acessorios, setAcessorios] = useState([]);
 
-  useEffect(() => {
-    fetch(api_url+'produtos/categoria/cafe')
-    .then((response) => response.json())
-      .then((json) => setCafes(json));
-  }, [])
 
   useEffect(() => {
-    fetch(api_url+'produtos/categoria/xicara')
-    .then((response) => response.json())
-      .then((json) => setXicaras(json));
-  }, [])
+    buildPage();
+  }, []);
 
-  useEffect(() => {
-    fetch(api_url+'produtos/categoria/acessorio')
-    .then((response) => response.json())
-      .then((json) => setAcessorios(json));
-  }, [])
+
+  async function buildPage(){
+    try {
+      const buildCafe = await api.get("products/category/cafe");
+      setCafes(buildCafe.data);
+
+      const buildXicara = await api.get("products/category/xicara");
+      setXicaras(buildXicara.data);
+
+      const buildAcessorios = await api.get("products/category/acessorio");
+      setAcessorios(buildAcessorios.data);
+
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   return (
     <div className="container">

@@ -1,32 +1,11 @@
-const { body, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const { jwtKey } = require("../config/secrets");
 
-function validateUser(req, res, next) {
-  console.log("Olá, cheguei no middleware");
-  // if (!req.body.email) {
-  //   return res.send("Você precisa digitar o email");
-  // }
-
-  // if (!req.body.email.includes("@")) {
-  //   return res.send("Você precisa digitar o email corretamente");
-  // }
-
-  // if (!req.body.password) {
-  //   return res.send("Você precisa digitar a senha");
-  // }
-
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  next();
-}
 
 const fieldsValidation = [
   body("email").isEmail().withMessage("Você precisa digitar o email"),
-  body("senha")
+  body("password")
     .notEmpty()
     .withMessage("Você precisa digitar a senha")
     .isLength({ min: 5 })
@@ -34,28 +13,23 @@ const fieldsValidation = [
 ];
 
 function validateToken(req, res, next) {
-  const { token } = req.cookies;
 
-  // Se não tiver token, redireciona para a página de login
-  if (!token) {
-    return res.status(500).send('nao func');
+  const {authorization} = req.headers;
+
+  if (!authorization) {
+    return res.status(403).json({ message: "Token não encontrado!" });
   }
 
-  // Se o token for inválido, redireciona para a página de login
   try {
-    const decoded = jwt.verify(token, jwtKey);
-    console.log(decoded);
+    jwt.verify(authorization, jwtKey);
   } catch (error) {
-    res.cookie("token", "");
-    return res.status(500).send('nao func');
+    return res.status(500).json({ message: "Erro ao válidar o Token!" });
   }
 
-  // Se tiver token e o token for válido, deixa continuar
   next();
 }
 
 module.exports = {
-  validateUser,
   fieldsValidation,
   validateToken,
 };

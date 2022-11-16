@@ -61,7 +61,7 @@ export function Header() {
           <a href="#">
             <img src={IconCarrinho} alt="" className="icon" />
           </a>
-          <Link to="/login/cadastro">
+          <Link to="/login">
             <img src={IconUser} alt="" className="icon-user" />
           </Link>
         </div>

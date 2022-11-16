@@ -44,29 +44,6 @@ function create(nameProduct, quantity, category, img, price, available, descript
   fs.writeFileSync("database/Products.json", JSON.stringify(productList));
 }
 
-
-// function update(id, picture, price, status, description) {
-//   // Buscar todos os imóveis
-//   const immobileList = getAll();
-//   // Alterar o imóvel que possui o index = id
-//   const immobile = immobileList[id];
-//   immobile.picture = picture;
-//   immobile.price = price;
-//   immobile.status = status;
-//   immobile.description = description;
-//   // Salvar os dados alterados no arquivo do banco de dados
-//   fs.writeFileSync("database/Immobiles.json", JSON.stringify(immobileList));
-// }
-
-// function deleteById(id) {
-//   // Buscar todos os imóveis
-//   // Remover o imóvel do index = id
-//   // Salvar a lista novamente
-//   const immobileList = getAll();
-//   immobileList.splice(id, 1);
-//   fs.writeFileSync("database/Immobiles.json", JSON.stringify(immobileList));
-// }
-
 module.exports = {
   getAll,
   getByCategory,
