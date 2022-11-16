@@ -12,6 +12,7 @@
 
 .container-usuarios {    
     padding-top: 180px;
+    padding-bottom: 100px;
 }
 
 .detalhe-usuarios {
@@ -49,6 +50,11 @@
 
 .update input[type="file"]{
     border-bottom: none !important;
+}
+
+.update .btn-send {
+    width: auto;
+    padding: 10px 30px;
 }
 
 @media screen and (max-width:500px) {
