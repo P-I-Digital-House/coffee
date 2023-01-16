@@ -23,6 +23,7 @@ function create(req, res) {
 
   UserModel.create(fileLocation, name, document, age, tel, email, password);
   return res.status(200).json({ message: "Usuário criado com sucesso!" });
+  
 }
 
 function update(req, res) {
