@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 const userController = require("../controllers/UserController");
 const middleware = require("../middlewares/LoginMiddleware");
@@ -6,7 +7,6 @@ const middlewareCadastro = require("../middlewares/CadastroMiddleware");
 const multerUpload = require("../config/multer");
 
 // se o método é diferente não precisa ter outra rota
-
 router.get("/", middleware.validateToken, userController.findAll);
 
 router.post(
