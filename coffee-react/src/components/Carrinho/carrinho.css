@@ -1,0 +1,86 @@
+.shoppingCart {
+  background-color: var(--golden-grass-180);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+  gap: 5rem;
+}
+
+.infoProduct {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5rem;
+}
+
+.infoProduct p {
+  cursor: pointer;
+}
+
+.cartDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.product p {
+  padding: 2rem;
+}
+
+
+
+.shipping {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.shippingDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.btnPayments {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.inputInfo {
+  padding: 10px;
+  border-style: none;
+  border-radius: 5px;
+  border:solid 1px #f5a472;
+}
+
+.title{
+  padding-top: 5rem;
+}
+
+.btnPortal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.btnPortal {
+  background-color: #f5a472;
+  width: 100%;
+  border-style: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+a:hover {
+  color: #f5a472;
+}

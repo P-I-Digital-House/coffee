@@ -8,7 +8,7 @@ export function CardProduto({ img, titulo, qtdd, preco }) {
       <p className="qtdd-card-produtos">{qtdd}</p>
       <p className="preco-card-produtos">{preco}</p>
       <button className="btn-card-produtos" type="submit">
-        comprar
+        <a href="/detalhe-produto">comprar</a>
       </button>
     </div>
   );
