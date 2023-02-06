@@ -1,4 +1,4 @@
-const fs = require("fs");
+/* const fs = require("fs");
 
 function User( picture, name, document, age, tel, email, password) {
   this.picture = picture;
@@ -98,4 +98,4 @@ module.exports = {
   login,
   deleteByDocument,
   findByDocument,
-};
+}; */

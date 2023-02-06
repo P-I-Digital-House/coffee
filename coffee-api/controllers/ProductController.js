@@ -1,4 +1,4 @@
-const ProductModel = require("../models/Product");
+/* const ProductModel = require("../models/Product");
 
 function findProducts(req, res, next) {
   try {
@@ -42,4 +42,4 @@ module.exports = {
   findProducts,
   findProductsByCategory,
   createProduct,
-};
+}; */

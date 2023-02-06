@@ -1,4 +1,4 @@
-const UserModel = require("../models/User");
+/* const UserModel = require("../models/User");
 
 function findAll(req, res) {
   const userList = UserModel.getAll();
@@ -56,4 +56,4 @@ module.exports = {
   create,
   update,
   deleteByDocument,
-};
+}; */
