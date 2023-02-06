@@ -1,4 +1,4 @@
-const fs = require("fs");
+/* const fs = require("fs");
 
 function Product(id, img, nameProduct, quantity, price, category) {
     this.id = id;
@@ -48,4 +48,4 @@ module.exports = {
   getAll,
   getByCategory,
   create
-};
+}; */
