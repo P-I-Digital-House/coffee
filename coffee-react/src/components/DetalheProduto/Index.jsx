@@ -1,18 +1,35 @@
 import "./detalheProduto.css";
 import Coffee from "../../assets/embalagem-cafe-1.png";
 import { Star, Truck } from "phosphor-react";
+import api from '../../../api';
+import { useState, useEffect } from 'react';
 
 
 // { img, title, price, installment }
-export function DetalheProduto() {
+export const DetalheProduto = ({id}) => {
+  const [dados, setDados] = useState([]);
+  useEffect(() => {
+    buildPage();
+  }, []);
+
+  async function buildPage() {
+    try {
+      const buildPage = await api.get("products/"+id);
+      setDados(buildPage.data);
+
+    } catch (e) {
+      console.error(e);
+    }
+    
+  }
   return (
       <div className="main">
           <div>
-            <img className="imgProduct" src={Coffee} alt="" />
+            <img className="imgProduct" src={dados.picture} alt="" />
           </div>
           <div className="info">
             <div>
-              <h2 className="title">TITULO DO PRODUTO</h2>
+              <h2 className="title">{dados.pname}</h2>
             </div>
             <span className="stars">
               <Star size={15} color="#dda520" />
@@ -21,7 +38,7 @@ export function DetalheProduto() {
               <Star size={15} color="#dda520" />
               <Star size={15} color="#dda520" />
             </span>
-            <p className="txt">DESCRIÇÃO DO PRODUTO</p>
+            <p className="txt">{dados.pdescription}</p>
             <p className="txt">6 UNIDADES</p>
             <p className="txt">R$89,90</p>
             <a href="#">

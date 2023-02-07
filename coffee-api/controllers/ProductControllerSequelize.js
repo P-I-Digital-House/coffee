@@ -13,6 +13,18 @@ function getProductById(req, res) {
   });
 }
 
+function getProductsByCategory(req, res) {
+  const { category } = req.params;
+
+  database.Product.findAll({
+    where: {
+      category: category
+    },
+  }).then((data) => {
+    res.json(data);
+  });
+}
+
 function createProduct(req, res) {
   const { pname, pdescription, picture, category } = req.body;
   database.Product.create({
@@ -50,6 +62,7 @@ function deleteProduct(req, res) {
 module.exports = {
   getProducts,
   getProductById,
+  getProductsByCategory,
   createProduct,
   updateProduct,
   deleteProduct

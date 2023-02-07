@@ -42,10 +42,11 @@ export function Main() {
         {cafes.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.nameProduct}
+                  titulo={item.pname}
                   qtdd={item.quantity}
                   preco={item.price}
-                  img={item.img}
+                  img={item.picture}
+                  id={item.id}
                 />
               ))}
           
@@ -60,10 +61,11 @@ export function Main() {
         {xicaras.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.nameProduct}
+                  titulo={item.pname}
                   qtdd={item.quantity}
                   preco={item.price}
-                  img={item.img}
+                  img={item.picture}
+                  id={item.id}
                 />
               ))}
         </div>
@@ -77,10 +79,11 @@ export function Main() {
         {acessorios.map((item) => (
                 <CardProduto
                   key={item.id}
-                  titulo={item.nameProduct}
+                  titulo={item.pname}
                   qtdd={item.quantity}
                   preco={item.price}
-                  img={item.img}
+                  img={item.picture}
+                  id={item.id}
                 />
               ))}
         </div>
