@@ -1,4 +1,4 @@
-.container {
+.main .container {
   padding-top: 10rem;
 } 
 
@@ -6,9 +6,9 @@
   padding: 10rem 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  /* padding: 5rem; */
+  justify-content: space-evenly;
+  align-items: top;
+  width: 100%;
 }
 
 .info {
@@ -17,6 +17,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  text-align: center;
 }
 
 .zipCode {
@@ -25,6 +26,11 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.input-frete {
+  display: flex;
+  gap:1rem;
 }
 
 .line {
@@ -43,12 +49,9 @@
 }
 
 .imgProduct {
-  box-shadow: 0 0 30px 0.5px var(--black);
-  border-radius: 15px;
-  height: 30rem;
   width: 25em;
   cursor: pointer;
-  padding: 5rem;
+  padding: 3rem;
 }
 
 
@@ -66,16 +69,22 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-}
-
-.btnPortal {
   background-color: #f5a472;
-  width: 100%;
   border-style: none;
-  border-radius: 10px;
   padding: 10px 20px;
+  cursor: pointer;
 }
 
 a:hover {
   color: #f5a472;
+}
+
+@media (max-width: 480px) {
+  .main {
+    flex-direction: column;
+  }
+  .imgProduct {
+    padding: 1rem;
+  }
+  
 }

@@ -40,7 +40,7 @@ export const DetalheProduto = ({id}) => {
             </span>
             <p className="txt">{dados.pdescription}</p>
             <p className="txt">6 UNIDADES</p>
-            <p className="txt">R$89,90</p>
+            <p className="txt"><b>R$89,90</b></p>
             <a href="#">
               <button className="btnPortal" type="submit">
                 ADICIONAR
@@ -54,12 +54,14 @@ export const DetalheProduto = ({id}) => {
             <hr className="line" />
             <div className="zipCode">
               <label className="details">CALCULE O VALOR DE FRETE</label>
-              <Truck size={30} color="#f5a472" />{" "}
-              <input
-                className="inputInfo"
-                type="number"
-                placeholder="CEP de Entrega"
-              />
+              <div className="input-frete">
+                <Truck size={30} color="#f5a472" />{" "}
+                <input
+                  className="inputInfo"
+                  type="number"
+                  placeholder="CEP de Entrega"
+                />
+              </div>
             </div>
           </div>
       </div>
