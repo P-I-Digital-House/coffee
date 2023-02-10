@@ -4,6 +4,18 @@
   display: flex;
   flex-direction: column;
   padding: 10rem 0;
+  width: max(90%,350px);
+  margin: auto;
+}
+
+.shoppingCart h1 {
+  font-size: 1.6rem;
+}
+
+.shoppingCart h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: left;
 }
 
 .infoProduct {
@@ -11,11 +23,26 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  gap: 5rem;
 }
 
 .infoProduct p {
   cursor: pointer;
+}
+
+.tableCart {
+  margin: 40px 0;
+  text-align: left;
+}
+
+.tableCart .imgProduct {
+  width: 6rem;
+  cursor: pointer;
+}
+
+.tableCart th {
+  border-bottom: 1px solid #d8d8d8;
+  padding: 10px;
+  font-weight: 400;
 }
 
 .cartDetails {
@@ -35,21 +62,23 @@
 
 .shipping {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 2rem;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 8rem;
 }
 
 .shippingDetails {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
-.btnPayments {
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
+.btnShipping {
+  border-radius: 10px;
+  color: #f5a472;
+  border-style: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 .inputInfo {
@@ -57,25 +86,83 @@
   border-style: none;
   border-radius: 5px;
   border:solid 1px #f5a472;
+  width: max(100%, 300px);
+}
+.shipping p {
+  margin-bottom: 0.4rem;
 }
 
-.btnPortal {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-
-.btnPortal {
-  background-color: #f5a472;
-  width: 100%;
-  border-style: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-}
 
 a:hover {
   color: #f5a472;
+}
+
+.shippingTotal { 
+  padding: 4rem 0px;
+  margin-top: 40px;
+  background-color: #F5F5F5;
+}
+.shippingTotal table {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.headerTotal {
+  text-align: left;
+  font-weight: 500;
+}
+.shippingTotal table th:not(.headerTotal){
+  text-align: right;
+  font-weight: 600;
+}
+
+.shippingTotal table th {
+  width: 15%;
+  line-height: 200%;
+}
+
+.tableTotal {
+  border-top: 1px solid #d8d8d8;
+  font-size: 1.1rem;
+}
+
+.tableTotal th {
+  padding-top: 20px;
+}
+
+.btnPayments {
+  border-radius: 10px;
+  background-color: #f5a472;
+  border-style: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 40px auto 0px auto;
+  display: block;
+  font-size: 1.1rem;
+}
+
+details summary {
+  list-style-type: none;
+  margin-top:15px;
+}
+
+input[type="radio"]{
+  width: auto;
+  box-shadow: none;
+  height: auto;
+}
+
+.shipping ul {
+  height: 25px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .shipping{
+    margin: auto;
+    gap: 2rem;
+  }
+    
 }

@@ -6,7 +6,7 @@ export function CardProduto({ img, titulo, qtdd, preco, id }) {
       <img className="img-card-produtos" src={img} alt="" />
       <p className="titulo-card-produtos">{titulo}</p>
       <p className="qtdd-card-produtos">{qtdd}</p>
-      <p className="preco-card-produtos">{preco}</p>
+      <p className="preco-card-produtos">R$ {preco.toFixed(2)}</p>
       <button className="btn-card-produtos" type="submit">
         <a href={"/detalhe-produto/" + id} >comprar</a>
       </button>

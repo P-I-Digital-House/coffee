@@ -26,12 +26,14 @@ function getProductsByCategory(req, res) {
 }
 
 function createProduct(req, res) {
-  const { pname, pdescription, picture, category } = req.body;
+  const { pname, pdescription, picture, category, price, pquantity } = req.body;
   database.Product.create({
     pname,
     pdescription,
     picture,
-    category
+    category,
+    price,
+    pquantity
   }).then((data) => {
     res.json(data);
   });
@@ -39,12 +41,14 @@ function createProduct(req, res) {
 
 function updateProduct(req, res) {
   const { id } = req.params;
-  const { pname, pdescription, picture, category } = req.body;
+  const { pname, pdescription, picture, category, price, pquantity } = req.body;
   database.Product.update({
     pname,
     pdescription,
     picture,
-    category
+    category,
+    price,
+    pquantity
   }, {
     where: {
       id

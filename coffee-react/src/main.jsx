@@ -20,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/login/cadastro" element={<Cadastro />} />
           <Route path="/login" element={<Login />} />
           <Route path="/produtos" element={<Produtos />} />
+          <Route path="/carrinho" element={<CarrinhoCompras />} />
           <Route path="/usuario" element={<Usuario />} />
           <Route path="/detalhe-produto/:id" element={<DetalheProdutos />} />
           <Route path="/carrinho" element={<CarrinhoCompras />} />

@@ -43,7 +43,7 @@ export function Main() {
                 <CardProduto
                   key={item.id}
                   titulo={item.pname}
-                  qtdd={item.quantity}
+                  qtdd={item.pquantity}
                   preco={item.price}
                   img={item.picture}
                   id={item.id}
@@ -62,7 +62,7 @@ export function Main() {
                 <CardProduto
                   key={item.id}
                   titulo={item.pname}
-                  qtdd={item.quantity}
+                  qtdd={item.pquantity}
                   preco={item.price}
                   img={item.picture}
                   id={item.id}
@@ -80,7 +80,7 @@ export function Main() {
                 <CardProduto
                   key={item.id}
                   titulo={item.pname}
-                  qtdd={item.quantity}
+                  qtdd={item.pquantity}
                   preco={item.price}
                   img={item.picture}
                   id={item.id}

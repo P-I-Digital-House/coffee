@@ -8,7 +8,6 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: top;
-  width: 100%;
 }
 
 .info {
@@ -48,8 +47,8 @@
   padding: 2rem 0;
 }
 
-.imgProduct {
-  width: 25em;
+.main .imgProduct {
+  width: 25rem;
   cursor: pointer;
   padding: 3rem;
 }
@@ -75,6 +74,10 @@
   cursor: pointer;
 }
 
+.detalheValor {
+  font-size: 1.4rem;
+}
+
 a:hover {
   color: #f5a472;
 }
@@ -85,6 +88,9 @@ a:hover {
   }
   .imgProduct {
     padding: 1rem;
+    width: 20rem;
+    margin: auto;
+    display: block;
   }
   
 }
