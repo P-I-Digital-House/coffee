@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import Home from "../src/Pages/Home";
 import Cadastro from "../src/Pages/Cadastro";
@@ -9,23 +9,24 @@ import "../src/styles/global.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DetalheProdutos } from "./Pages/DetalheProduto";
 import { CarrinhoCompras } from "./Pages/CarrinhoCompras";
+import { CartProvider } from "./contexts/CartContext";
 
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-
-    <React.StrictMode>
+export default function App() {
+  return(
+    <CartProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login/cadastro" element={<Cadastro />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/produtos" element={<Produtos />} />
-          <Route path="/carrinho" element={<CarrinhoCompras />} />
-          <Route path="/usuario" element={<Usuario />} />
-          <Route path="/detalhe-produto/:id" element={<DetalheProdutos />} />
-          <Route path="/carrinho" element={<CarrinhoCompras />} />
-        </Routes>
-      </BrowserRouter>
-    </React.StrictMode>
-
-);
+          <Routes>
+            <Route path="/" element={<Home />}  />
+            <Route path="/login/cadastro" element={<Cadastro />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/produtos" element={<Produtos />} />
+            <Route path="/carrinho" element={<CarrinhoCompras />} />
+            <Route path="/usuario" element={<Usuario />} />
+            <Route path="/detalhe-produto/:id" element={<DetalheProdutos />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
+  )
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);

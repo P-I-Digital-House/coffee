@@ -98,6 +98,23 @@
   display: none;
 }
 
+.rounded-circle {
+  background-color: #c14d13;
+  color: white;
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  position: absolute;
+  right: 0;
+  top:0;
+  transform: translate(25%, -25%);
+  transition: all .5s;
+}
+
 @media(max-width: 480px) {
   .carrinho {
     grid-gap: 10px;

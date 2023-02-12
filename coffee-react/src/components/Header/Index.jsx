@@ -4,15 +4,18 @@ import IconXicara from "../../assets/icon-xicara.svg";
 import IconCarrinho from "../../assets/icon-carrinho.svg";
 import IconUser from "../../assets/user-1.png";
 import Search from "../../assets/search.png";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Destaque1 from "../../assets/destaque_1.jpg";
 import Destaque2 from "../../assets/destaque_2.jpg";
 import Destaque3 from "../../assets/destaque_3.jpg";
 import Destaque4 from "../../assets/destaque_4.jpg";
 import { NavMenu } from "../NavMenu/Index";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../contexts/CartContext";
 
 export function Header() {
+  const { totalQuantityCart } = useContext(CartContext)
+
   useEffect(() => {
     setTimeout(() => {
       const headerCarrossel = document.getElementById("containerheader");
@@ -58,9 +61,10 @@ export function Header() {
           <Link to="/produtos">
             <img src={IconXicara} alt="" className="icon" />
           </Link>
-          <a href="/carrinho">
+          <Link to="/carrinho" style={{position: "relative"}}>
             <img src={IconCarrinho} alt="" className="icon" />
-          </a>
+            <div className="rounded-circle">{totalQuantityCart}</div>
+          </Link>
           <Link to="/login">
             <img src={IconUser} alt="" className="icon-user" />
           </Link>

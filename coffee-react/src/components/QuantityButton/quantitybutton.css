@@ -1,0 +1,21 @@
+.quantity-button {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #c14d13;
+}
+
+.quantity-button > button {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: #c14d13;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.quantity-button button:nth-child(2){
+    color: black;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
