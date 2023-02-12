@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/ProductControllerSequelize");
+const middlewareToken = require("../middlewares/LoginMiddleware");
 
-router.get("/", controller.getProducts);
+
+router.get("/", middlewareToken.validateToken, controller.getProducts);
 router.get("/:id", controller.getProductById);
 router.get("/category/:category", controller.getProductsByCategory);
 router.post("/", controller.createProduct);

@@ -18,7 +18,7 @@ const fieldsValidation = [
     .withMessage("Documento obrigatório")
     .isLength({ min: 11 })
     .withMessage("O documento precisa ter pelo menos 11 caracteres"),
-  body("age")
+  body("birthdate")
     .notEmpty()
     .withMessage("Idade obrigatória"),
   body("email")

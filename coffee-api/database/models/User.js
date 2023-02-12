@@ -6,23 +6,23 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    uname: {
+    name: {
       type: DataTypes.STRING
     },
     document: {
       type: DataTypes.STRING
     },
-    email: {
-      type: DataTypes.STRING
-    },
-    upassword: {
-      type: DataTypes.STRING
+    birthdate: {
+      type: DataTypes.DATE
     },
     phone: {
       type: DataTypes.STRING
     },
-    birthdate: {
-      type: DataTypes.DATE
+    email: {
+      type: DataTypes.STRING
+    },
+    password: {
+      type: DataTypes.STRING
     },
     picture: {
       type: DataTypes.STRING

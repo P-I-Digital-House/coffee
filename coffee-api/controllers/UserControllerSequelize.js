@@ -14,12 +14,12 @@ function getUserById(req, res) {
 }
 
 function createUser(req, res) {
-  const { uname, document, email, upassword, phone, birthdate, picture } = req.body;
+  const { name, document, email, password, phone, birthdate, picture } = req.body;
   database.User.create({
-    uname,
+    name,
     document,
     email,
-    upassword,
+    password,
     phone,
     birthdate,
     picture
@@ -30,12 +30,12 @@ function createUser(req, res) {
 
 function updateUser(req, res) {
   const { id } = req.params;
-  const { uname, document, email, upassword, phone, birthdate, picture } = req.body;
+  const { name, document, email, password, phone, birthdate, picture } = req.body;
   database.User.update({
-    uname,
+    name,
     document,
     email,
-    upassword,
+    password,
     phone,
     birthdate,
     picture
