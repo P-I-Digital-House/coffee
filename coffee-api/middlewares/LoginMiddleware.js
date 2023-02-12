@@ -8,7 +8,7 @@ const fieldsValidation = [
   body("password")
     .notEmpty()
     .withMessage("Você precisa digitar a senha")
-    .isLength({ min: 5 })
+    .isLength({ min: 8 })
     .withMessage("A senha precisa ter pelo menos 5 caracteres"),
 ];
 
