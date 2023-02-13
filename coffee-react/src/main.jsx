@@ -9,8 +9,8 @@ import "../src/styles/global.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DetalheProdutos } from "./Pages/DetalheProduto";
 import { CarrinhoCompras } from "./Pages/CarrinhoCompras";
-import { AdminPage } from "./Pages/AdminPage";
-import { EditPage } from "./Pages/EditPage";
+import  AdminPage  from "../src/Pages/AdminPage";
+import  EditPage  from "../src/Pages/EditPage";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(

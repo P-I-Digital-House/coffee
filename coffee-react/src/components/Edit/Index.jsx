@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import api from "../../../api";
 
 
 export function EditUser() {
@@ -10,7 +10,7 @@ export function EditUser() {
 
   async function onLoad() {
     console.log(id);
-    const { data } = await axios.get(`http://localhost:5000/users/${id}`);
+    const { data } = await api.get(`/users/${id}`);
     setUser(data);
   }
 
@@ -19,7 +19,7 @@ export function EditUser() {
   }
 
   async function onSave() {
-    await axios.put(`http://localhost:5000/users/${id}`, user);
+    await api.put(`/users/${id}`, user);
     alert("Usuário atualizado!")
     navigate("/");
   }

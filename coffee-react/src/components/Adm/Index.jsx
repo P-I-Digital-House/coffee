@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../api";
 import moment from "moment";
 import { Pencil, Trash } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
-import { Titles } from "../Titles/Index";
 
 export function AdmPage() {
   const [list, setList] = useState([]);
   const navigate = useNavigate();
 
   async function getUsers() {
-    const { data } = await axios.get("http://localhost:5000/users");
+    const { data } = await api.get("/users");
     console.log(data);
     setList(data);
   }
@@ -20,7 +19,7 @@ export function AdmPage() {
   }, []);
 
   async function onRemove(item) {
-    await axios.delete(`http://localhost:5000/users/${item.id}`);
+    await api.delete(`/users/${item.id}`);
 
     getUsers();
   }
@@ -31,13 +30,11 @@ export function AdmPage() {
 
   return (
     <div>
-      <Titles title={"Usuários Cadastrados"} />
       <table>
         <thead>
           <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>Sobrenome</th>
             <th>CPF</th>
             <th>Data de Nascimento</th>
             <th>Telefone</th>
@@ -50,8 +47,7 @@ export function AdmPage() {
           {list.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              <td>{item.first_name}</td>
-              <td>{item.last_name}</td>
+              <td>{item.name}</td>
               <td>{item.cpf}</td>
               <td>
                 {item.birthdate && moment(item.birthdate).format("DD-MM-YYYY")}
