@@ -46,9 +46,12 @@ export function Usuarios() {
 
   async function buildPage() {
     const user = getCookie("user");
+    const token = getCookie("token");
     if(user){
-      const { document } = JSON.parse(user);
-      const response = await api.get(`/users/${document}`);
+      const { id } = JSON.parse(user);
+      const response = await api.get(`/users/${id}`, {
+        headers: { Authorization: `${token}` },
+      });
     try {
       setDados(response.data);
     } catch (error) {
@@ -67,7 +70,7 @@ export function Usuarios() {
     formData.append("age", parseInt(values.age));
     formData.append("tel", values.tel);
     formData.append("email", values.email);
-    formData.append("password", values.password);
+    formData.append("password", values.upassword);
     formData.append("picture", values.picture);
     formData.append("file", fileField.files[0]);
 
@@ -88,12 +91,12 @@ export function Usuarios() {
         validationSchema={schema}
         enableReinitialize="true"
         initialValues={{
-          nome: dados.name,
+          nome: dados.uname,
           document: dados.document,
-          age: dados.age,
-          tel: dados.tel,
+          age: dados.birthdate,
+          tel: dados.phone,
           email: dados.email,
-          password: dados.password,
+          password: dados.upassword,
         }}
         onSubmit={(values) => {
           updateUser(values);

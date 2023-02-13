@@ -28,8 +28,8 @@ export function LoginUsuario() {
         ? (alert("Bem vindo à página coffee"), navigate("/"))
         : alert("Login ou senha inválidos");
     } catch (error) {
-      error.response.data.errors
-        ? alert("Campos inválidos (middleware)")
+      error
+        ? alert(error.response.data.message)
         : console.log("sem erro");
     }
   }

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    name: {
+    uname: {
       type: DataTypes.STRING
     },
     document: {
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING
     },
-    password: {
+    upassword: {
       type: DataTypes.STRING
     },
     picture: {
