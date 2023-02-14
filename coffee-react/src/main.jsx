@@ -10,6 +10,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DetalheProdutos } from "./Pages/DetalheProduto";
 import { CarrinhoCompras } from "./Pages/CarrinhoCompras";
 import { CartProvider } from "./contexts/CartContext";
+import  AdminPage  from "../src/Pages/AdminPage";
+import  EditPage  from "../src/Pages/EditPage";
+
 
 export default function App() {
   return(
@@ -23,6 +26,8 @@ export default function App() {
             <Route path="/carrinho" element={<CarrinhoCompras />} />
             <Route path="/usuario" element={<Usuario />} />
             <Route path="/detalhe-produto/:id" element={<DetalheProdutos />} />
+            <Route path="/admin/users" element={<AdminPage />} />
+            <Route path="/admin/users/edit" element={<EditPage />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
@@ -30,3 +35,4 @@ export default function App() {
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
+
