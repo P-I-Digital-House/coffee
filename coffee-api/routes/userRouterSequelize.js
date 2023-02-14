@@ -9,7 +9,7 @@ const multerUpload = require("../config/multer");
 router.get("/", middleware.validateToken, controller.getUsers);
 router.get("/:id", middleware.validateToken, controller.getUserById);
 router.post("/", middlewareCadastro.validateUser, multerUpload.single("file"), controller.createUser);
-router.put("/:id",multerUpload.single("file"), controller.updateUser);
+router.put("/:id",middleware.validateToken,multerUpload.single("file"), controller.updateUser);
 router.delete("/:id", middleware.validateToken, controller.deleteUser);
 
 module.exports = router; 

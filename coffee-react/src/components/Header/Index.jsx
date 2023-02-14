@@ -12,35 +12,39 @@ import Destaque4 from "../../assets/destaque_4.jpg";
 import { NavMenu } from "../NavMenu/Index";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../contexts/CartContext";
+import { CardProduto } from "../CardProduto/Index";
 
 export function Header() {
   const { totalQuantityCart } = useContext(CartContext)
 
-  useEffect(() => {
-    setTimeout(() => {
-      const headerCarrossel = document.getElementById("containerheader");
-      headerCarrossel.style.animation = "updown 5s";
-    }, 10000);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     const headerCarrossel = document.getElementById("containerheader");
+  //     headerCarrossel.style.animation = "updown 5s";
+  //   }, 10000);
 
-    // Mudar a imagem do carrossel a cada 6 segundos
-    let contador = 1;
-    const backgroundImages = [Destaque1, Destaque2, Destaque3, Destaque4];
-    setInterval(() => {
-      console.log(backgroundImages[contador]);
-      const carrossel = document.getElementById("containerheader");
-      //   carrossel.style.background = backgroundImages[contador];
-      if(carrossel) {
-        carrossel.style.backgroundPosition = "center";
-        carrossel.style.backgroundRepeat = "no-repeat";
-        carrossel.style.backgroundSize = "cover";
-        carrossel.style.backgroundImage = `linear-gradient(#000000 , #ffffff00 50%), url(${backgroundImages[contador]})`;
-      }
-      if (contador == 3) {
-        contador = 0;
-      } else contador++;
-    }, 6000);
-  }, []);
+  //   // Mudar a imagem do carrossel a cada 6 segundos
+  //   let contador = 1;
+  //   const backgroundImages = [Destaque1, Destaque2, Destaque3, Destaque4];
+  //   setInterval(() => {
+  //     const carrossel = document.getElementById("containerheader");
+  //     //   carrossel.style.background = backgroundImages[contador];
+  //     if(carrossel) {
+  //       carrossel.style.backgroundPosition = "center";
+  //       carrossel.style.backgroundRepeat = "no-repeat";
+  //       carrossel.style.backgroundSize = "cover";
+  //       carrossel.style.backgroundImage = `linear-gradient(#000000 , #ffffff00 50%), url(${backgroundImages[contador]})`;
+  //     }
+  //     if (contador == 3) {
+  //       contador = 0;
+  //     } else contador++;
+  //   }, 6000);
+  // }, []);
   return (
+    <>
+    <div className="bannerPromo">
+      <p>APROVEITE DESCONTOS DE ATÉ 20%</p>
+    </div>
     <div className="containerheader" id="containerheader">
       <div className="header">
         <div className="menu-busca">
@@ -70,6 +74,17 @@ export function Header() {
           </Link>
         </div>
       </div>
+      <div className="banner">
+        <h2>A MELHOR<br /> ASSINATURA DE <i>CAFÉ</i><br /> DO BRASIL</h2>
+        <CardProduto
+                  key={1}
+                  titulo={"CAFÉ GOURMET ESPECIAL"}
+                  qtdd={"250g"}
+                  preco={29.9}
+                  img={"../../src/assets/embalagem-cafe-1.png"}
+                  id={1}
+                />
+      </div>
       <div className="busca-2">
         <input type="text" name="busca-2" id="busca-2" />
         <a href="#">
@@ -77,5 +92,6 @@ export function Header() {
         </a>
       </div>
     </div>
+    </>
   );
 }

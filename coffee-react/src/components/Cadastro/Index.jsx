@@ -10,7 +10,7 @@ const getFormatedDate = (currentDate) => {
   return currentDate.split('/').reverse().join('-');
  }
 const schema = yup.object().shape({
-  name: yup.string().required("Nome obrigatório"),
+  uname: yup.string().required("Nome obrigatório"),
   document: yup
     .number()
     .test("len", "CPF deve ter 11 dígitos", (val) => {
@@ -23,7 +23,7 @@ const schema = yup.object().shape({
   birthdate: yup.date().min(getFormatedDate('01/01/1940')), //.required("Idade obrigatória"),
   phone: yup.string().max(11),
   email: yup.string().email("Email inválido").required("Email obrigatório"),
-  password: yup.string().min(8, "password deve ter pelo menos 8 dígitos").required("password obrigatória"),
+  upassword: yup.string().min(8, "password deve ter pelo menos 8 dígitos").required("password obrigatória"),
 });
 
 export function CadastroUsuario() {
@@ -33,12 +33,12 @@ export function CadastroUsuario() {
     const formData = new FormData();
     // const fileField = document.querySelector('input[type="file"]');
 
-    formData.append("name", values.name);
+    formData.append("uname", values.uname);
     formData.append("document", values.document);
     formData.append("birthdate", values.birthdate);
     formData.append("phone", values.phone);
     formData.append("email", values.email);
-    formData.append("password", values.password);
+    formData.append("upassword", values.upassword);
     formData.append("picture", values.picture);
     // formData.append("file", fileField.files[0]);
 
@@ -59,12 +59,12 @@ export function CadastroUsuario() {
       <Formik
         validationSchema={schema}
         initialValues={{
-          name: "",
+          uname: "",
           document: "",
           birthdate: "",
           phone: "",
           email: "",
-          password: "",
+          upassword: "",
           picture: "",
           // file: "",
         }}
@@ -78,10 +78,10 @@ export function CadastroUsuario() {
               <b>Faça seu cadastro</b>
             </div>
             <div className="label">
-              <label htmlFor="name">Nome</label>
-              <Field className="main" id="name" name="name" type="text" />
-              {touched.name && errors.name && (
-                <div className="error">{errors.name}</div>
+              <label htmlFor="uname">Nome</label>
+              <Field className="main" id="uname" name="uname" type="text" />
+              {touched.uname && errors.uname && (
+                <div className="error">{errors.uname}</div>
               )}
             </div>
             <div className="label">
@@ -97,7 +97,7 @@ export function CadastroUsuario() {
               )}
             </div>
             <div className="label">
-              <label htmlFor="birthdate">Idade</label>
+              <label htmlFor="birthdate">Data de Nascimento</label>
               <Field className="main" id="birthdate" name="birthdate" type="date" />
               {touched.birthdate && errors.birthdate && (
                 <div className="error">{errors.birthdate}</div>
@@ -118,22 +118,15 @@ export function CadastroUsuario() {
               )}
             </div>
             <div className="label">
-              <label htmlFor="password">Senha</label>
+              <label htmlFor="upassword">Senha</label>
               <Field
                 className="main"
-                id="password"
-                name="password"
+                id="upassword"
+                name="upassword"
                 type="password"
               />
-              {touched.password && errors.password && (
-                <div className="error">{errors.password}</div>
-              )}
-            </div>
-            <div className="label">
-              <label htmlFor="picture">Link da Foto</label>
-              <Field className="main" id="picture" name="picture" type="text" />
-              {touched.picture && errors.picture && (
-                <div className="error">{errors.picture}</div>
+              {touched.upassword && errors.upassword && (
+                <div className="error">{errors.upassword}</div>
               )}
             </div>
             {/* <div className="label">

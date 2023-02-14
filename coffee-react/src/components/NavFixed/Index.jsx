@@ -37,7 +37,7 @@ export function NavFixed() {
           <img src={IconCarrinho} alt="" className="icon" />
             <div className="rounded-circle">{totalQuantityCart}</div>
           </Link>
-          <Link to="/login/cadastro">
+          <Link to="/login">
             <img src={IconUser} alt="" className="icon-user" />
           </Link>
         </div>

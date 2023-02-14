@@ -1,15 +1,101 @@
+.banner{
+  color: #000;
+  text-align: right;
+  align-self: flex-end;
+  line-height: 100%;
+  padding: 40px;
+  width: 40%;
+  background-color: #ffffffda;
+  animation: changePosition 1s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.banner h2{
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 100%;
+}
+
+.banner i {
+  color: #fff;
+  background-color: #c14d13;
+}
+
+.bannerPromo {
+  height: 60px;
+  background-color: #432918;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.bannerPromo p{
+  animation: teste 1s infinite;
+}
+
+@keyframes teste {
+  0%{
+    font-size: 1rem;
+  }
+  50%{
+    font-size: 1.05rem;
+  }
+  100%{
+    font-size: 1rem;
+  }
+}
+
 .containerheader {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  justify-self: center;
   align-items: center;
-  background: linear-gradient(#000000 , #ffffff00 50%), url("../../assets/destaque_1.jpg") no-repeat center; 
+  background: linear-gradient(#000000 , #ffffff00 50%), url("../../assets/destaque_7.jpg") no-repeat bottom; 
   background-size: cover;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
-  padding: 20px 40px;
   scroll-behavior: smooth;
-  transition: background .5s ease-in-out;
+  animation: carrossel 20s infinite;
+  transition: background .3s ease-in-out;
+}
+
+@keyframes changePosition {
+  To {
+
+  }
+  From {
+    transform: translateX(150%);
+  }
+}
+
+@keyframes carrossel {
+  /* 0%{
+    background: linear-gradient(#000000 , #ffffff00 30%), url("../../assets/destaque_1.jpg") no-repeat center;
+    background-size: cover;
+  }
+  25% {
+    background: linear-gradient(#000000 , #ffffff00 30%), url("../../assets/destaque_5.jpg") no-repeat center;
+    background-size: cover;
+  }
+  50%{
+    background: linear-gradient(#000000 , #ffffff00 30%), url("../../assets/destaque_3.jpg") no-repeat center;
+    background-size: cover;
+  }
+  75%{
+    background: linear-gradient(#000000 , #ffffff00 30%), url("../../assets/destaque_4.jpg") no-repeat center;
+    background-size: cover;
+  }
+  100% {
+    background: linear-gradient(#000000 , #ffffff00 30%), url("../../assets/destaque_1.jpg") no-repeat center;
+    background-size: cover;
+  } */
 }
 
 .header {
@@ -18,6 +104,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 20px 40px;
 }
 
 .menu-busca {
@@ -114,7 +201,6 @@
   transform: translate(25%, -25%);
   transition: all .5s;
 }
-
 @media(max-width: 480px) {
   .carrinho {
     grid-gap: 10px;

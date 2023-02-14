@@ -14,12 +14,12 @@ function getUserById(req, res) {
 }
 
 function createUser(req, res) {
-  const { name, document, email, password, phone, birthdate, picture } = req.body;
+  const { uname, document, email, upassword, phone, birthdate, picture } = req.body;
   database.User.create({
-    name,
+    uname,
     document,
     email,
-    password,
+    upassword,
     phone,
     birthdate,
     picture
@@ -29,16 +29,26 @@ function createUser(req, res) {
 }
 
 function updateUser(req, res) {
+  console.log('REQ', req.body)
   const { id } = req.params;
-  const { name, document, email, password, phone, birthdate, picture } = req.body;
+  const { uname, document, email, upassword, phone, birthdate, file, picture } = req.body;
+
+  let fileLocation = "";
+
+  if (req.file) {
+    fileLocation = `../public/uploads/${req.file.filename}`;
+  } else {
+    fileLocation = picture;
+  }
+
   database.User.update({
-    name,
+    uname,
     document,
     email,
-    password,
+    upassword,
     phone,
     birthdate,
-    picture
+    picture: fileLocation
   }, {
     where: {
       id
