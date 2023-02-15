@@ -20,7 +20,8 @@ export function Assinatura() {
             <div className="card-up">
               <div className="titulo-card-assinaturas">plano = junior</div>
               <p className="descricao-card-assinaturas">
-                Lorem ipsum dolor sit amet, consecte adipiscing elit
+              Você receberá 1 pacote de café gourmet exclusivo dentro dos três disponíveis na experiência do mês.<br/>
+              São 30 xícaras para você apreciar!
               </p>
               <a href="#">
                 <button className="btn-card-assinaturas">"saiba_mais"</button>
@@ -35,7 +36,8 @@ export function Assinatura() {
             <div className="card-up">
               <div className="titulo-card-assinaturas">plano = pleno </div>
               <p className="descricao-card-assinaturas">
-                Lorem ipsum dolor sit amet, consecte adipiscing elit
+              Você receberá 2 pacotes de café gourmet exclusivo dentro dos três disponíveis na experiência do mês.<br/>
+              São 60 xícaras para você apreciar!
               </p>
               <a href="#">
                 <button className="btn-card-assinaturas">"saiba_mais"</button>
@@ -47,9 +49,9 @@ export function Assinatura() {
           <img className="img-assinaturas" src={Img3} />
           <div className="card-assinaturas">
             <div className="card-up">
-              <div className="titulo-card-assinaturas">plano = pleno</div>
+              <div className="titulo-card-assinaturas">plano = senior</div>
               <p className="descricao-card-assinaturas">
-                Lorem ipsum dolor sit amet, consecte adipiscing elit
+              Você receberá os 3 pacotes de café gourmet exclusivo disponíveis na experiência do mês. São 90 xícaras para você apreciar por completo!
               </p>
               <a href="#">
                 <button className="btn-card-assinaturas">"saiba_mais"</button>

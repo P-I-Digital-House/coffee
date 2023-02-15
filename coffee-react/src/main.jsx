@@ -9,6 +9,8 @@ import "../src/styles/global.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DetalheProdutos } from "./Pages/DetalheProduto";
 import { CarrinhoCompras } from "./Pages/CarrinhoCompras";
+import Pagamento from "../src/Pages/Pagamento"
+import Endereco from "../src/Pages/Endereco"
 import { CartProvider } from "./contexts/CartContext";
 import  AdminPage  from "../src/Pages/AdminPage";
 import  EditPage  from "../src/Pages/EditPage";
@@ -16,6 +18,7 @@ import { LoginProvider } from "./contexts/LoginContext";
 import { useNavigate } from "react-router-dom";
 import { BuscaProduto } from "./components/BuscaProduto/Index";
 import { BuscaProdutos } from "./Pages/BuscaProduto";
+
 
 
 export default function App() {
@@ -34,6 +37,8 @@ export default function App() {
               <Route path="/busca/:search" element={<BuscaProdutos />} />
               <Route path="/admin/users" element={<AdminPage />} />
               <Route path="/admin/users/edit" element={<EditPage />} />
+              <Route path="/pagamento" element={<Pagamento />} />
+              <Route path="/endereco" element={<Endereco />} />
             </Routes>
           </BrowserRouter>
         </LoginProvider>
@@ -42,4 +47,3 @@ export default function App() {
 }
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
-
