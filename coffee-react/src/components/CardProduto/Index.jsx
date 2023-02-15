@@ -1,14 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import "../CardProduto/cardProduto.css";
-import { ShoppingCart } from "phosphor-react";
+import { ShoppingCart, Heart } from "phosphor-react";
 import { QuantityButton } from "../QuantityButton/Index";
 
 export function CardProduto({ img, titulo, qtdd, preco, id }) {
-  const { handleAddItemToCart } = useContext(CartContext)
+  const { handleAddItemToCart, favProduct } = useContext(CartContext)
   const [quantity, setQuantity] = useState(0);
+  const [heartWeight, setHeartWeight] = useState("regular");
+
+  useEffect(()=>{
+    // const teste = favs.map((item) =>{
+    //   if(item.id == id){
+    //     return true
+    //   }
+    // })
+    const favoritos = JSON.parse(localStorage.getItem("favs"));
+    const isFav = favoritos? favoritos.find(item => item.id == id) : false
+    isFav ? setHeartWeight("fill") : ""
+    console.log('aqui')
+  })
+
   return (
     <div className="card-produtos">
+      <button className="btn-fav" onClick={()=>{favProduct(img, titulo, qtdd, preco, id)}}><Heart size={30} weight={heartWeight}></Heart></button>
       <a href={"/detalhe-produto/" + id} style={{textDecoration: "none"}}>
         <img className="img-card-produtos" src={img} alt="" />
         <p className="titulo-card-produtos">{titulo}</p>

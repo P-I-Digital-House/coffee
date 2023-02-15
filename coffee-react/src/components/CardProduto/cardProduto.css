@@ -76,6 +76,12 @@ span.detalhe-produtos {
   justify-content: center;
   gap: .5rem;
 }
+.btn-fav{
+  border: none;
+  text-align: left;
+  background-color: transparent;
+  cursor: pointer;
+}
 
 @media (max-width: 480px) {
   .box-produtos{

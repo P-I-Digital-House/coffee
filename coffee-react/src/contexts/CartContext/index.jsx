@@ -6,6 +6,12 @@ export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([])
     const [subtotalCart, setSubtotalCart] = useState(0)
     const [totalQuantityCart, setTotalQuantityCart] = useState(0)
+    const [favs, setFavs] = useState([]);
+
+    function favProduct (img, titulo, qtdd, preco, id) {
+      setFavs([...favs, {"id": id, "titulo": titulo, "qtdd": qtdd, "preco": preco, "img": img}])
+      localStorage.setItem("favs", JSON.stringify([...favs, {"id": id, "titulo": titulo, "qtdd": qtdd, "preco": preco, "img": img}]));
+    }
 
   function handleAddItemToCart(pname, picture, price, quantity){
     const itemObject = {pname, picture, price, quantity}    
@@ -22,6 +28,6 @@ export const CartProvider = ({ children }) => {
   }
 
     return (
-        <CartContext.Provider value={{cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart}}>{children}</CartContext.Provider>
+        <CartContext.Provider value={{cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart, favProduct, favs}}>{children}</CartContext.Provider>
     )
 }

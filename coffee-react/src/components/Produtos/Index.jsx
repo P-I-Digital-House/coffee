@@ -18,10 +18,7 @@ export function Produtos() {
     const token = getCookie("token");
 
     if(token != ""){
-      const response = await api.get("products", {
-      headers: { Authorization: `${token}` },
-    });
-      setProdutos(response.data);
+      setProdutos(JSON.parse(localStorage.getItem("favs")));
       
     }else{
       alert("Você Precisa estar logado para acessar essa página.");
@@ -33,19 +30,22 @@ export function Produtos() {
   return (
     <div className="container-produtos">
       <h2>
-        ["<span className="detalhe-produtos">produtos</span>"];
+        ["<span className="detalhe-produtos">Seus favoritos</span>"];
       </h2>
       <div className="txt-center">
         <div className="box-produtos">
-          {produtos.map((item) => (
+          { produtos ? produtos.map((item) => (
             <CardProduto
               key={item.id}
-              img={item.picture}
-              titulo={item.pname}
-              qtdd={item.pquantity}
-              preco={item.price}
+              img={item.img}
+              titulo={item.titulo}
+              qtdd={item.qtdd}
+              preco={item.preco}
+              id={item.id}
             />
-          ))}
+          ))
+        :
+        "Nenhum produto nos seus favoritos"}
         </div>
         <a href="#">
           <button className="btn-mais">"ver_mais"</button>
