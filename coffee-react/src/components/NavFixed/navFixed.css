@@ -114,6 +114,9 @@
     transition: all .5s;
   }
   @media(max-width: 480px) {
+    .containernav{
+      padding: 20px 10px;
+    }
     .carrinho {
       grid-gap: 10px;
     }
@@ -123,6 +126,10 @@
     .icon-user {
       width: 20px;
       height: 20px;
+    }
+
+    .menu-busca{
+      width: auto;
     }
   
   }

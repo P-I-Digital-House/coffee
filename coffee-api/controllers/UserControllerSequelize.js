@@ -29,7 +29,6 @@ function createUser(req, res) {
 }
 
 function updateUser(req, res) {
-  console.log('REQ', req.body)
   const { id } = req.params;
   const { uname, document, email, upassword, phone, birthdate, file, picture } = req.body;
 

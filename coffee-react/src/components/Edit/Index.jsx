@@ -9,7 +9,6 @@ export function EditUser() {
   const { id } = useParams();
 
   async function onLoad() {
-    console.log(id);
     const { data } = await api.get(`/users/${id}`);
     setUser(data);
   }

@@ -4,6 +4,7 @@ import * as yup from "yup";
 // import { useEffect, useState } from "react";
 import api from "../../../api";
 import { useNavigate } from "react-router-dom";
+import useCookie from "react-use-cookie";
 
 
 const getFormatedDate = (currentDate) => {
@@ -27,6 +28,8 @@ const schema = yup.object().shape({
 });
 
 export function CadastroUsuario() {
+  const [token, setToken] = useCookie("token","");
+  const [user, setUser] = useCookie("user","")
   const navigate = useNavigate();
 
   async function createUser(values) {
@@ -45,9 +48,28 @@ export function CadastroUsuario() {
     try {
       await api.post("/users", formData);
       alert("Usuário cadastrado com sucesso.");
-      navigate("/");
+      const valuesLogin = {
+        email: values.email,
+        password: values.upassword,
+      }
+      onLogin(valuesLogin).then(()=>navigate("/"));
     } catch (error) {
       alert("Aconteceu um erro, verifique os dados.");
+    }
+  }
+  async function onLogin(values) {
+    try {
+      const response = await api.post("/login", values);
+      setToken(response.data.token);
+      setUser(JSON.stringify(response.data.user));
+    
+      response.data.token
+        ? (alert("Bem vindo à página coffee"), navigate("/"))
+        : alert("Login ou senha inválidos");
+    } catch (error) {
+      error
+        ? alert(error)
+        : console.log("sem erro");
     }
   }
 

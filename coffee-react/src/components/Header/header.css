@@ -213,6 +213,25 @@
     height: 20px;
   }
 
+  .header{
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 20px 10px;
+  }
+
+  .carrinho a:first-child{
+    align-items: center !important;
+  }
+  .header .bm-burger-button {
+    top: 116px !important;
+  }
+  .banner{
+    width: 100%;
+  }
+  .banner .card-produtos {
+    max-width: 250px;
+  }
+
 }
 
 @media(max-width: 768px) {

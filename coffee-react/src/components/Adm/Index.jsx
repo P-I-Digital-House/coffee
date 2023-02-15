@@ -10,7 +10,6 @@ export function AdmPage() {
 
   async function getUsers() {
     const { data } = await api.get("/users");
-    console.log(data);
     setList(data);
   }
 

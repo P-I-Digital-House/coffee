@@ -15,8 +15,8 @@ async function authentication(req, res) {
   if (user != null) {
     console.log('usuario', user)
     const token = jwt.sign({ email }, jwtKey, { expiresIn: "3d" });
-    const {name, document, id} = user;
-    return res.status(200).send({token: token, user: {name : name, document : document, email: email, id : id}});
+    const {uname, document, id} = user;
+    return res.status(200).send({token: token, user: {name : uname, document : document, email: email, id : id}});
   }
   return res.status(403).send({token: "", message: "Usuário ou senha inválidos!"});
 }

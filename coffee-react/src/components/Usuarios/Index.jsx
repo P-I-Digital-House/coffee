@@ -47,8 +47,7 @@ export function Usuarios() {
   async function buildPage() {
     const user = getCookie("user");
     const token = getCookie("token");
-    console.log('user',user)
-    if(user){
+    if(user != "" && user != null){
       const { id } = JSON.parse(user);
       const response = await api.get(`/users/${id}`, {
         headers: { Authorization: `${token}` },
@@ -60,7 +59,7 @@ export function Usuarios() {
     }
     }else{
       alert('Você nao está logado')
-      navigate("/")
+      navigate("/login")
     }
     
   }
