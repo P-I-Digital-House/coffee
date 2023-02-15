@@ -4,11 +4,11 @@ import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import "../Usuarios/usuarios.css";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "react-use-cookie";
+import { getCookie, setCookie,  } from "react-use-cookie";
 
 
 const schema = yup.object().shape({
-  nome: yup.string().required("Nome obrigatório"),
+  uname: yup.string().required("Nome obrigatório"),
   document: yup
     .number()
     .test("len", "CPF deve ter 11 dígitos", (val) => {
@@ -18,10 +18,10 @@ const schema = yup.object().shape({
       return val.toString().length == 11;
     })
     .required("Documento obrigatório"),
-  age: yup.number().min(18).positive().integer().required("age obrigatória"),
-  tel: yup.string().max(11),
+  birthdate: yup.date().required("birthdate obrigatória"),
+  phone: yup.string().max(11),
   email: yup.string().email("Email inválido").required("Email obrigatório"),
-  password: yup
+  upassword: yup
     .string()
     .min(8, "Senha deve ter pelo menos 8 dígitos")
     .required("Senha obrigatória"),
@@ -32,12 +32,12 @@ export function Usuarios() {
 
   const [dados, setDados] = useState({
     picture: "",
-    name: "",
+    uname: "",
     document: 0,
-    age: 0,
-    tel: "",
+    birthdate: 0,
+    phone: "",
     email: "",
-    password: "",
+    upassword: "",
   });
 
   useEffect(() => {
@@ -46,38 +46,76 @@ export function Usuarios() {
 
   async function buildPage() {
     const user = getCookie("user");
-    if(user){
-      const { document } = JSON.parse(user);
-      const response = await api.get(`/users/${document}`);
+    const token = getCookie("token");
+    if(user != "" && user != null){
+      const { id } = JSON.parse(user);
+      const response = await api.get(`/users/${id}`, {
+        headers: { Authorization: `${token}` },
+      });
     try {
       setDados(response.data);
     } catch (error) {
       alert("Ocorreu um erro, verifique os dados!");
     }
+    }else{
+      alert('Você nao está logado')
+      navigate("/login")
+    }
+    
+  }
+
+  async function deleteUser() {
+    var r=confirm("Você tem certeza que quer deletar sua conta?");
+    if(r==true){
+      const user = getCookie("user");
+      const token = getCookie("token");
+      if(user){
+        const { id } = JSON.parse(user);
+        try{
+          const response = await api.delete(`/users/${id}`, {
+            headers: { Authorization: `${token}` },
+          });
+          setCookie("user", "")
+          setCookie("token", "")
+          navigate("/");
+        }
+        catch (error) {
+          alert("Ocorreu um erro, tente mais tarde!");
+        }
+      }
+    }else{
+
     }
     
   }
 
   async function updateUser(values) {
+    const user = getCookie("user");
+    const token = getCookie("token");
     const formData = new FormData();
     const fileField = document.querySelector('input[type="file"]');
 
-    formData.append("name", values.nome);
+    formData.append("uname", values.uname);
     formData.append("document", values.document);
-    formData.append("age", parseInt(values.age));
-    formData.append("tel", values.tel);
+    formData.append("birthdate", values.birthdate);
+    formData.append("phone", values.phone);
     formData.append("email", values.email);
-    formData.append("password", values.password);
+    formData.append("upassword", values.upassword);
     formData.append("picture", values.picture);
     formData.append("file", fileField.files[0]);
 
+    if(user){
+      const { id } = JSON.parse(user);
     try {
-      const response = await api.put("/users", formData);
+      const response = await api.put(`/users/${id}`, formData, {
+        headers: { Authorization: `${token}` },
+      });
       alert("Usuário atualizado com sucesso.");
     } catch (error) {
       alert("Usuário não cadastrado.");
     }
   }
+}
 
   return (
     <div className="form-update container-usuarios">
@@ -88,12 +126,12 @@ export function Usuarios() {
         validationSchema={schema}
         enableReinitialize="true"
         initialValues={{
-          nome: dados.name,
+          uname: dados.uname,
           document: dados.document,
-          age: dados.age,
-          tel: dados.tel,
+          birthdate: dados.birthdate,
+          phone: dados.phone,
           email: dados.email,
-          password: dados.password,
+          upassword: dados.upassword,
         }}
         onSubmit={(values) => {
           updateUser(values);
@@ -102,10 +140,10 @@ export function Usuarios() {
         {({ touched, errors, isSubmitting, values }) => (
           <Form className="update" encType="multipart/form-data">
             <div className="label">
-              <label htmlFor="nome">Nome</label>
-              <Field className="main" id="nome" name="nome" type="text" />
-              {touched.nome && errors.nome && (
-                <div className="error">{errors.nome}</div>
+              <label htmlFor="uname">Nome</label>
+              <Field className="main" id="uname" name="uname" type="text" />
+              {touched.uname && errors.uname && (
+                <div className="error">{errors.uname}</div>
               )}
             </div>
             <div className="label">
@@ -122,17 +160,17 @@ export function Usuarios() {
               )}
             </div>
             <div className="label">
-              <label htmlFor="age">Idade</label>
-              <Field className="main" id="age" name="age" type="number" />
-              {touched.age && errors.age && (
-                <div className="error">{errors.age}</div>
+              <label htmlFor="birthdate">Data de Nascimento</label>
+              <Field className="main" id="birthdate" name="birthdate" type="date" />
+              {touched.birthdate && errors.birthdate && (
+                <div className="error">{errors.birthdate}</div>
               )}
             </div>
             <div className="label">
-              <label htmlFor="tel">Telefone</label>
-              <Field className="main" id="tel" name="tel" type="text" />
-              {touched.tel && errors.tel && (
-                <div className="error">{errors.tel}</div>
+              <label htmlFor="phone">Telefone</label>
+              <Field className="main" id="phone" name="phone" type="text" />
+              {touched.phone && errors.phone && (
+                <div className="error">{errors.phone}</div>
               )}
             </div>
             <div className="label">
@@ -143,22 +181,15 @@ export function Usuarios() {
               )}
             </div>
             <div className="label">
-              <label htmlFor="password">Senha</label>
+              <label htmlFor="upassword">Senha</label>
               <Field
                 className="main"
-                id="password"
-                name="password"
+                id="upassword"
+                name="upassword"
                 type="password"
               />
-              {touched.password && errors.password && (
-                <div className="error">{errors.password}</div>
-              )}
-            </div>
-            <div className="label">
-              <label htmlFor="picture">Link da Foto</label>
-              <Field className="main" id="picture" name="picture" type="text" />
-              {touched.picture && errors.picture && (
-                <div className="error">{errors.picture}</div>
+              {touched.upassword && errors.upassword && (
+                <div className="error">{errors.upassword}</div>
               )}
             </div>
             <div className="label">
@@ -182,6 +213,7 @@ export function Usuarios() {
           </Form>
         )}
       </Formik>
+      <button className="btnDeleteUser" onClick={() => deleteUser()}><a>Deletar minha conta</a></button>
     </div>
   );
 }

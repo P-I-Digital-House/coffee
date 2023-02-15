@@ -12,17 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     document: {
       type: DataTypes.STRING
     },
+    birthdate: {
+      type: DataTypes.DATE
+    },
+    phone: {
+      type: DataTypes.STRING
+    },
     email: {
       type: DataTypes.STRING
     },
     upassword: {
       type: DataTypes.STRING
-    },
-    phone: {
-      type: DataTypes.STRING
-    },
-    birthdate: {
-      type: DataTypes.DATE
     },
     picture: {
       type: DataTypes.STRING

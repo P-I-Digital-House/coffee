@@ -25,7 +25,7 @@ export function Produtos() {
       
     }else{
       alert("Você Precisa estar logado para acessar essa página.");
-      navigate("/login/cadastro");
+      navigate("/login");
     }
     
   }
@@ -40,9 +40,9 @@ export function Produtos() {
           {produtos.map((item) => (
             <CardProduto
               key={item.id}
-              img={item.img}
-              titulo={item.nameProduct}
-              qtdd={item.quantity}
+              img={item.picture}
+              titulo={item.pname}
+              qtdd={item.pquantity}
               preco={item.price}
             />
           ))}

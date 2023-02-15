@@ -4,7 +4,11 @@
     width: 30px;
     height: 30px;
     left: 36px;
-    top: 36px;
+    top: 96px;
+  }
+
+  .containernav .bm-burger-button{
+    top:36px;
   }
   
   /* Color/shape of burger icon bars */

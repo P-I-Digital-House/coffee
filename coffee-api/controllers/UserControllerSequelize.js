@@ -30,7 +30,16 @@ function createUser(req, res) {
 
 function updateUser(req, res) {
   const { id } = req.params;
-  const { uname, document, email, upassword, phone, birthdate, picture } = req.body;
+  const { uname, document, email, upassword, phone, birthdate, file, picture } = req.body;
+
+  let fileLocation = "";
+
+  if (req.file) {
+    fileLocation = `../public/uploads/${req.file.filename}`;
+  } else {
+    fileLocation = picture;
+  }
+
   database.User.update({
     uname,
     document,
@@ -38,7 +47,7 @@ function updateUser(req, res) {
     upassword,
     phone,
     birthdate,
-    picture
+    picture: fileLocation
   }, {
     where: {
       id

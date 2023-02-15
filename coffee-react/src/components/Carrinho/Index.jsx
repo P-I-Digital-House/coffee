@@ -1,15 +1,19 @@
 import "./carrinho.css";
 import Coffee from "../../assets/embalagem-cafe-1.png";
 import { XCircle } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
 
 export function Carrinho() {
   const [isOpenFrete, setIsOpenFrete ] = useState(false);
   const [listFrete, setListFrete ] = useState([]);
   const [desconto, setDesconto ] = useState(0);
   const [cupom, setCupom ] = useState("");
-  const [ radio, setRadio ] = useState(0);
+  const [ radioFrete, setRadioFrete ] = useState(0);
+  const [errorCupom, setErrorCupom] = useState("")
+  const [disabledBtnCupom, setDisabledBtnCupom] = useState(false)
 
+  const {cart,  handleRemoveItemFromCart, subtotalCart} = useContext(CartContext)
 
   function handleFrete() {
     setListFrete([{nome: 'Frete 1', valor: 19}, {nome: 'Frete 2', valor: 25},{nome: 'Frete 3', valor: 32}])
@@ -19,15 +23,17 @@ export function Carrinho() {
   }
 
   function handleCupom() {
-    if(cupom != "" && cupom == "TESTE"){
+    if(cupom != "" && cupom == "TESTE" && subtotalCart>=20){
       setDesconto(20)
-    }
+      setErrorCupom("")
+      setDisabledBtnCupom(true)
+    } else setErrorCupom("Cupom inválido")
   }
 
   function handleChangeFrete(e) {
     const { nodeName, value } = e.target;
     if (nodeName === 'INPUT') {
-      setRadio(value);
+      setRadioFrete(parseFloat(value));
     }
   }
 
@@ -47,31 +53,27 @@ export function Carrinho() {
           <th>Total</th>
           <th></th>
         </tr>
-        <tr>
-          <th><img className="imgProduct" src={Coffee} /></th>
-          <th><strong>Cerveja Aegis Beer</strong></th>
-          <th>
-            <p>2</p>
-          </th>
-          <th><p>R$ 9,90</p></th>
-          <th><p>
-            <XCircle size={40} color="#f20707" />
-          </p></th>
-        </tr>        
-        <tr>
-          <th><img className="imgProduct" src={Coffee} /></th>
-          <th><strong>Cerveja Aegis Beer</strong></th>
-          <th><p>2</p></th>
-          <th><p>R$ 9,90</p></th>
-          <th><p>
-            <XCircle size={40} color="#f20707" />
-          </p></th>
-        </tr>
+        {cart.map((cartItem, index) => {
+          return (
+            <tr key={index}>
+              <th><img className="imgProduct" src={cartItem.picture} /></th>
+              <th><strong>{cartItem.pname}</strong></th>
+              <th>
+                <p>{cartItem.quantity}</p>
+              </th>
+              <th><p>R$ {(cartItem.price*cartItem.quantity).toFixed(2)}</p></th>
+              <th><p>
+                <button className="btnRemove" onClick={()=>handleRemoveItemFromCart(index, cartItem.price, cartItem.quantity)}><XCircle size={40} color="#f20707" /></button>
+              </p></th>
+          </tr>  
+        )
+        })}
+              
         <tr>
           <th></th>
           <th></th>
           <th>Subtotal</th>
-          <th>R$ 28,21</th>
+          <th>R$ {subtotalCart.toFixed(2)}</th>
           <th></th>
         </tr>
       </table>
@@ -103,9 +105,10 @@ export function Carrinho() {
         <div>
           <p>CUPOM DE DESCONTO</p>
           <div className="shippingDetails">
-            <input className="inputInfo" onChange={handleChangeCupom}/>
-            <button className="btnShipping" onClick={()=>handleCupom()}>OK</button>
+            <input className="inputInfo" onChange={handleChangeCupom} disabled={disabledBtnCupom} />
+            <button className="btnShipping" onClick={()=>handleCupom()} disabled={disabledBtnCupom}>OK</button>
           </div>
+          <p className="errorCupom">{errorCupom}</p>
         </div>
       </div>
 
@@ -113,19 +116,19 @@ export function Carrinho() {
         <table>
           <tr>
             <th className="headerTotal">Subtotal</th>
-            <th>R$ 200,00</th>
+            <th>R$ {subtotalCart.toFixed(2)}</th>
           </tr>
           <tr>
             <th className="headerTotal">Frete</th>
-            <th>R$ {radio}</th>
+            <th>R$ {radioFrete.toFixed(2)}</th>
           </tr>
           <tr>
             <th className="headerTotal">Desconto</th>
-            <th>- R$ {desconto}</th>
+            <th style={{color: '#c14d13'}}>- R$ {desconto.toFixed(2)}</th>
           </tr>
           <tr className="tableTotal">
             <th className="headerTotal">TOTAL</th>
-            <th>R$ 210,00</th>
+            <th>R$ {(parseFloat(subtotalCart)+parseFloat(radioFrete)-parseFloat(desconto)).toFixed(2)}</th>
           </tr>
         </table>
         

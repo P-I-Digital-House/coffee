@@ -159,6 +159,18 @@ input[type="radio"]{
   align-items: center;
 }
 
+.shoppingCart .btnRemove {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.shoppingCart .errorCupom {
+  color: #c14d13;
+  font-size: .8rem;
+  margin-top: 5px;
+}
+
 @media (max-width: 480px) {
   .shipping{
     margin: auto;

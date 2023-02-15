@@ -1,12 +1,17 @@
 import "../Cadastro/cadastro.css";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import api from "../../../api";
 import { useNavigate } from "react-router-dom";
+import useCookie from "react-use-cookie";
 
+
+const getFormatedDate = (currentDate) => {
+  return currentDate.split('/').reverse().join('-');
+ }
 const schema = yup.object().shape({
-  nome: yup.string().required("Nome obrigatório"),
+  uname: yup.string().required("Nome obrigatório"),
   document: yup
     .number()
     .test("len", "CPF deve ter 11 dígitos", (val) => {
@@ -16,37 +21,55 @@ const schema = yup.object().shape({
       return val.toString().length == 11;
     })
     .required("Documento obrigatório"),
-  age: yup.number().min(18).positive().integer().required("Idade obrigatória"),
-  tel: yup.string().max(11),
+  birthdate: yup.date().min(getFormatedDate('01/01/1940')), //.required("Idade obrigatória"),
+  phone: yup.string().max(11),
   email: yup.string().email("Email inválido").required("Email obrigatório"),
-  password: yup
-    .string()
-    .min(8, "password deve ter pelo menos 8 dígitos")
-    .required("password obrigatória"),
+  upassword: yup.string().min(8, "password deve ter pelo menos 8 dígitos").required("password obrigatória"),
 });
 
 export function CadastroUsuario() {
+  const [token, setToken] = useCookie("token","");
+  const [user, setUser] = useCookie("user","")
   const navigate = useNavigate();
 
   async function createUser(values) {
     const formData = new FormData();
-    const fileField = document.querySelector('input[type="file"]');
+    // const fileField = document.querySelector('input[type="file"]');
 
-    formData.append("name", values.nome);
+    formData.append("uname", values.uname);
     formData.append("document", values.document);
-    formData.append("age", values.age);
-    formData.append("tel", values.tel);
+    formData.append("birthdate", values.birthdate);
+    formData.append("phone", values.phone);
     formData.append("email", values.email);
-    formData.append("password", values.password);
+    formData.append("upassword", values.upassword);
     formData.append("picture", values.picture);
-    formData.append("file", fileField.files[0]);
+    // formData.append("file", fileField.files[0]);
 
     try {
       await api.post("/users", formData);
       alert("Usuário cadastrado com sucesso.");
-      navigate("/");
+      const valuesLogin = {
+        email: values.email,
+        password: values.upassword,
+      }
+      onLogin(valuesLogin).then(()=>navigate("/"));
     } catch (error) {
       alert("Aconteceu um erro, verifique os dados.");
+    }
+  }
+  async function onLogin(values) {
+    try {
+      const response = await api.post("/login", values);
+      setToken(response.data.token);
+      setUser(JSON.stringify(response.data.user));
+    
+      response.data.token
+        ? (alert("Bem vindo à página coffee"), navigate("/"))
+        : alert("Login ou senha inválidos");
+    } catch (error) {
+      error
+        ? alert(error)
+        : console.log("sem erro");
     }
   }
 
@@ -58,14 +81,14 @@ export function CadastroUsuario() {
       <Formik
         validationSchema={schema}
         initialValues={{
-          nome: "",
+          uname: "",
           document: "",
-          age: "",
-          tel: "",
+          birthdate: "",
+          phone: "",
           email: "",
-          password: "",
+          upassword: "",
           picture: "",
-          file: "",
+          // file: "",
         }}
         onSubmit={(values) => {
           createUser(values);
@@ -77,10 +100,10 @@ export function CadastroUsuario() {
               <b>Faça seu cadastro</b>
             </div>
             <div className="label">
-              <label htmlFor="nome">Nome</label>
-              <Field className="main" id="nome" name="nome" type="text" />
-              {touched.nome && errors.nome && (
-                <div className="error">{errors.nome}</div>
+              <label htmlFor="uname">Nome</label>
+              <Field className="main" id="uname" name="uname" type="text" />
+              {touched.uname && errors.uname && (
+                <div className="error">{errors.uname}</div>
               )}
             </div>
             <div className="label">
@@ -96,17 +119,17 @@ export function CadastroUsuario() {
               )}
             </div>
             <div className="label">
-              <label htmlFor="age">Idade</label>
-              <Field className="main" id="age" name="age" type="number" />
-              {touched.age && errors.age && (
-                <div className="error">{errors.age}</div>
+              <label htmlFor="birthdate">Data de Nascimento</label>
+              <Field className="main" id="birthdate" name="birthdate" type="date" />
+              {touched.birthdate && errors.birthdate && (
+                <div className="error">{errors.birthdate}</div>
               )}
             </div>
             <div className="label">
-              <label htmlFor="tel">Telefone</label>
-              <Field className="main" id="tel" name="tel" type="text" />
-              {touched.tel && errors.tel && (
-                <div className="error">{errors.tel}</div>
+              <label htmlFor="phone">Telefone</label>
+              <Field className="main" id="phone" name="phone" type="text" />
+              {touched.phone && errors.phone && (
+                <div className="error">{errors.phone}</div>
               )}
             </div>
             <div className="label">
@@ -117,37 +140,30 @@ export function CadastroUsuario() {
               )}
             </div>
             <div className="label">
-              <label htmlFor="password">Senha</label>
+              <label htmlFor="upassword">Senha</label>
               <Field
                 className="main"
-                id="password"
-                name="password"
+                id="upassword"
+                name="upassword"
                 type="password"
               />
-              {touched.password && errors.password && (
-                <div className="error">{errors.password}</div>
+              {touched.upassword && errors.upassword && (
+                <div className="error">{errors.upassword}</div>
               )}
             </div>
-            <div className="label">
-              <label htmlFor="picture">Link da Foto</label>
-              <Field className="main" id="picture" name="picture" type="text" />
-              {touched.picture && errors.picture && (
-                <div className="error">{errors.picture}</div>
-              )}
-            </div>
-            <div className="label">
+            {/* <div className="label">
               <label htmlFor="file">Upload da Foto</label>
               <Field
                 className="main"
                 id="file"
                 name="file"
                 type="file"
-                accept="image/png, image/jpeg"
+                accept="imbirthdate/png, imbirthdate/jpeg"
               />
               {touched.file && errors.file && (
                 <div className="error">{errors.file}</div>
               )}
-            </div>
+            </div> */}
             <div className="send">
               <button type="submit" className="btn-send btn-card-produtos">
                 Cadastrar
