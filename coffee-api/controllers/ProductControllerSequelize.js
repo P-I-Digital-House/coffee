@@ -1,4 +1,5 @@
 const database = require("../database/models");
+const { Op } = require("sequelize");
 
 function getProducts(req, res) {
   database.Product.findAll().then((data) => {
@@ -19,6 +20,20 @@ function getProductsByCategory(req, res) {
   database.Product.findAll({
     where: {
       category: category
+    },
+  }).then((data) => {
+    res.json(data);
+  });
+}
+
+function getProductsBySearch(req, res) {
+  const { search } = req.params;
+  console.log('search', search)
+  database.Product.findAll({
+    where: {
+      pname: {
+        [Op.like]: "%"+search+"%"
+      }
     },
   }).then((data) => {
     res.json(data);
@@ -69,5 +84,6 @@ module.exports = {
   getProductsByCategory,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getProductsBySearch
 };

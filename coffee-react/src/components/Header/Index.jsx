@@ -4,7 +4,7 @@ import IconXicara from "../../assets/icon-xicara.svg";
 import IconCarrinho from "../../assets/icon-carrinho.svg";
 import IconUser from "../../assets/user-1.png";
 import Search from "../../assets/search.png";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Destaque1 from "../../assets/destaque_1.jpg";
 import Destaque2 from "../../assets/destaque_2.jpg";
 import Destaque3 from "../../assets/destaque_3.jpg";
@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 export function Header() {
   const { totalQuantityCart } = useContext(CartContext)
   const { getUserCookie, logout } = useContext(LoginContext)
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -48,6 +49,10 @@ export function Header() {
   //   }, 6000);
   // }, []);
 
+  function handleSearch(e) {
+    setSearch(e.target.value)
+  }
+
   return (
     <>
     <div className="bannerPromo">
@@ -58,8 +63,8 @@ export function Header() {
         <div className="menu-busca">
           <NavMenu pageWrapId={'root'} />
           <div className="busca">
-            <input type="text" name="busca" id="busca" />
-            <a href="#">
+            <input type="text" name="busca" id="busca" onChange={handleSearch}/>
+            <a href={"/busca/"+search} >
               <img src={Search} alt="" className="img-busca" />
             </a>
           </div>

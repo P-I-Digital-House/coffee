@@ -8,21 +8,26 @@ import Menu from "../../assets/menu.png";
 import { Link } from "react-router-dom";
 import { NavMenu } from "../NavMenu/Index";
 import { CartContext } from "../../contexts/CartContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { LoginContext } from "../../contexts/LoginContext";
 import { SignOut } from "phosphor-react";
 
 export function NavFixed() {
   const { totalQuantityCart } = useContext(CartContext)
   const { getUserCookie, logout } = useContext(LoginContext)
+  const [search, setSearch] = useState("");
+
+  function handleSearch(e) {
+    setSearch(e.target.value)
+  }
   return (
     <div className="containernav">
       <div className="nav">
         <div className="menu-busca">
         <NavMenu pageWrapId={'root'} />
           <div className="busca">
-            <input type="text" name="busca" id="busca" />
-            <a href="#">
+          <input type="text" name="busca" id="busca" onChange={handleSearch}/>
+            <a href={"/busca/"+search} >
               <img src={Search} alt="" className="img-busca" />
             </a>
           </div>

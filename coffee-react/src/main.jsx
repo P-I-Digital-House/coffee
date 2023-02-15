@@ -14,6 +14,8 @@ import  AdminPage  from "../src/Pages/AdminPage";
 import  EditPage  from "../src/Pages/EditPage";
 import { LoginProvider } from "./contexts/LoginContext";
 import { useNavigate } from "react-router-dom";
+import { BuscaProduto } from "./components/BuscaProduto/Index";
+import { BuscaProdutos } from "./Pages/BuscaProduto";
 
 
 export default function App() {
@@ -29,6 +31,7 @@ export default function App() {
               <Route path="/carrinho" element={<CarrinhoCompras />} />
               <Route path="/usuario" element={<Usuario />} />
               <Route path="/detalhe-produto/:id" element={<DetalheProdutos />} />
+              <Route path="/busca/:search" element={<BuscaProdutos />} />
               <Route path="/admin/users" element={<AdminPage />} />
               <Route path="/admin/users/edit" element={<EditPage />} />
             </Routes>
