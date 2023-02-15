@@ -9,6 +9,8 @@ import "../src/styles/global.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DetalheProdutos } from "./Pages/DetalheProduto";
 import { CarrinhoCompras } from "./Pages/CarrinhoCompras";
+import Pagamento from "../src/Pages/Pagamento"
+import Endereco from "../src/Pages/Endereco"
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -24,6 +26,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/usuario" element={<Usuario />} />
           <Route path="/detalhe-produto/:id" element={<DetalheProdutos />} />
           <Route path="/carrinho" element={<CarrinhoCompras />} />
+          <Route path="/pagamento" element={<Pagamento />} />
+          <Route path="/endereco" element={<Endereco />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

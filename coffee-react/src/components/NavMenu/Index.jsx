@@ -13,10 +13,10 @@ export function NavMenu() {
       <Link className="menu-item" to="/">
         Meus Pedidos
       </Link>
-      <Link className="menu-item" to="/">
+      <Link className="menu-item" to="/endereco">
         Endereço
       </Link>
-      <Link className="menu-item" to="/">
+      <Link className="menu-item" to="/pagamento">
         Métodos de Pagamento
       </Link>
       <Link className="menu-item" to="/">
