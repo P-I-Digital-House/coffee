@@ -1,0 +1,45 @@
+.form-endereco {
+  background-color: #2D2D2E;
+  color: azure;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  height: 100%;
+  margin-top: 80px;
+  gap: 20px;
+}
+
+.endereco {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  gap: 20px;
+}
+
+.label {
+  gap: 10px;
+  font-size: small;
+  width: 300px;
+}
+
+#input-endereco {
+  background-color: #E1E1E6;
+  width: 100%;
+  border-style: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.botao-endereco {
+  background-color: #f5a472;
+  color: #fff;
+  font-size: small;
+  width: 100%;
+  border-style: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 30px;
+}
