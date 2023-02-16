@@ -87,7 +87,7 @@ export function Header() {
             <img src={IconCarrinho} alt="" className="icon" />
             <div className="rounded-circle">{totalQuantityCart}</div>
           </Link>
-          <a onClick={()=>{logout(); navigate("/")}}><SignOut size={32} weight="bold" cursor={"pointer"}/></a>
+         { getUserCookie() && <a onClick={()=>{logout(); navigate("/")}}><SignOut size={32} weight="bold" cursor={"pointer"}/></a> }
         </div>
       </div>
       
