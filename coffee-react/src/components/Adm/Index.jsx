@@ -3,14 +3,38 @@ import api from "../../../api";
 import moment from "moment";
 import { Pencil, Trash } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
+import { getCookie, setCookie, } from "react-use-cookie";
+import "../Adm/adm.css";
 
 export function AdmPage() {
-  const [list, setList] = useState([]);
   const navigate = useNavigate();
 
+  const [dados, setDados] = useState([]);
+
   async function getUsers() {
-    const { data } = await api.get("/users");
-    setList(data);
+    const user = getCookie("user");
+    const { email } = JSON.parse(user);
+
+    if (email != "admin@email.com") {
+      navigate("/");
+    }
+    const token = getCookie("token");
+    if (user != "" && user != null) {
+      const { id } = JSON.parse(user);
+      const response = await api.get(`/users`
+    , {
+        headers: { Authorization: `${token}` },
+      });
+      try {
+        console.log(response.data)
+        setDados(response.data);
+      } catch (error) {
+        alert("Ocorreu um erro, verifique os dados!");
+      }
+    } else {
+      alert('Você nao está logado')
+      navigate("/login")
+    }
   }
 
   useEffect(() => {
@@ -18,20 +42,37 @@ export function AdmPage() {
   }, []);
 
   async function onRemove(item) {
-    await api.delete(`/users/${item.id}`);
+    var r = confirm("Você tem certeza que quer deletar sua conta?");
+    if (r == true) {
+      const user = getCookie("user");
+      const token = getCookie("token");
+      // if(user){
+      const { id } = JSON.parse(user);
+      try {
+        await api.delete(`/users/${item.id}`,
+          {
+            headers: { Authorization: `${token}` },
+          });
+        setCookie("user", "")
+        setCookie("token", "")
+        navigate("/admin/users");
+      } catch {
+        alert("Ocorreu um erro, tente mais tarde!");
+      }
+      // }
 
-    getUsers();
+    }
   }
-
   async function update(user) {
     navigate(`/admin/users/edit/${user.id}`);
   }
 
   return (
-    <div>
-      <table>
+    <div className="container3">
+      <h2>Meus Usuários Cadastrados</h2>
+      <table className="table">
         <thead>
-          <tr>
+          <tr className="tableTr">
             <th>ID</th>
             <th>Nome</th>
             <th>CPF</th>
@@ -42,24 +83,24 @@ export function AdmPage() {
             <th>Editar</th>
           </tr>
         </thead>
-        <tbody>
-          {list.map((item) => (
+        <tbody className="tableBody">
+          {dados.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.cpf}</td>
+              <td>{item.uname}</td>
+              <td>{item.document}</td>
               <td>
                 {item.birthdate && moment(item.birthdate).format("DD-MM-YYYY")}
               </td>
               <td>{item.phone}</td>
               <td>{item.email}</td>
               <td>
-                <button onClick={() => onRemove(item)}>
+                <button className="btnUsers" onClick={() => onRemove(item)}>
                   <Trash size={30} color="#ee1b1b" />
                 </button>
               </td>
               <td>
-                <button onClick={() => update(item)}>
+                <button className="btnUsers" onClick={() => update(item)}>
                   <Pencil size={30} color="#d4a216" />
                 </button>
               </td>
