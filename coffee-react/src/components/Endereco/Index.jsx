@@ -4,9 +4,11 @@ import { Formik, Form, Field } from 'formik';
 import api from "../../../api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { getCookie, setCookie } from "react-use-cookie";
 
 const validationSchema = yup.object().shape({
-  destinatario: yup
+  aname: yup
     .string()
     .required('O nome do destinatário é obrigatório')
     .min(3, "Nome do titular deve ter no mínimo 3 caracteres"),
@@ -19,21 +21,21 @@ const validationSchema = yup.object().shape({
       return val.toString().length == 8;
     })
     .required('O CEP é obrigatório'),
-  endereco: yup
+  street: yup
     .string()
     .required('O endereço é obrigatório'),
-  numero: yup
+  anumber: yup
     .number()
     .required('O número é obrigatório'),
-  complemento: yup
+  complement: yup
     .string(),
-  bairro: yup
+  district: yup
     .string()
     .required('O bairro é obrigatório'),
-  cidade: yup
+  city: yup
     .string()
     .required('A cidade é obrigatória'),
-  estado: yup
+  state: yup
     .string(),
 });
 
@@ -44,35 +46,72 @@ export function Enderecos() {
     if (cep.length === 8) {
       axios.get(`https://viacep.com.br/ws/${cep}/json/`)
         .then(({data}) => {
-          setFieldValue("endereco", data.logradouro);
-          setFieldValue("bairro", data.bairro);
-          setFieldValue("cidade", data.localidade);
-          setFieldValue("estado", data.uf);
+          setFieldValue("street", data.logradouro);
+          setFieldValue("district", data.bairro);
+          setFieldValue("city", data.localidade);
+          setFieldValue("state", data.uf);
         });
     }
   }
 
   const navigate = useNavigate();
 
+  const [dados, setDados] = useState({
+    aname: "",
+    cep: "",
+    street: "",
+    anumber: "",
+    complement: "",
+    district: "",
+    city: "",
+    state: ""
+  });
+
+  useEffect(() => {
+    buildPage();
+  }, []);
+
+  async function buildPage() {
+    const user = getCookie("user");
+    const token = getCookie("token");
+    if(user != "" && user != null){
+      const { id } = JSON.parse(user);
+      const response = await api.get(`/users/${id}`, {
+        headers: { Authorization: `${token}` },
+      });
+    try {
+      setDados(response.data);
+    } catch (error) {
+      alert("Ocorreu um erro, verifique os dados!");
+    }
+    }else{
+      alert('Você nao está logado')
+      navigate("/login")
+    }    
+  }
+
   async function createAddress(values) {
-    console.log(values);
+    const user = JSON.parse(getCookie("user"));
+    const token = getCookie("token");
     const formData = new FormData();
 
-    formData.append("destinatario", values.destinatario);
+    formData.append("aname", values.aname);
     formData.append("cep", values.cep);
-    formData.append("endereco", values.endereco);
-    formData.append("numero", values.numero);
-    formData.append("complemento", values.complemento);
-    formData.append("bairro", values.bairro);
-    formData.append("cidade", values.cidade);
-    formData.append("estado", values.estado);
+    formData.append("street", values.street);
+    formData.append("anumber", values.anumber);
+    formData.append("complement", values.complement);
+    formData.append("district", values.district);
+    formData.append("city", values.city);
+    formData.append("state", values.state);
+    formData.append("users_id", user.id);
 
     try {
-      await api.post("/endereco", formData);
+      const response = await api.post("/address", formData, {
+        headers: { Authorization: `${token}` },
+      });
       alert("Endereço cadastrado com sucesso.");
-      navigate("/");
     } catch (error) {
-      alert("Aconteceu um erro, verifique os dados.");
+      alert("Endereço não cadastrado.");
     }
   }
 
@@ -80,14 +119,14 @@ export function Enderecos() {
     <Formik
       validationSchema={validationSchema}
       initialValues={{
-        destinatario: "",
+        aname: "",
         cep: "",
-        endereco: "",
-        numero: "",
-        complemento: "",
-        bairro: "",
-        cidade: "",
-        estado: ""
+        street: "",
+        anumber: "",
+        complement: "",
+        district: "",
+        city: "",
+        state: ""
       }}
       onSubmit={(values) => {
         createAddress(values);
@@ -103,10 +142,10 @@ export function Enderecos() {
             <Field
             type="input"
             id="input-endereco"
-            name="destinatario"
+            name="aname"
             />
-            {touched.destinatario && errors.destinatario && (
-                <div className="error">{errors.destinatario}</div>
+            {touched.aname && errors.aname && (
+                <div className="error">{errors.aname}</div>
             )}
           </div>
           <div className="label">
@@ -126,10 +165,10 @@ export function Enderecos() {
             <Field
             type="input"
             id="input-endereco"
-            name="endereco"
+            name="street"
             />
-            {touched.endereco && errors.endereco && (
-                <div className="error">{errors.endereco}</div>
+            {touched.street && errors.street && (
+                <div className="error">{errors.street}</div>
             )}
           </div>
           <div className="label">
@@ -137,10 +176,10 @@ export function Enderecos() {
             <Field
             type="input"
             id="input-endereco"
-            name="numero"
+            name="anumber"
             />
-            {touched.numero && errors.numero && (
-                <div className="error">{errors.numero}</div>
+            {touched.anumber && errors.anumber && (
+                <div className="error">{errors.anumber}</div>
             )}
           </div>
           <div className="label">
@@ -148,10 +187,10 @@ export function Enderecos() {
             <Field
             type="input"
             id="input-endereco"
-            name="complemento"
+            name="complement"
             />
-            {touched.complemento && errors.complemento && (
-                <div className="error">{errors.complemento}</div>
+            {touched.complement && errors.complement && (
+                <div className="error">{errors.complement}</div>
             )}
           </div>
           <div className="label">
@@ -159,10 +198,10 @@ export function Enderecos() {
             <Field
             type="input"
             id="input-endereco"
-            name="bairro"
+            name="district"
             />
-            {touched.bairro && errors.bairro && (
-                <div className="error">{errors.bairro}</div>
+            {touched.district && errors.district && (
+                <div className="error">{errors.district}</div>
             )}
           </div>
           <div className="label">
@@ -170,10 +209,10 @@ export function Enderecos() {
             <Field
             type="input"
             id="input-endereco"
-            name="cidade"
+            name="city"
             />
-            {touched.cidade && errors.cidade && (
-                <div className="error">{errors.cidade}</div>
+            {touched.city && errors.city && (
+                <div className="error">{errors.city}</div>
             )}
           </div>
           <div className="label">
@@ -181,7 +220,7 @@ export function Enderecos() {
             <Field
             as="select"
             id="input-endereco"
-            name="estado"
+            name="state"
             >
               <option value="">Selecione um estado</option>
               <option value="AC">Acre</option>
@@ -212,8 +251,8 @@ export function Enderecos() {
               <option value="SE">Sergipe</option>
               <option value="TO">Tocantins</option>              
             </Field>
-            {touched.estado && errors.estado && (
-                <div className="error">{errors.estado}</div>
+            {touched.state && errors.state && (
+                <div className="error">{errors.state}</div>
             )}
             <button type="submit" className="botao-endereco">
               <b>Cadastrar</b>

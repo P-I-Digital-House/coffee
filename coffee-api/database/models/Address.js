@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
+    aname: {
+      type: DataTypes.STRING
+    },
     cep: {
       type: DataTypes.STRING
     },
@@ -13,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     anumber: {
+      type: DataTypes.STRING
+    },
+    complement: {
       type: DataTypes.STRING
     },
     district: {

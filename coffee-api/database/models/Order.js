@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     odescription: {
       type: DataTypes.STRING
     },
+    totalPrice: {
+      type: DataTypes.FLOAT
+    },
+    dt_create: {
+      type: DataTypes.DATE
+    },
     delivery_date: {
       type: DataTypes.DATE
     },
