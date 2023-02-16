@@ -15,13 +15,13 @@ import { CartContext } from "../../contexts/CartContext";
 import { CardProduto } from "../CardProduto/Index";
 import { getCookie, setCookie } from "react-use-cookie";
 import { LoginContext } from "../../contexts/LoginContext";
-import { SignOut } from "phosphor-react";
+import { SignOut, Gear } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 
 
 export function Header() {
   const { totalQuantityCart } = useContext(CartContext)
-  const { getUserCookie, logout } = useContext(LoginContext)
+  const { getUserCookie, logout, isAdmin } = useContext(LoginContext)
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
@@ -75,6 +75,7 @@ export function Header() {
           </Link>
         </div>
         <div className="carrinho">
+        {isAdmin ? <a onClick={()=>navigate("/admin/users")}><Gear size={32} weight="bold" cursor={"pointer"}/></a> : ""}
           <Link to={getUserCookie() ? "/usuario" : "/login"} style={{display: "flex", alignItems: "flex-end", gap: ".5rem"}}>
             <span style={{fontSize: '.85rem', whiteSpace: "nowrap"}}>{getUserCookie() ? "Olá, "+getUserCookie()+"!" : ""}</span>
             <img src={IconUser} alt="" className="icon-user" />
@@ -86,9 +87,10 @@ export function Header() {
             <img src={IconCarrinho} alt="" className="icon" />
             <div className="rounded-circle">{totalQuantityCart}</div>
           </Link>
-          <a onClick={()=>logout()}><SignOut size={32} weight="bold" cursor={"pointer"}/></a>
+          <a onClick={()=>{logout(); navigate("/")}}><SignOut size={32} weight="bold" cursor={"pointer"}/></a>
         </div>
       </div>
+      
       <div className="banner">
         <h2>A MELHOR<br /> ASSINATURA DE <i>CAFÉ</i><br /> DO BRASIL</h2>
         <CardProduto

@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
+import { getCookie } from 'react-use-cookie'
 
 export const CartContext = createContext({})
 

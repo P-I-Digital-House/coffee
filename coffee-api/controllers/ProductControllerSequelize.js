@@ -21,6 +21,7 @@ function getProductsByCategory(req, res) {
     where: {
       category: category
     },
+    limit: 4
   }).then((data) => {
     res.json(data);
   });

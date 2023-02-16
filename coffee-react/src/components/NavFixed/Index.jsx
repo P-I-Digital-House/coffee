@@ -10,11 +10,11 @@ import { NavMenu } from "../NavMenu/Index";
 import { CartContext } from "../../contexts/CartContext";
 import { useContext, useState } from "react";
 import { LoginContext } from "../../contexts/LoginContext";
-import { SignOut } from "phosphor-react";
+import { SignOut, Gear } from "phosphor-react";
 
 export function NavFixed() {
   const { totalQuantityCart } = useContext(CartContext)
-  const { getUserCookie, logout } = useContext(LoginContext)
+  const { getUserCookie, logout, isAdmin } = useContext(LoginContext)
   const [search, setSearch] = useState("");
 
   function handleSearch(e) {
@@ -38,6 +38,7 @@ export function NavFixed() {
           </Link>
         </div>
         <div className="carrinho">
+        {isAdmin ? <a onClick={()=>navigate("/admin/users")}><Gear size={32} weight="bold" cursor={"pointer"}/></a> : ""}
           <Link to={getUserCookie() ? "/usuario" : "/login"} style={{display: "flex", alignItems: "flex-end", gap: ".5rem"}}>
             <img src={IconUser} alt="" className="icon-user" />
           </Link>

@@ -1,23 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../../api";
 import moment from "moment";
 import { Pencil, Trash } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import { getCookie, setCookie, } from "react-use-cookie";
 import "../Adm/adm.css";
+import { CartContext } from "../../contexts/CartContext";
+import { LoginContext } from "../../contexts/LoginContext";
 
 export function AdmPage() {
   const navigate = useNavigate();
+  const {isAdmin} = useContext(LoginContext)
 
   const [dados, setDados] = useState([]);
 
-  async function getUsers() {
-    const user = getCookie("user");
-    const { email } = JSON.parse(user);
-
-    if (email != "admin@email.com") {
+  async function getUsers() {    
+    if (!isAdmin) {
+      alert("Página apenas para administradores")
       navigate("/");
     }
+
+    const user = getCookie("user");
     const token = getCookie("token");
     if (user != "" && user != null) {
       const { id } = JSON.parse(user);
@@ -26,7 +29,6 @@ export function AdmPage() {
         headers: { Authorization: `${token}` },
       });
       try {
-        console.log(response.data)
         setDados(response.data);
       } catch (error) {
         alert("Ocorreu um erro, verifique os dados!");
@@ -39,10 +41,10 @@ export function AdmPage() {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [onRemove]);
 
   async function onRemove(item) {
-    var r = confirm("Você tem certeza que quer deletar sua conta?");
+    var r = confirm("Você tem certeza que quer deletar a conta?");
     if (r == true) {
       const user = getCookie("user");
       const token = getCookie("token");
@@ -53,9 +55,6 @@ export function AdmPage() {
           {
             headers: { Authorization: `${token}` },
           });
-        setCookie("user", "")
-        setCookie("token", "")
-        navigate("/admin/users");
       } catch {
         alert("Ocorreu um erro, tente mais tarde!");
       }
