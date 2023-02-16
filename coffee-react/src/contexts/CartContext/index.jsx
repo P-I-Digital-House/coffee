@@ -37,7 +37,7 @@ export const CartProvider = ({ children }) => {
   }
 
   function handleFrete() {
-    setListFrete([{nome: 'Frete 1', valor: 19}, {nome: 'Frete 2', valor: 25},{nome: 'Frete 3', valor: 32}])
+    setListFrete([{nome: 'SEDEX', valor: 19}, {nome: 'JADLog', valor: 25},{nome: 'Loggi', valor: 32}])
     if(listFrete != null){
       setIsOpenFrete(true)
     }
@@ -63,6 +63,6 @@ export const CartProvider = ({ children }) => {
   }
 
     return (
-        <CartContext.Provider value={{cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart, favProduct, favs, handleFrete, handleChangeFrete, handleCupom, handleChangeCupom, isOpenFrete, listFrete, cupom, desconto,radioFrete, errorCupom, disabledBtnCupom, page, setPage}}>{children}</CartContext.Provider>
+        <CartContext.Provider value={{cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart, favProduct, favs, handleFrete, handleChangeFrete, handleCupom, handleChangeCupom, isOpenFrete, listFrete, cupom, desconto,radioFrete, errorCupom, disabledBtnCupom, page, setIsOpenFrete, setPage}}>{children}</CartContext.Provider>
     )
 }

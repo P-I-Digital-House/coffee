@@ -99,7 +99,7 @@ export function Header() {
                   qtdd={"250g"}
                   preco={29.9}
                   img={"../../src/assets/embalagem-cafe-1.png"}
-                  id={1}
+                  id={10}
                 />
       </div>
       <div className="busca-2">

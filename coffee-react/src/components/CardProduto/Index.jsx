@@ -3,8 +3,10 @@ import { CartContext } from "../../contexts/CartContext";
 import "../CardProduto/cardProduto.css";
 import { ShoppingCart, Heart } from "phosphor-react";
 import { QuantityButton } from "../QuantityButton/Index";
+import { useNavigate } from "react-router-dom";
 
 export function CardProduto({ img, titulo, qtdd, preco, id }) {
+  const navigate = useNavigate();
   const { handleAddItemToCart, favProduct } = useContext(CartContext)
   const [quantity, setQuantity] = useState(0);
   const [heartWeight, setHeartWeight] = useState("regular");
@@ -24,7 +26,7 @@ export function CardProduto({ img, titulo, qtdd, preco, id }) {
   return (
     <div className="card-produtos">
       <button className="btn-fav" onClick={()=>{favProduct(img, titulo, qtdd, preco, id)}}><Heart size={30} weight={heartWeight}></Heart></button>
-      <a href={"/detalhe-produto/" + id} style={{textDecoration: "none"}}>
+      <a onClick={()=>{navigate("/detalhe-produto/" + id)}} style={{textDecoration: "none", cursor: "pointer"}}>
         <img className="img-card-produtos" src={img} alt="" />
         <p className="titulo-card-produtos">{titulo}</p>
       </a>
