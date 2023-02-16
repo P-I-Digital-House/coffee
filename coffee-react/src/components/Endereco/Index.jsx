@@ -76,7 +76,7 @@ export function Enderecos() {
     const token = getCookie("token");
     if(user != "" && user != null){
       const { id } = JSON.parse(user);
-      const response = await api.get(`/users/${id}`, {
+      const response = await api.get(`/address/userId/${id}`, {
         headers: { Authorization: `${token}` },
       });
     try {
@@ -118,15 +118,16 @@ export function Enderecos() {
   return (
     <Formik
       validationSchema={validationSchema}
+      enableReinitialize="true"
       initialValues={{
-        aname: "",
-        cep: "",
-        street: "",
-        anumber: "",
-        complement: "",
-        district: "",
-        city: "",
-        state: ""
+        aname: dados.aname,
+        cep: dados.cep,
+        street: dados.street,
+        anumber: dados.anumber,
+        complement: dados.complement,
+        district: dados.district,
+        city: dados.city,
+        state: dados.state
       }}
       onSubmit={(values) => {
         createAddress(values);

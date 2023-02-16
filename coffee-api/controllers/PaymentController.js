@@ -13,6 +13,17 @@ function getPaymentById(req, res) {
   });
 }
 
+function getPaymentByUserId(req, res) {
+  const { userId } = req.params;
+  database.Payment.findOne({
+    where: {
+      users_id: userId
+    }
+  }).then((data) => {
+    res.json(data);
+  });
+}
+
 function createPayment(req, res) {
   const { cardNumber, cardName, securityCode, validity, users_id } = req.body;
   database.Payment.create({
@@ -53,5 +64,6 @@ module.exports = {
   getPaymentById,
   createPayment,
   updatePayment,
-  deletePayment
+  deletePayment,
+  getPaymentByUserId
 };

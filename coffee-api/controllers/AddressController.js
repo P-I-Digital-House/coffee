@@ -13,6 +13,17 @@ function getAddressById(req, res) {
   });
 }
 
+function getAddressByUserId(req, res) {
+  const { userId } = req.params;
+  database.Address.findOne({
+    where: {
+      users_id: userId
+    }
+  }).then((data) => {
+    res.json(data);
+  });
+}
+
 function createAddress(req, res) {
   const { aname, cep, street, anumber, complement, district, city, state, users_id } = req.body;
   database.Address.create({
@@ -61,5 +72,6 @@ module.exports = {
   getAddressById,
   createAddress,
   updateAddress,
-  deleteAddress
+  deleteAddress,
+  getAddressByUserId
 };

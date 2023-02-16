@@ -51,7 +51,7 @@ export function Pagamentos() {
     const token = getCookie("token");
     if(user != "" && user != null){
       const { id } = JSON.parse(user);
-      const response = await api.get(`/users/${id}`, {
+      const response = await api.get(`/payment/userId/${id}`, {
         headers: { Authorization: `${token}` },
       });
     try {
@@ -89,11 +89,12 @@ export function Pagamentos() {
   return (
     <Formik
       validationSchema={validationSchema}
+      enableReinitialize="true"
       initialValues={{
-        cardNumber: "",
-        cardName: "",
-        securityCode: "",
-        validity: ""
+        cardNumber: dados.cardNumber,
+        cardName: dados.cardName,
+        securityCode: dados.securityCode,
+        validity: dados.validity
       }}
       onSubmit={(values) => {
         createPayment(values);
