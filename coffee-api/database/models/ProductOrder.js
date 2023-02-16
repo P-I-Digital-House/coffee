@@ -6,11 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    price: {
-      type: DataTypes.STRING
+    totalprice: {
+      type: DataTypes.FLOAT
+    },
+    unitPrice: {
+      type: DataTypes.FLOAT
     },
     quantity: {
-      type: DataTypes.FLOAT
+      type: DataTypes.INTEGER
     },
     orders_id: {
       type: DataTypes.INTEGER
