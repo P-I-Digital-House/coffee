@@ -132,7 +132,7 @@ export function Carrinho() {
           </tr>
         </table>
         
-        <a href="/finished" >
+        <a href="/endereco" >
         <button className="btnPayments" type="submit">
           FINALIZAR COMPRA
         </button>

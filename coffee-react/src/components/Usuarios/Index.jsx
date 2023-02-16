@@ -4,7 +4,7 @@ import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
 import "../Usuarios/usuarios.css";
 import { useNavigate } from "react-router-dom";
-import { getCookie, setCookie,  } from "react-use-cookie";
+import { getCookie, setCookie, } from "react-use-cookie";
 
 
 const schema = yup.object().shape({
@@ -47,31 +47,32 @@ export function Usuarios() {
   async function buildPage() {
     const user = getCookie("user");
     const token = getCookie("token");
-    if(user != "" && user != null){
+    console.log('user', user)
+    if (user) {
       const { id } = JSON.parse(user);
       const response = await api.get(`/users/${id}`, {
         headers: { Authorization: `${token}` },
       });
-    try {
-      setDados(response.data);
-    } catch (error) {
-      alert("Ocorreu um erro, verifique os dados!");
-    }
-    }else{
+      try {
+        setDados(response.data);
+      } catch (error) {
+        alert("Ocorreu um erro, verifique os dados!");
+      }
+    } else {
       alert('Você nao está logado')
-      navigate("/login")
+      navigate("/")
     }
-    
+
   }
 
   async function deleteUser() {
-    var r=confirm("Você tem certeza que quer deletar sua conta?");
-    if(r==true){
+    var r = confirm("Você tem certeza que quer deletar sua conta?");
+    if (r == true) {
       const user = getCookie("user");
       const token = getCookie("token");
-      if(user){
+      if (user) {
         const { id } = JSON.parse(user);
-        try{
+        try {
           const response = await api.delete(`/users/${id}`, {
             headers: { Authorization: `${token}` },
           });
@@ -83,10 +84,10 @@ export function Usuarios() {
           alert("Ocorreu um erro, tente mais tarde!");
         }
       }
-    }else{
+    } else {
 
     }
-    
+
   }
 
   async function updateUser(values) {
@@ -104,18 +105,18 @@ export function Usuarios() {
     formData.append("picture", values.picture);
     formData.append("file", fileField.files[0]);
 
-    if(user){
+    if (user) {
       const { id } = JSON.parse(user);
-    try {
-      const response = await api.put(`/users/${id}`, formData, {
-        headers: { Authorization: `${token}` },
-      });
-      alert("Usuário atualizado com sucesso.");
-    } catch (error) {
-      alert("Usuário não cadastrado.");
+      try {
+        const response = await api.put(`/users/${id}`, formData, {
+          headers: { Authorization: `${token}` },
+        });
+        alert("Usuário atualizado com sucesso.");
+      } catch (error) {
+        alert("Usuário não cadastrado.");
+      }
     }
   }
-}
 
   return (
     <div className="form-update container-usuarios">

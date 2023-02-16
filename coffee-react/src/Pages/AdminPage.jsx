@@ -1,15 +1,14 @@
-import { Footer } from "../components/Footer/Index";
-import { NavFixed } from "../components/NavFixed/Index";
+// import { Footer } from "../components/Footer/Index";
+// import { NavFixed } from "../components/NavFixed/Index";
 import { AdmPage } from "../components/Adm/Index";
 
-function AdminPage() {
+export function AdminPage() {
   return (
     <div>
-      <NavFixed />
+      {/* <NavFixed /> */}
       <AdmPage />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
 
-export default AdminPage;
