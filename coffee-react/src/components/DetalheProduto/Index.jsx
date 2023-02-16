@@ -2,11 +2,16 @@ import "./detalheProduto.css";
 import Coffee from "../../assets/embalagem-cafe-1.png";
 import { Star, Truck } from "phosphor-react";
 import api from '../../../api';
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useContext } from 'react';
+import { CartContext } from "../../contexts/CartContext";
+import { QuantityButton } from "../QuantityButton/Index";
+import { useNavigate } from "react-router-dom";
 
 // { img, title, price, installment }
 export const DetalheProduto = ({id}) => {
+  const navigate = useNavigate();
+  const { handleAddItemToCart, favProduct } = useContext(CartContext)
+  const [quantity, setQuantity] = useState(0);
   const [dados, setDados] = useState([]);
   useEffect(() => {
     buildPage();
@@ -28,7 +33,7 @@ export const DetalheProduto = ({id}) => {
 
 
   function handleFrete() {
-    setListFrete([{nome: 'Frete 1', valor: 19}, {nome: 'Frete 2', valor: 25},{nome: 'Frete 3', valor: 32}])
+    setListFrete([{nome: 'SEDEX', valor: 19}, {nome: 'JADLog', valor: 25},{nome: 'Loggi', valor: 32}])
     if(listFrete != null){
       setIsOpenFrete(true)
     }
@@ -58,13 +63,14 @@ export const DetalheProduto = ({id}) => {
             </span>
             <p>{dados.pdescription}</p>
             <p>{dados.pquantity}</p>
+            <QuantityButton setQuantity={setQuantity} />
             <p className="detalheValor"><b>R$ {dados.price!=null ? dados.price.toFixed(2) : ""}</b></p>
             <a href="#">
-              <button className="btnPortal" type="submit">
+              <button className="btnPortal" onClick={() => handleAddItemToCart(dados.pname, dados.picture, dados.price, quantity)}>
                 COMPRAR
               </button>
             </a>
-            <a href="/carrinho">
+            <a onClick={()=>navigate("/carrinho")}>
               <button className="btnPortal" type="submit">
                 IR PARA CARRINHO
               </button>

@@ -3,7 +3,9 @@ import { CartContext } from "../../contexts/CartContext";
 import { XCircle } from "phosphor-react";
 
 export function CarrinhoOne() {
-    const {cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart,  handleFrete, handleChangeFrete, handleCupom, handleChangeCupom, isOpenFrete, listFrete, cupom, desconto,radioFrete, errorCupom, disabledBtnCupom, page, setPage} = useContext(CartContext)
+    const {cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart,  handleFrete, handleChangeFrete, handleCupom, handleChangeCupom, isOpenFrete, listFrete, cupom, desconto,radioFrete, errorCupom, disabledBtnCupom, page, setPage, setIsOpenFrete} = useContext(CartContext)
+
+
     return (
     <div className="shoppingCart">
         <div className="title"></div>
@@ -96,10 +98,9 @@ export function CarrinhoOne() {
             </table>
 
             <a>
-                <button className="btnPayments" onClick={() => {
-                    setPage(page + 1);
-                    document.getElementById("shoppingCart").focus();
-                }}>
+                <button className="btnPayments" onClick={()=>{setIsOpenFrete(false);
+            setPage(page + 1);
+            document.getElementById("shoppingCart").focus();}}>
                     FINALIZAR COMPRA
                 </button>
             </a>
