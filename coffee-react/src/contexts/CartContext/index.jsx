@@ -7,6 +7,14 @@ export const CartProvider = ({ children }) => {
     const [subtotalCart, setSubtotalCart] = useState(0)
     const [totalQuantityCart, setTotalQuantityCart] = useState(0)
     const [favs, setFavs] = useState([]);
+    const [isOpenFrete, setIsOpenFrete ] = useState(false);
+    const [listFrete, setListFrete ] = useState([]);
+    const [desconto, setDesconto ] = useState(0);
+    const [cupom, setCupom ] = useState("");
+    const [ radioFrete, setRadioFrete ] = useState(0);
+    const [errorCupom, setErrorCupom] = useState("")
+    const [disabledBtnCupom, setDisabledBtnCupom] = useState(false)
+    const [page, setPage] = useState(0)  
 
     function favProduct (img, titulo, qtdd, preco, id) {
       setFavs([...favs, {"id": id, "titulo": titulo, "qtdd": qtdd, "preco": preco, "img": img}])
@@ -27,7 +35,33 @@ export const CartProvider = ({ children }) => {
     setTotalQuantityCart(totalQuantityCart-quantity)
   }
 
+  function handleFrete() {
+    setListFrete([{nome: 'Frete 1', valor: 19}, {nome: 'Frete 2', valor: 25},{nome: 'Frete 3', valor: 32}])
+    if(listFrete != null){
+      setIsOpenFrete(true)
+    }
+  }
+
+  function handleCupom() {
+    if(cupom != "" && cupom == "TESTE" && subtotalCart>=20){
+      setDesconto(20)
+      setErrorCupom("")
+      setDisabledBtnCupom(true)
+    } else setErrorCupom("Cupom inválido")
+  }
+
+  function handleChangeFrete(e) {
+    const { nodeName, value } = e.target;
+    if (nodeName === 'INPUT') {
+      setRadioFrete(parseFloat(value));
+    }
+  }
+
+  function handleChangeCupom(e) {
+    setCupom(e.target.value)
+  }
+
     return (
-        <CartContext.Provider value={{cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart, favProduct, favs}}>{children}</CartContext.Provider>
+        <CartContext.Provider value={{cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart, favProduct, favs, handleFrete, handleChangeFrete, handleCupom, handleChangeCupom, isOpenFrete, listFrete, cupom, desconto,radioFrete, errorCupom, disabledBtnCupom, page, setPage}}>{children}</CartContext.Provider>
     )
 }
