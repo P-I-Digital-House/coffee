@@ -49,7 +49,7 @@ export function NavFixed() {
           <img src={IconCarrinho} alt="" className="icon" />
             <div className="rounded-circle">{totalQuantityCart}</div>
           </Link>
-          <a onClick={()=>logout()}><SignOut size={32} weight="bold" cursor={"pointer"}/></a>
+          { getUserCookie() && <a onClick={()=>logout()}><SignOut size={32} weight="bold" cursor={"pointer"}/></a> }
         </div>
         
       </div>
