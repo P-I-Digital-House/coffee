@@ -13,10 +13,16 @@ export function AdmPage() {
 
   async function getUsers() {
     const user = getCookie("user");
+    const { email } = JSON.parse(user);
+
+    if (email != "admin@email.com") {
+      navigate("/");
+    }
     const token = getCookie("token");
     if (user != "" && user != null) {
       const { id } = JSON.parse(user);
-      const response = await api.get(`/users`, {
+      const response = await api.get(`/users`
+    , {
         headers: { Authorization: `${token}` },
       });
       try {
@@ -62,7 +68,7 @@ export function AdmPage() {
   }
 
   return (
-    <div className="container">
+    <div className="container3">
       <h2>Meus Usuários Cadastrados</h2>
       <table className="table">
         <thead>

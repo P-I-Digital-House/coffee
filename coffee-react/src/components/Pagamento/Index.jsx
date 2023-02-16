@@ -101,7 +101,7 @@ export function Pagamentos() {
             {touched.validade && errors.validade && (
                 <div className="error">{errors.validade}</div>
             )}
-            <button type="submit" className="botao-pagamento">
+            <button type="submit" className="botao-pagamento" navigate="/finalizada">
               <b>Cadastrar</b>
             </button>
           </div>

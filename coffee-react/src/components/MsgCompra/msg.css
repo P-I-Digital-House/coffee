@@ -1,0 +1,24 @@
+.form-register {
+  background-color: #2D2D2E;
+  color: azure;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  height: 100%;
+  gap: 20px;
+}
+
+.register {
+  height: 70%;
+  width: max(30%, 350px);
+  padding: 15px 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+

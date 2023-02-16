@@ -1,15 +1,14 @@
 import { Footer } from "../components/Footer/Index";
 import { NavFixed } from "../components/NavFixed/Index";
-import { EditUser } from "../components/Edit/Index";
-import { useParams } from "react-router-dom";
+import { Random } from "../components/MsgCompra/Index";
 
-export function EditPage() {
-  const { id } = useParams();
+export function CompraFinalizada() {
   return (
     <div>
       <NavFixed />
-      <EditUser id={id} />
+      <Random />
       <Footer />
     </div>
   );
 }
+

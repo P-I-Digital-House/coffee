@@ -5,7 +5,6 @@ import * as yup from "yup";
 import "../Usuarios/usuarios.css";
 import { getCookie } from "react-use-cookie";
 
-
 const schema = yup.object().shape({
   uname: yup.string().required("Nome obrigatório"),
   document: yup
@@ -26,40 +25,37 @@ const schema = yup.object().shape({
     .required("Senha obrigatória"),
 });
 
-export function EditUser() {
-
+export function EditUser({ id }) {
   const [dados, setDados] = useState(
     {
-    picture: "",
-    uname: "",
-    document: 0,
-    birthdate: 0,
-    phone: "",
-    email: "",
-    upassword: "",
-  },
-  []);
+      picture: "",
+      uname: "",
+      document: 0,
+      birthdate: 0,
+      phone: "",
+      email: "",
+      upassword: "",
+    },
+    []
+  );
 
   useEffect(() => {
-    buildPage();
+        buildPage();
   }, []);
 
   async function buildPage() {
-    const user = getCookie("user");
+    
     const token = getCookie("token");
 
-      const { id } = JSON.parse(user);
-      const response = await api.get(`/users/${id}`, {
-        headers: { Authorization: `${token}` },
-      });
-      try {
-        setDados(response.data);
-      } catch (error) {
-        alert("Ocorreu um erro, verifique os dados!");
-      }
-
+    const response = await api.get(`/users/${id}`, {
+      headers: { Authorization: `${token}` },
+    });
+    try {
+      setDados(response.data);
+    } catch (error) {
+      alert("Ocorreu um erro, verifique os dados!");
+    }
   }
-
 
   async function updateUser(values) {
     const user = getCookie("user");
@@ -77,7 +73,7 @@ export function EditUser() {
     formData.append("file", fileField.files[0]);
 
     if (user) {
-      const { id } = JSON.parse(user);
+      // const { id } = JSON.parse(user);
       try {
         const response = await api.put(`/users/${id}`, formData, {
           headers: { Authorization: `${token}` },
@@ -133,7 +129,12 @@ export function EditUser() {
             </div>
             <div className="label">
               <label htmlFor="birthdate">Data de Nascimento</label>
-              <Field className="main" id="birthdate" name="birthdate" type="date" />
+              <Field
+                className="main"
+                id="birthdate"
+                name="birthdate"
+                type="date"
+              />
               {touched.birthdate && errors.birthdate && (
                 <div className="error">{errors.birthdate}</div>
               )}
@@ -189,7 +190,6 @@ export function EditUser() {
   );
 }
 
-
 //   const [user, setUser] = useState({});
 //   const navigate = useNavigate();
 //   const { id } = useParams();
@@ -212,4 +212,3 @@ export function EditUser() {
 //   useEffect(() => {
 //     onLoad();
 //   }, []);
-
