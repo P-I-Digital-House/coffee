@@ -66,7 +66,7 @@ export const DetalheProduto = ({id}) => {
             <QuantityButton setQuantity={setQuantity} />
             <p className="detalheValor"><b>R$ {dados.price!=null ? dados.price.toFixed(2) : ""}</b></p>
             <a href="#">
-              <button className="btnPortal" onClick={() => handleAddItemToCart(dados.pname, dados.picture, dados.price, quantity)}>
+              <button className="btnPortal" onClick={() => handleAddItemToCart(dados.pname, dados.picture, dados.price, quantity, dados.id)}>
                 COMPRAR
               </button>
             </a>

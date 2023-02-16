@@ -22,8 +22,8 @@ export const CartProvider = ({ children }) => {
       localStorage.setItem("favs", JSON.stringify([...favs, {"id": id, "titulo": titulo, "qtdd": qtdd, "preco": preco, "img": img}]));
     }
 
-  function handleAddItemToCart(pname, picture, price, quantity){
-    const itemObject = {pname, picture, price, quantity}    
+  function handleAddItemToCart(pname, picture, price, quantity, id){
+    const itemObject = {pname, picture, price, quantity, id}    
     setCart([...cart, itemObject])
     setSubtotalCart(subtotalCart+(price*quantity))
     setTotalQuantityCart(totalQuantityCart+quantity)

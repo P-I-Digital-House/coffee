@@ -7,6 +7,7 @@ import api from "../../../api";
 import * as yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 import axios from "axios";
+import moment from "moment/moment";
 
 const validationSchema = yup.object().shape({
     cardNumber: yup
@@ -68,6 +69,7 @@ export function CarrinhoTwo() {
 
     const [address, setAddress]= useState([])
     const [payment, setPayment] = useState([])
+    const [idAdress, setIdAddress] = useState(0)
 
     useEffect(() => {
         buildPage();
@@ -86,6 +88,7 @@ export function CarrinhoTwo() {
           });
         try {
           setAddress(response.data);
+          setIdAddress(response.data.id)
           setPayment(response2.data);
         } catch (error) {
           alert("Ocorreu um erro, verifique os dados!");
@@ -126,7 +129,7 @@ export function CarrinhoTwo() {
         try {
           const response = await api.post("/address", formData, {
             headers: { Authorization: `${token}` },
-          });
+          }).then((response) => setIdAddress(response.data.id))
           alert("Endereço cadastrado com sucesso.");
         } catch (error) {
           alert("Endereço não cadastrado.");
@@ -151,6 +154,52 @@ export function CarrinhoTwo() {
           alert("Cartão de crédito cadastrado com sucesso.");
         } catch (error) {
           alert("Cartão de crédito não cadastrado.");
+        }
+      }
+
+      async function createOrder(){
+        const user = JSON.parse(getCookie("user"));
+        const token = getCookie("token");
+        const formData = new FormData();
+    
+        formData.append("odescription", "");
+        formData.append("totalPrice", (parseFloat(subtotalCart) + parseFloat(radioFrete) - parseFloat(desconto)).toFixed(2) );
+        formData.append("dt_create", moment().format("YYYY-MM-DD"));
+        formData.append("delivery_date", moment().add(5, 'days').format("YYYY-MM-DD"));
+        formData.append("users_id", user.id);
+        formData.append("address_id", idAdress);
+    
+        try {
+          const response = await api.post("/order", formData, {
+            headers: { Authorization: `${token}` },
+          }).then((response) => {
+            cart.map((item) =>{
+                createProductOrder(response.data.id, item.quantity, item.price, item.id)
+            })
+            });
+          alert("Compra realizada com sucesso.");
+        } catch (error) {
+          alert("Compra não efetuada.");
+        }
+      }
+      async function createProductOrder(orderId, quantity, price, productId){
+        const user = JSON.parse(getCookie("user"));
+        const token = getCookie("token");
+        const formData = new FormData();
+    
+        formData.append("totalprice", quantity*price);
+        formData.append("unitPrice", price);
+        formData.append("quantity", quantity);
+        formData.append("orders_id", orderId);
+        formData.append("product_id", productId);
+    
+        try {
+          const response = await api.post("/productOrder", formData, {
+            headers: { Authorization: `${token}` },
+          });
+          console.log("Compra realizada com sucesso. ID "+productId);
+        } catch (error) {
+          alert("Compra não efetuada.");
         }
       }
 
@@ -392,7 +441,7 @@ export function CarrinhoTwo() {
                             alert("Carrinho vazio")
                         }
                         else{
-                            alert("Compra efetuada com sucesso!")
+                            createOrder();
                         }
                     }else{
                         alert('Escolha um frete')

@@ -34,7 +34,7 @@ export function CardProduto({ img, titulo, qtdd, preco, id }) {
       <p className="preco-card-produtos">R$ {preco.toFixed(2)}</p>
       <div className="buttons">
         <QuantityButton setQuantity={setQuantity} />
-        <button className="btn-card-produtos" onClick={() => handleAddItemToCart(titulo, img, preco, quantity)}>
+        <button className="btn-card-produtos" onClick={() => handleAddItemToCart(titulo, img, preco, quantity, id)}>
           <ShoppingCart size={20} weight={"bold"} /> Adicionar
         </button>
       </div>

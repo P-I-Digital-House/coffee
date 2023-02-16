@@ -9,6 +9,8 @@ const userRouterSequelize = require("./routes/userRouterSequelize");
 const productRouterSequelize = require("./routes/productRouterSequelize");
 const addressRouter = require("./routes/addressRouter");
 const paymentRouter = require("./routes/paymentRouter");
+const orderRouter = require("./routes/orderRouter");
+const productOrderRouter = require("./routes/productOrderRouter");
 
 const app = express();
 app.use(express.json());
@@ -28,6 +30,10 @@ app.use('/products', productRouterSequelize);
 app.use('/address', addressRouter);
 
 app.use('/payment', paymentRouter);
+
+app.use('/order', orderRouter);
+
+app.use('/productOrder', productOrderRouter);
 
 app.listen(5000, () => {
     console.log('servidor ligado')
