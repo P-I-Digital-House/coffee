@@ -63,9 +63,10 @@ export function AdmPage() {
 
   return (
     <div className="container">
-      <table>
+      <h2>Meus Usuários Cadastrados</h2>
+      <table className="table">
         <thead>
-          <tr>
+          <tr className="tableTr">
             <th>ID</th>
             <th>Nome</th>
             <th>CPF</th>
@@ -76,7 +77,7 @@ export function AdmPage() {
             <th>Editar</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="tableBody">
           {dados.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
@@ -88,12 +89,12 @@ export function AdmPage() {
               <td>{item.phone}</td>
               <td>{item.email}</td>
               <td>
-                <button onClick={() => onRemove(item)}>
+                <button className="btnUsers" onClick={() => onRemove(item)}>
                   <Trash size={30} color="#ee1b1b" />
                 </button>
               </td>
               <td>
-                <button onClick={() => update()}>
+                <button className="btnUsers" onClick={() => update(item)}>
                   <Pencil size={30} color="#d4a216" />
                 </button>
               </td>
