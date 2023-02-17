@@ -8,4 +8,8 @@ const multerUpload = require("../config/multer");
 
 router.post("/", middlewareCadastro.validateUser, multerUpload.single("file"), controller.createOrder);
 
+router.get("/userId/:userId", middleware.validateToken, controller.getOrderByIdUser);
+
+router.delete("/:id", middleware.validateToken, controller.deleteOrder);
+
 module.exports = router;

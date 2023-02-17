@@ -18,7 +18,7 @@ import { LoginProvider } from "./contexts/LoginContext";
 import { useNavigate } from "react-router-dom";
 import { BuscaProduto } from "./components/BuscaProduto/Index";
 import { BuscaProdutos } from "./Pages/BuscaProduto";
-import { CompraFinalizada } from "./Pages/CompraFinalizada";
+import { MeusPedidos } from "./Pages/MeusPedidos";
 
 
 
@@ -40,7 +40,7 @@ export default function App() {
               <Route path="/admin/users/edit/:id" element={<EditPage />} />
               <Route path="/pagamento" element={<Pagamento />} />
               <Route path="/endereco" element={<Endereco />} />
-              <Route path="/finalizada" element={<CompraFinalizada />} />
+              <Route path="/pedidos" element={<MeusPedidos />} />
             </Routes>
           </BrowserRouter>
         </LoginProvider>

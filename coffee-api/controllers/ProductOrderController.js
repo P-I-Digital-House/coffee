@@ -1,15 +1,26 @@
 const database = require("../database/models");
 
 function createProductOrder(req, res) {
-  const { totalprice,unitPrice,quantity,orders_id,product_id } = req.body;
+  const { totalPrice,unitPrice,quantity,orders_id,product_id } = req.body;
   database.ProductOrder.create({
-    totalprice,unitPrice,quantity,orders_id,product_id
+    totalPrice,unitPrice,quantity,orders_id,product_id
   }).then((data) => {
     res.json(data);
   });
 }
 
+function getByOrderId(req, res){
+    const { orderId } = req.params
+    database.ProductOrder.findAll({
+        where: {
+            orders_id: orderId
+        }
+      }).then((data) => {
+        res.json(data);
+      });
+}
 
 module.exports = {
-  createProductOrder  
+  createProductOrder,
+  getByOrderId
 };

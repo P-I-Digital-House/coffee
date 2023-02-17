@@ -1,0 +1,41 @@
+.meusPedidos {
+    display: flex;
+    padding-bottom: 10rem;
+    width: max(90%,350px);
+    margin: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.wrapperPedidos h1 {
+    padding-top: 10rem;
+    width: max(90%,350px);
+    margin: auto;
+    font-size: 1.6rem;
+}
+
+.cardPedido {
+    padding: 3rem;
+    margin-top: 40px;
+    background-color: #F5F5F5;
+    width: max(40%, 300px);
+    border-radius: 30px;
+    box-shadow: 10px 10px 10px rgba(174, 173, 173, 0.249);
+}
+
+.cardPedido table {
+    margin: auto;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+.cardPedido table th {
+    width: 15%;
+    line-height: 200%;
+}
+
+.cardPedido table th:not(.headerTotal) {
+    text-align: right;
+    font-weight: 600;
+}

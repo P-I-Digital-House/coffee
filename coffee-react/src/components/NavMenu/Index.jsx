@@ -10,7 +10,7 @@ export function NavMenu() {
         <Link className="menu-item" to="/usuario">
         Dados Pessoais
       </Link>
-      <Link className="menu-item" to="/">
+      <Link className="menu-item" to="/pedidos">
         Meus Pedidos
       </Link>
       <Link className="menu-item" to="/endereco">
@@ -19,14 +19,8 @@ export function NavMenu() {
       <Link className="menu-item" to="/pagamento">
         Métodos de Pagamento
       </Link>
-      <Link className="menu-item" to="/">
-        Configurações
-      </Link>
-      <Link className="menu-item" to="/">
+      <Link className="menu-item" to="/produtos">
         Favoritos
-      </Link>
-      <Link className="menu-item" to="/">
-      Política de Privacidade
       </Link>
       </Menu>
     );

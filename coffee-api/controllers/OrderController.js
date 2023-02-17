@@ -9,6 +9,24 @@ function createOrder(req, res) {
   });
 }
 
+function getOrderByIdUser(req, res){
+  const { userId } = req.params;
+  database.Order.findAll({
+    where: {
+      users_id: userId
+    }
+  }).then((data) => {
+    res.json(data);
+  });
+}
+
+function deleteOrder(req, res) {
+  const { id } = req.params;
+  database.Order.destroy({ where: { id } }).then((data) => res.json(data));
+}
+
 module.exports = {
-  createOrder
+  createOrder,
+  getOrderByIdUser,
+  deleteOrder
 };

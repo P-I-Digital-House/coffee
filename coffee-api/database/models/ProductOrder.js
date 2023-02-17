@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    totalprice: {
+    totalPrice: {
       type: DataTypes.FLOAT
     },
     unitPrice: {

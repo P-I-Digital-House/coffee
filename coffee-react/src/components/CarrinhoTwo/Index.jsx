@@ -8,6 +8,8 @@ import * as yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 import axios from "axios";
 import moment from "moment/moment";
+import { useNavigate } from "react-router-dom";
+
 
 const validationSchema = yup.object().shape({
     cardNumber: yup
@@ -62,13 +64,29 @@ const validationSchema = yup.object().shape({
     state: yup
       .string(),
   });
-  
 
 export function CarrinhoTwo() {
     const {cart, handleAddItemToCart, handleRemoveItemFromCart, subtotalCart, totalQuantityCart,  handleFrete, handleChangeFrete, handleCupom, handleChangeCupom, isOpenFrete, listFrete, cupom, desconto,radioFrete, errorCupom, disabledBtnCupom, page, setPage} = useContext(CartContext)
 
-    const [address, setAddress]= useState([])
-    const [payment, setPayment] = useState([])
+    const navigate = useNavigate()
+
+    const [address, setAddress]= useState({
+        aname: "",
+        cep: "",
+        street: "",
+        anumber: "",
+        complement: "",
+        district: "",
+        city: "",
+        state: ""
+      })
+    const [payment, setPayment] = useState({
+        cardNumber: "",
+        cardName: "",
+        securityCode: "",
+        validity: ""
+        
+      })
     const [idAdress, setIdAddress] = useState(0)
 
     useEffect(() => {
@@ -87,11 +105,11 @@ export function CarrinhoTwo() {
             headers: { Authorization: `${token}` },
           });
         try {
-          setAddress(response.data);
+        response.data ? setAddress(response.data) : "";
           setIdAddress(response.data.id)
-          setPayment(response2.data);
+          response2.data ? setPayment(response2.data) : "";
+          
         } catch (error) {
-          alert("Ocorreu um erro, verifique os dados!");
         }
         }else{
           alert('Você nao está logado')
@@ -178,6 +196,7 @@ export function CarrinhoTwo() {
             })
             });
           alert("Compra realizada com sucesso.");
+          navigate("/")
         } catch (error) {
           alert("Compra não efetuada.");
         }
@@ -187,7 +206,7 @@ export function CarrinhoTwo() {
         const token = getCookie("token");
         const formData = new FormData();
     
-        formData.append("totalprice", quantity*price);
+        formData.append("totalPrice", quantity*price);
         formData.append("unitPrice", price);
         formData.append("quantity", quantity);
         formData.append("orders_id", orderId);
@@ -430,7 +449,7 @@ export function CarrinhoTwo() {
             <a>
                 <button className="btnPayments" onClick={() => {
                     setPage(page -1);
-                    document.getElementById("shoppingCart").focus();
+                    // document.getElementById("shoppingCart").focus();
                 }}>
                     VOLTAR
                 </button>

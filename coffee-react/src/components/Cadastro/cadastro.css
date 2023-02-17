@@ -36,13 +36,14 @@ a {
   margin-top: 20px;
 }
 
-.btn-send {
+.register .btn-send {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #fff;
   font-size: small;
+  width: fit-content;
 }
 
 .btn-send:hover {
